@@ -6,9 +6,10 @@
   <title>🎄</title>
   <style>
     :root{
-      /* Scandinavian Christmas */
-      --bg1:#0b1a14;
-      --bg2:#102a20;
+      /* Peaceful Night Sky (Scandi Christmas) */
+      --bg1:#050916;           /* deep navy */
+      --bg2:#07122a;           /* midnight */
+      --bg3:#0b1a33;           /* soft horizon navy */
       --card:#ffffff10;
       --card2:#ffffff08;
       --text:#f4f2ed;
@@ -18,8 +19,9 @@
       --green:#1f3d32;
       --shadow: 0 20px 60px #00000066;
 
-      --scratch:#d7d9d6;
-      --scratchInk:rgba(30,36,33,.55);
+      /* scratch overlay */
+      --scratch:#cfd2d6;       /* base silver */
+      --scratchInk:rgba(20,24,28,.55);
       --meta:#b9a99bd9;
     }
 
@@ -31,43 +33,96 @@
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
       overflow:hidden;
       background:
-        radial-gradient(1200px 800px at 20% 10%, #1a3b2d 0%, transparent 60%),
-        radial-gradient(1200px 800px at 80% 20%, #2a1c24 0%, transparent 55%),
-        linear-gradient(160deg, var(--bg1), var(--bg2));
+        radial-gradient(1000px 700px at 20% 15%, #1a2b5a55 0%, transparent 60%),
+        radial-gradient(900px 650px at 85% 25%, #2a1c2450 0%, transparent 58%),
+        radial-gradient(1200px 800px at 50% 110%, #0b1a3355 0%, transparent 62%),
+        linear-gradient(160deg, var(--bg1), var(--bg2) 55%, var(--bg3));
     }
 
+    /* gentle aurora-ish light, now tuned for night sky */
     .aurora{
       position:fixed; inset:-20%;
       background:
-        radial-gradient(closest-side at 30% 30%, #ffffff10, transparent 65%),
-        radial-gradient(closest-side at 60% 40%, #d8c38a10, transparent 70%),
-        radial-gradient(closest-side at 70% 60%, #1f3d3214, transparent 72%),
-        radial-gradient(closest-side at 40% 70%, #8f2f2b10, transparent 72%);
-      filter: blur(30px);
-      animation: drift 14s ease-in-out infinite alternate;
+        radial-gradient(closest-side at 25% 30%, #ffffff10, transparent 66%),
+        radial-gradient(closest-side at 60% 35%, #d8c38a10, transparent 72%),
+        radial-gradient(closest-side at 70% 60%, #3b4a8a14, transparent 74%),
+        radial-gradient(closest-side at 40% 75%, #8f2f2b10, transparent 76%);
+      filter: blur(34px);
+      animation: drift 16s ease-in-out infinite alternate;
       pointer-events:none;
+      z-index: 1;
     }
     @keyframes drift{
       from{transform:translate3d(-2%, -1%, 0) scale(1.02) rotate(-2deg)}
       to{transform:translate3d(2%, 1%, 0) scale(1.05) rotate(2deg)}
     }
 
-    .snow{
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.45;
-      background-image:
-        radial-gradient(2px 2px at 20px 30px, #ffffffcc 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 60px 80px, #ffffffaa 50%, transparent 51%),
-        radial-gradient(2px 2px at 120px 140px, #ffffffbb 50%, transparent 51%),
-        radial-gradient(1px 1px at 160px 40px, #ffffff99 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 200px 120px, #ffffffaa 50%, transparent 51%);
-      background-size: 220px 180px;
-      animation: snow 10s linear infinite;
+    /* Star Timelapse Canvas */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2; /* Above aurora, below card */
     }
-    @keyframes snow{
-      from{background-position: 0 0}
-      to{background-position: 0 220px}
+    
+    /* Respect prefers-reduced-motion: show a static starfield */
+    @media (prefers-reduced-motion: reduce) {
+      .aurora {
+        animation: none;
+      }
+      #starfield {
+        background-image:
+          radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+          radial-gradient(1px 1px at 40px 70px, #ddd, transparent),
+          radial-gradient(2px 2px at 50px 50px, #eee, transparent),
+          radial-gradient(1px 1px at 80px 10px, #fff, transparent),
+          radial-gradient(1px 1px at 130px 80px, #ddd, transparent),
+          radial-gradient(2px 2px at 110px 120px, #fff, transparent);
+        background-size: 200px 200px;
+        background-repeat: repeat;
+      }
+    }
+
+    /* Star in the East: now at the top center */
+    .star-east{
+      position:fixed;
+      left: 50%; /* Center horizontally */
+      top: clamp(18px, 4vh, 56px);
+      width: 18px;
+      height: 18px;
+      pointer-events:none;
+      z-index:3; /* Ensure it's above the starfield canvas */
+      filter: drop-shadow(0 0 18px rgba(216,195,138,.55))
+              drop-shadow(0 0 42px rgba(216,195,138,.25));
+      animation: twinkle 3.8s ease-in-out infinite;
+    }
+    .star-east:before, .star-east:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 50% 50%, #fff 0 22%, #d8c38a 40%, transparent 72%);
+      border-radius:50%;
+    }
+    .star-east:after{
+      content:"";
+      position:absolute;
+      left:50%; top:50%;
+      width: 80px; height: 2px;
+      transform: translate(-50%,-50%);
+      background: linear-gradient(90deg, transparent, rgba(216,195,138,.45), transparent);
+      filter: blur(.2px);
+    }
+    .star-east i{
+      position:absolute;
+      left:50%; top:50%;
+      width:2px; height:80px;
+      transform: translate(-50%,-50%);
+      background: linear-gradient(180deg, transparent, rgba(216,195,138,.35), transparent);
+      display:block;
+    }
+    @keyframes twinkle{
+      /* Keep centered while scaling */
+      0%,100%{transform:translateX(-50%) scale(1); opacity:.85}
+      50%{transform:translateX(-50%) scale(1.08); opacity:1}
     }
 
     .wrap{
@@ -76,7 +131,7 @@
       place-items:center;
       padding:24px;
       position:relative;
-      z-index:2;
+      z-index:4;
     }
 
     .card{
@@ -96,18 +151,18 @@
       position:absolute; inset:0;
       border-radius:28px;
       padding:1.5px;
-      background: linear-gradient(90deg, #d8c38a55, #ffffff22, #1f3d3255, #8f2f2b55);
+      background: linear-gradient(90deg, #d8c38a55, #ffffff22, #3b4a8a55, #8f2f2b55);
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
-      mask-composite: exclude;
+              mask-composite: exclude;
       pointer-events:none;
     }
 
     .toprow{
       display:flex;
-      justify-content:space-between;
+      justify-content:center; /* Centered the badge */
       align-items:center;
       gap:14px;
       margin-bottom:16px;
@@ -126,17 +181,6 @@
       letter-spacing:.04em;
       color: var(--gold);
     }
-
-    .dots{display:inline-flex; gap:7px;}
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background:#ffffff2a;
-      border:1px solid #ffffff26;
-      box-shadow:0 0 18px #ffffff14;
-    }
-    .dot.red{background: color-mix(in srgb, var(--red) 75%, transparent)}
-    .dot.gold{background: color-mix(in srgb, var(--gold) 75%, transparent)}
-    .dot.green{background: color-mix(in srgb, var(--green) 75%, transparent)}
 
     .sub{
       margin:0 0 14px;
@@ -169,7 +213,7 @@
       text-shadow: 0 0 22px #ffffff10, 0 0 40px #d8c38a10;
     }
 
-    canvas{
+    canvas#scratch{
       position:absolute; inset:0;
       width:100%; height:100%;
       touch-action:none;
@@ -178,7 +222,7 @@
     .from{
       text-align:center;
       margin-top:10px;
-      margin-bottom:28px; /* MORE SPACE before verses */
+      margin-bottom:28px;
       color:var(--muted);
       font-weight:700;
       letter-spacing:.02em;
@@ -197,6 +241,7 @@
       letter-spacing:.06em;
       font-size: clamp(12px, 2.2vw, 16px);
       color: var(--muted);
+      margin-top: 40px; /* Added more space before the verses */
     }
 
     .verse + .verse{ margin-top:18px; }
@@ -208,9 +253,9 @@
 
     .ref{
       margin-top:6px;
-      color: var(--meta);
-      font-weight:700;
-      letter-spacing:.08em;
+      color: var(--muted);
+      font-weight:800;
+      letter-spacing:.10em;
     }
 
     .meta{
@@ -226,18 +271,17 @@
 
 <body>
   <div class="aurora"></div>
-  <div class="snow"></div>
+  <!-- Star Timelapse Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- One star in the east, now centered -->
+  <div class="star-east" aria-hidden="true"><i></i></div>
 
   <div class="wrap">
     <div class="card">
 
       <div class="toprow">
         <div class="badge">Merry Christmas ✶☧</div>
-        <div class="dots">
-          <span class="dot red"></span>
-          <span class="dot gold"></span>
-          <span class="dot green"></span>
-        </div>
       </div>
 
       <p class="sub">this present is for...</p>
@@ -247,7 +291,7 @@
         <canvas id="scratch"></canvas>
       </div>
 
-      <div class="from">from <strong>Uncle Dantan</strong> &amp; <strong>Auntie Hannie</strong></div>
+      <div class="from">from <strong>Uncle Dantan</strong> &amp; <strong>Auntie Hannah</strong>&nbsp;&nbsp;</div>
 
       <div class="faith">
         <div class="verse">
@@ -268,65 +312,192 @@
 
 <script>
 (() => {
-  const wrap = document.getElementById('wrapScratch');
-  const canvas = document.getElementById('scratch');
-  const ctx = canvas.getContext('2d');
-  let drawing=false, lastX=0, lastY=0;
-  const dpr=Math.max(1,devicePixelRatio||1);
+  // STARFIELD TIMELAPSE
+  const starCanvas = document.getElementById('starfield');
+  const starCtx = starCanvas.getContext('2d');
+  let stars = [];
+  let animationId;
 
-  function resize(){
-    const r=wrap.getBoundingClientRect();
-    canvas.width=r.width*dpr;
-    canvas.height=r.height*dpr;
-    canvas.style.width=r.width+"px";
-    canvas.style.height=r.height+"px";
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    paint(r.width,r.height);
-  }
-
-  function paint(w,h){
-    ctx.globalCompositeOperation="source-over";
-    ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--scratch').trim();
-    ctx.fillRect(0,0,w,h);
-
-    ctx.fillStyle="rgba(0,0,0,.08)";
-    for(let i=0;i<900;i++){
-      ctx.beginPath();
-      ctx.arc(Math.random()*w,Math.random()*h,Math.random()*1.1,0,Math.PI*2);
-      ctx.fill();
+  function initStarfield() {
+    // Stop any existing animation
+    if (animationId) {
+      cancelAnimationFrame(animationId);
     }
 
-    ctx.textAlign="center";
-    ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--scratchInk').trim();
-    ctx.font="900 20px system-ui";
-    ctx.fillText("SCRATCH",w/2,h/2+6);
-    ctx.globalCompositeOperation="destination-out";
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      return; // CSS handles the static background
+    }
+    
+    starCanvas.width = window.innerWidth;
+    starCanvas.height = window.innerHeight;
+    
+    stars = [];
+    const numStars = 250; // Number of stars in the timelapse
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * starCanvas.width,
+        y: Math.random() * starCanvas.height,
+        size: Math.random() * 1.5,
+        speed: Math.random() * 0.5 + 0.1, // Speed of movement
+        opacity: Math.random() * 0.8 + 0.2
+      });
+    }
+    animateStars();
+  }
+
+  function animateStars() {
+    // Create trail effect by drawing a semi-transparent black rectangle
+    starCtx.fillStyle = 'rgba(5, 9, 22, 0.1)'; // Matches --bg1
+    starCtx.fillRect(0, 0, starCanvas.width, starCanvas.height);
+    
+    starCtx.fillStyle = '#ffffff';
+    stars.forEach(star => {
+      starCtx.globalAlpha = star.opacity;
+      starCtx.beginPath();
+      starCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      starCtx.fill();
+
+      // Move star
+      star.x -= star.speed;
+
+      // Wrap star around to the other side
+      if (star.x < 0) {
+        star.x = starCanvas.width;
+      }
+    });
+    starCtx.globalAlpha = 1;
+
+    animationId = requestAnimationFrame(animateStars);
+  }
+
+  window.addEventListener('resize', initStarfield);
+  initStarfield();
+
+
+  // SCRATCH-OFF LOGIC (Unchanged from your original)
+  const wrap = document.getElementById('wrapScratch');
+  const canvas = document.getElementById('scratch');
+  const ctx = canvas.getContext('2d', { willReadFrequently: false });
+
+  let drawing = false, lastX = 0, lastY = 0;
+  const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+  function resize(){
+    const r = wrap.getBoundingClientRect();
+    canvas.width  = Math.floor(r.width  * dpr);
+    canvas.height = Math.floor(r.height * dpr);
+    canvas.style.width  = r.width  + "px";
+    canvas.style.height = r.height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    paint(r.width, r.height);
+  }
+
+  // Silver foil scratch layer (metallic gradient + brushed streaks + light speckle)
+  function paint(w, h){
+    ctx.globalCompositeOperation = "source-over";
+
+    // base metallic gradient
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0.00, "#e7eaee");
+    g.addColorStop(0.18, "#cfd3d9");
+    g.addColorStop(0.38, "#f3f5f7");
+    g.addColorStop(0.62, "#c6cbd2");
+    g.addColorStop(0.82, "#eef1f4");
+    g.addColorStop(1.00, "#cdd1d7");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // brushed foil streaks (diagonal micro-lines)
+    ctx.globalAlpha = 0.35;
+    for (let i = -h; i < w + h; i += 6) {
+      const shade = 200 + Math.floor(Math.random() * 35); // 200-234
+      ctx.strokeStyle = `rgba(${shade},${shade},${shade},0.35)`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i + h, h);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    // subtle grain speckle
+    ctx.fillStyle = "rgba(0,0,0,.07)";
+    for(let i=0;i<850;i++){
+      const x=Math.random()*w, y=Math.random()*h, rr=Math.random()*1.2;
+      ctx.beginPath(); ctx.arc(x,y,rr,0,Math.PI*2); ctx.fill();
+    }
+
+    // a few soft "shine" bands
+    ctx.globalAlpha = 0.18;
+    for (let b=0; b<3; b++){
+      const y = (h * (0.25 + b*0.22)) + (Math.random()*10-5);
+      const band = ctx.createLinearGradient(0, y-20, 0, y+20);
+      band.addColorStop(0, "rgba(255,255,255,0)");
+      band.addColorStop(0.5, "rgba(255,255,255,0.55)");
+      band.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = band;
+      ctx.fillRect(0, y-22, w, 44);
+    }
+    ctx.globalAlpha = 1;
+
+    // centered instruction
+    ctx.textAlign = "center";
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--scratchInk').trim();
+    ctx.font = "900 20px system-ui, -apple-system, BlinkMacSystemFont";
+    ctx.fillText("SCRATCH", w/2, h/2 + 6);
+
+    // switch to erase mode for scratching
+    ctx.globalCompositeOperation = "destination-out";
   }
 
   function pt(e){
-    const r=canvas.getBoundingClientRect();
-    const t=e.touches?.[0]||e;
-    return{x:t.clientX-r.left,y:t.clientY-r.top};
+    const r = canvas.getBoundingClientRect();
+    const t = e.touches?.[0] || e;
+    return { x: t.clientX - r.left, y: t.clientY - r.top };
   }
 
-  function scratchTo(x,y){
-    ctx.lineCap="round";
-    ctx.lineJoin="round";
-    ctx.lineWidth=44;
+  function scratchTo(x, y){
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 44;
     ctx.beginPath();
-    ctx.moveTo(lastX,lastY);
-    ctx.lineTo(x,y);
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
     ctx.stroke();
+
     ctx.beginPath();
-    ctx.arc(x,y,22,0,Math.PI*2);
+    ctx.arc(x, y, 22, 0, Math.PI*2);
     ctx.fill();
-    lastX=x; lastY=y;
+
+    lastX = x; lastY = y;
   }
 
-  canvas.addEventListener('pointerdown',e=>{drawing=true;const p=pt(e);lastX=p.x;lastY=p.y;scratchTo(p.x,p.y);});
-  canvas.addEventListener('pointermove',e=>{if(!drawing)return;const p=pt(e);scratchTo(p.x,p.y);});
-  window.addEventListener('pointerup',()=>drawing=false);
-  window.addEventListener('resize',resize);
+  function stop(){ drawing = false; }
+
+  function start(e){
+    drawing = true;
+    const p = pt(e);
+    lastX = p.x; lastY = p.y;
+    scratchTo(p.x, p.y);
+  }
+
+  function move(e){
+    if(!drawing) return;
+    e.preventDefault(); // prevent page scroll while scratching
+    const p = pt(e);
+    scratchTo(p.x, p.y);
+  }
+
+  canvas.addEventListener('pointerdown', start, {passive:true});
+  canvas.addEventListener('pointermove', move, {passive:false});
+  canvas.addEventListener('pointerup', stop);
+  canvas.addEventListener('pointercancel', stop);
+  canvas.addEventListener('pointerleave', stop);
+
+  window.addEventListener('resize', resize);
   resize();
 })();
 </script>
