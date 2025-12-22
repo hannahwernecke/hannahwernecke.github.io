@@ -178,6 +178,7 @@
     .from{
       text-align:center;
       margin-top:10px;
+      margin-bottom:28px; /* MORE SPACE before verses */
       color:var(--muted);
       font-weight:700;
       letter-spacing:.02em;
@@ -191,7 +192,6 @@
     }
 
     .faith{
-      margin-top:14px;
       text-align:center;
       text-transform:uppercase;
       letter-spacing:.06em;
@@ -199,11 +199,18 @@
       color: var(--muted);
     }
 
-    .verse + .verse{ margin-top:14px; }
+    .verse + .verse{ margin-top:18px; }
 
     .quote{
       color: var(--gold);
       font-weight:800;
+    }
+
+    .ref{
+      margin-top:6px;
+      color: var(--meta);
+      font-weight:700;
+      letter-spacing:.08em;
     }
 
     .meta{
@@ -225,7 +232,7 @@
     <div class="card">
 
       <div class="toprow">
-        <div class="badge">Merry Christmas ✶ ✝</div>
+        <div class="badge">Merry Christmas ✶☧</div>
         <div class="dots">
           <span class="dot red"></span>
           <span class="dot gold"></span>
@@ -244,11 +251,14 @@
 
       <div class="faith">
         <div class="verse">
-          <div class="quote">“For unto us a child is born.” — Isaiah 9:6</div>
-          <div class="meta">(written 700+ years before Jesus was born)</div>
+          <div class="quote">“For unto us a child is born.”</div>
+          <div class="ref">— ISAIAH 9:6</div>
+          <div class="meta">(written 700+ years before Jesus was born!)</div>
         </div>
+
         <div class="verse">
-          <div class="quote">“For unto you is born… a Savior.” — Luke 2:11</div>
+          <div class="quote">“For unto you is born… a Savior.”</div>
+          <div class="ref">— LUKE 2:11</div>
           <div class="meta">(written after Jesus was born)</div>
         </div>
       </div>
