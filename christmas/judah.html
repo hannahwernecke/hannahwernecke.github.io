@@ -6,18 +6,15 @@
   <title>🎄</title>
   <style>
     :root{
-      --bg1:#0b1a14;
-      --bg2:#102a20;
-      --card:#ffffff10;
-      --card2:#ffffff08;
+      --bg1:#081611;
+      --bg2:#0f2a1f;
+      --card:#ffffff12;
+      --card2:#ffffff0a;
       --text:#f7f3ea;
       --muted:#e9dfcfcc;
       --gold:#f2d38a;
-      --red:#c84c4c;
-      --green:#58b38a;
       --shadow: 0 20px 60px #00000066;
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -30,15 +27,13 @@
         radial-gradient(1200px 800px at 80% 20%, #2c1b2c 0%, transparent 55%),
         linear-gradient(160deg, var(--bg1), var(--bg2));
     }
-
-    /* subtle animated light sweep */
     .aurora{
       position:fixed; inset:-20%;
       background:
         radial-gradient(closest-side at 30% 30%, #ffffff12, transparent 65%),
         radial-gradient(closest-side at 60% 40%, #f2d38a12, transparent 70%),
-        radial-gradient(closest-side at 70% 60%, #58b38a14, transparent 72%),
-        radial-gradient(closest-side at 40% 70%, #c84c4c12, transparent 72%);
+        radial-gradient(closest-side at 70% 60%, #5ad6a214, transparent 72%),
+        radial-gradient(closest-side at 40% 70%, #ff6b6b12, transparent 72%);
       filter: blur(30px);
       animation: drift 14s ease-in-out infinite alternate;
       pointer-events:none;
@@ -47,8 +42,6 @@
       from{transform:translate3d(-2%, -1%, 0) scale(1.02) rotate(-2deg)}
       to{transform:translate3d(2%, 1%, 0) scale(1.05) rotate(2deg)}
     }
-
-    /* falling snow (CSS) */
     .snow{
       position:fixed; inset:0;
       pointer-events:none;
@@ -75,27 +68,23 @@
       position:relative;
       z-index:2;
     }
-
     .card{
-      width:min(820px, 92vw);
-      border-radius:28px;
-      background:
-        linear-gradient(180deg, var(--card), var(--card2));
+      width:min(860px, 94vw);
+      border-radius:30px;
+      background: linear-gradient(180deg, var(--card), var(--card2));
       border: 1px solid #ffffff1a;
       box-shadow: var(--shadow);
-      padding: clamp(22px, 4vw, 42px);
+      padding: clamp(22px, 4vw, 44px);
       backdrop-filter: blur(14px);
       position:relative;
       overflow:hidden;
     }
-
-    /* tiny festive border */
     .card:before{
       content:"";
       position:absolute; inset:0;
-      border-radius:28px;
+      border-radius:30px;
       padding:1.5px;
-      background: linear-gradient(90deg, #f2d38a55, #ffffff22, #58b38a55, #c84c4c55);
+      background: linear-gradient(90deg, #f2d38a66, #ffffff22, #5ad6a266, #ff6b6b66);
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -104,7 +93,7 @@
       pointer-events:none;
     }
 
-    .toprow{
+    .top{
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -120,93 +109,101 @@
       border-radius:999px;
       background:#00000022;
       border:1px solid #ffffff1a;
-      font-weight:600;
+      font-weight:700;
       letter-spacing:.02em;
     }
-    .dots{
-      display:inline-flex; gap:7px;
+    .from{
+      color:var(--muted);
+      font-weight:650;
+      letter-spacing:.02em;
+      padding:10px 14px;
+      border-radius:999px;
+      background:#00000018;
+      border:1px solid #ffffff14;
+      white-space:nowrap;
     }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background:#ffffff2a;
-      border:1px solid #ffffff26;
-      box-shadow:0 0 18px #ffffff1a;
-    }
-    .dot.red{background: #c84c4caa}
-    .dot.gold{background:#f2d38aaa}
-    .dot.green{background:#58b38aaa}
 
     .name{
-      margin: 8px 0 10px;
-      font-weight: 900;
+      margin: 10px 0 10px;
+      font-weight: 950;
       letter-spacing: .02em;
       line-height: 1;
-      font-size: clamp(54px, 10vw, 110px);
+      font-size: clamp(56px, 10vw, 120px);
       text-align:center;
       text-shadow:
         0 0 22px #ffffff12,
-        0 0 40px #f2d38a14;
+        0 0 44px #f2d38a18;
     }
 
-    .sub{
-      margin:0;
+    .hint{
+      margin: 0 0 18px;
       text-align:center;
       color:var(--muted);
       font-size: clamp(16px, 2.7vw, 20px);
       line-height:1.45;
     }
 
-    .cta{
-      margin-top: 22px;
+    /* Scratch area */
+    .scratchWrap{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      border: 1px solid #ffffff1a;
+      background:#00000020;
+    }
+    .reveal{
+      padding: 22px 18px;
+      text-align:center;
+      background:
+        radial-gradient(900px 260px at 50% 0%, #f2d38a14, transparent 60%),
+        linear-gradient(180deg, #00000014, #00000022);
+    }
+    .reveal .title{
+      font-size: clamp(22px, 3.6vw, 30px);
+      font-weight: 900;
+      letter-spacing:.01em;
+      color:var(--gold);
+      margin:0 0 8px;
+    }
+    .reveal .msg{
+      margin:0;
+      font-size: clamp(18px, 3.2vw, 24px);
+      line-height:1.35;
+      color:var(--text);
+    }
+
+    canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      touch-action:none; /* important for iOS swipe */
+    }
+
+    .footer{
+      margin-top: 14px;
       display:flex;
-      justify-content:center;
+      justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
+      align-items:center;
+    }
+    .tiny{
+      color:var(--muted);
+      font-size: 14px;
     }
     button{
       appearance:none;
       border:1px solid #ffffff22;
       background:#00000022;
       color:var(--text);
-      padding:12px 16px;
+      padding:12px 14px;
       border-radius:14px;
-      font-weight:700;
+      font-weight:800;
       cursor:pointer;
     }
     button:hover{background:#0000002f}
     button:active{transform: translateY(1px)}
-
-    .reveal{
-      margin-top:18px;
-      display:none;
-      text-align:center;
-      padding:16px 14px;
-      border-radius:18px;
-      background:#00000022;
-      border:1px solid #ffffff1a;
-      color:#f7f3ea;
-      font-size: clamp(16px, 2.7vw, 20px);
-    }
-    .reveal strong{color:var(--gold)}
-
-    /* sparkle emojis float */
-    .sparkles{
-      position:absolute; inset:0;
-      pointer-events:none;
-      opacity:.9;
-    }
-    .spark{
-      position:absolute;
-      font-size:18px;
-      animation: float 6s ease-in-out infinite;
-      filter: drop-shadow(0 8px 14px #00000066);
-    }
-    @keyframes float{
-      0%{transform:translateY(0) rotate(0deg); opacity:.0}
-      10%{opacity:.85}
-      50%{transform:translateY(-18px) rotate(8deg); opacity:.9}
-      100%{transform:translateY(0) rotate(-6deg); opacity:.0}
-    }
   </style>
 </head>
 
@@ -216,73 +213,155 @@
 
   <div class="wrap">
     <div class="card">
-      <div class="sparkles" aria-hidden="true">
-        <div class="spark" style="left:8%; top:18%; animation-delay:0s;">✨</div>
-        <div class="spark" style="left:18%; top:72%; animation-delay:1.2s;">❄️</div>
-        <div class="spark" style="left:82%; top:20%; animation-delay:.6s;">✨</div>
-        <div class="spark" style="left:72%; top:74%; animation-delay:1.8s;">🎄</div>
-        <div class="spark" style="left:48%; top:10%; animation-delay:2.4s;">⭐</div>
-      </div>
-
-      <div class="toprow">
+      <div class="top">
         <div class="badge">Holiday Delivery 🎁</div>
-        <div class="dots" aria-hidden="true">
-          <span class="dot red"></span>
-          <span class="dot gold"></span>
-          <span class="dot green"></span>
+        <div class="from">from Uncle Dantan &amp; Auntie Hannie</div>
+      </div>
+
+      <!-- CHANGE THIS ONCE PER FILE -->
+      <div class="name">RECIPIENT_NAME</div>
+
+      <p class="hint">Scratch the silver area with your finger ❄️</p>
+
+      <div class="scratchWrap" id="scratchWrap" aria-label="Scratch-off message">
+        <div class="reveal">
+          <p class="title">Merry Christmas 🎄</p>
+          <p class="msg">You’re loved more than you know.</p>
         </div>
+        <canvas id="scratch"></canvas>
       </div>
 
-      <!-- CHANGE THIS NAME -->
-      <div class="name">JUDAH</div>
-
-      <!-- OPTIONAL: change this line -->
-      <p class="sub">Tap below for your “extra” message.</p>
-
-      <div class="cta">
-        <button id="open">Open</button>
-        <button id="again">Sparkle</button>
-      </div>
-
-      <!-- OPTIONAL: change this message -->
-      <div class="reveal" id="reveal">
-        <strong>Merry Christmas</strong> — you’re loved more than you know. 🎄
+      <div class="footer">
+        <div class="tiny">Tip: scratch a big “X” across the middle.</div>
+        <button id="reset" type="button">Reset Scratch</button>
       </div>
     </div>
   </div>
 
   <script>
-    const reveal = document.getElementById('reveal');
-    document.getElementById('open').addEventListener('click', () => {
-      reveal.style.display = 'block';
-      // subtle haptic-ish effect: scroll nudge (works everywhere, harmless)
-      window.scrollTo({ top: 1, behavior: 'smooth' });
-      setTimeout(()=>window.scrollTo({ top: 0, behavior: 'smooth' }), 120);
-    });
+    (function(){
+      const wrap = document.getElementById('scratchWrap');
+      const canvas = document.getElementById('scratch');
+      const ctx = canvas.getContext('2d');
 
-    // quick sparkle burst
-    function burst(){
-      for(let i=0;i<14;i++){
-        const s = document.createElement('div');
-        s.textContent = ['✨','⭐','❄️'][Math.floor(Math.random()*3)];
-        s.style.position='fixed';
-        s.style.left = (10 + Math.random()*80) + 'vw';
-        s.style.top  = (15 + Math.random()*70) + 'vh';
-        s.style.fontSize = (14 + Math.random()*18) + 'px';
-        s.style.pointerEvents='none';
-        s.style.filter='drop-shadow(0 10px 14px #00000066)';
-        s.style.transition='transform 900ms ease, opacity 900ms ease';
-        s.style.opacity='0';
-        document.body.appendChild(s);
-        requestAnimationFrame(()=>{
-          s.style.opacity='1';
-          s.style.transform = `translateY(-${30+Math.random()*50}px) rotate(${(Math.random()*40-20)}deg)`;
-        });
-        setTimeout(()=>{ s.style.opacity='0'; }, 650);
-        setTimeout(()=>{ s.remove(); }, 1100);
+      let drawing = false;
+      let lastX = 0, lastY = 0;
+      let dpr = Math.max(1, window.devicePixelRatio || 1);
+
+      function resize(){
+        const rect = wrap.getBoundingClientRect();
+        canvas.width = Math.floor(rect.width * dpr);
+        canvas.height = Math.floor(rect.height * dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // draw in CSS pixels
+
+        paintOverlay();
       }
-    }
-    document.getElementById('again').addEventListener('click', burst);
+
+      function paintOverlay(){
+        const rect = wrap.getBoundingClientRect();
+        // base silver layer
+        const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+        g.addColorStop(0, '#cfd3d8');
+        g.addColorStop(0.5, '#aeb4bb');
+        g.addColorStop(1, '#e3e6ea');
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,rect.width,rect.height);
+
+        // subtle texture dots
+        ctx.fillStyle = 'rgba(0,0,0,.08)';
+        for(let i=0;i<800;i++){
+          const x = Math.random()*rect.width;
+          const y = Math.random()*rect.height;
+          const r = Math.random()*1.2;
+          ctx.beginPath();
+          ctx.arc(x,y,r,0,Math.PI*2);
+          ctx.fill();
+        }
+
+        // instruction text on top of overlay
+        ctx.fillStyle = 'rgba(0,0,0,.55)';
+        ctx.font = '800 18px system-ui, -apple-system, BlinkMacSystemFont';
+        ctx.textAlign = 'center';
+        ctx.fillText('SCRATCH HERE', rect.width/2, rect.height/2 - 6);
+        ctx.font = '600 14px system-ui, -apple-system, BlinkMacSystemFont';
+        ctx.fillStyle = 'rgba(0,0,0,.45)';
+        ctx.fillText('use your finger', rect.width/2, rect.height/2 + 18);
+
+        // set eraser mode for scratching
+        ctx.globalCompositeOperation = 'destination-out';
+      }
+
+      function getPoint(e){
+        const rect = canvas.getBoundingClientRect();
+        if(e.touches && e.touches.length){
+          return {
+            x: e.touches[0].clientX - rect.left,
+            y: e.touches[0].clientY - rect.top
+          };
+        }
+        return {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+      }
+
+      function scratchTo(x,y){
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = 34;  // scratch thickness
+        ctx.beginPath();
+        ctx.moveTo(lastX,lastY);
+        ctx.lineTo(x,y);
+        ctx.stroke();
+
+        // also punch a circle at the point to avoid gaps
+        ctx.beginPath();
+        ctx.arc(x,y,18,0,Math.PI*2);
+        ctx.fill();
+
+        lastX = x; lastY = y;
+      }
+
+      function start(e){
+        e.preventDefault();
+        drawing = true;
+        const p = getPoint(e);
+        lastX = p.x; lastY = p.y;
+        scratchTo(p.x, p.y);
+      }
+      function move(e){
+        if(!drawing) return;
+        e.preventDefault();
+        const p = getPoint(e);
+        scratchTo(p.x, p.y);
+      }
+      function end(){
+        drawing = false;
+      }
+
+      document.getElementById('reset').addEventListener('click', () => {
+        paintOverlay();
+      });
+
+      // Pointer events (best) + fallback
+      canvas.addEventListener('pointerdown', start, {passive:false});
+      canvas.addEventListener('pointermove', move, {passive:false});
+      window.addEventListener('pointerup', end);
+
+      canvas.addEventListener('touchstart', start, {passive:false});
+      canvas.addEventListener('touchmove', move, {passive:false});
+      window.addEventListener('touchend', end);
+
+      window.addEventListener('resize', () => {
+        // repaint on resize so overlay fits
+        resize();
+      });
+
+      resize();
+    })();
   </script>
 </body>
 </html>
