@@ -39,6 +39,7 @@
         linear-gradient(160deg, var(--bg1), var(--bg2) 55%, var(--bg3));
     }
 
+    /* gentle aurora-ish light, now tuned for night sky */
     .aurora{
       position:fixed; inset:-20%;
       background:
@@ -64,6 +65,7 @@
       z-index: 2; /* Above aurora, below card */
     }
     
+    /* Respect prefers-reduced-motion: show a static starfield */
     @media (prefers-reduced-motion: reduce) {
       .aurora, .badge {
         animation: none;
@@ -81,14 +83,15 @@
       }
     }
 
+    /* Star in the East: now at the top center */
     .star-east{
       position:fixed;
-      left: 50%;
+      left: 50%; /* Center horizontally */
       top: clamp(18px, 4vh, 56px);
       width: 18px;
       height: 18px;
       pointer-events:none;
-      z-index:3;
+      z-index:3; /* Ensure it's above the starfield canvas */
       filter: drop-shadow(0 0 18px rgba(216,195,138,.55))
               drop-shadow(0 0 42px rgba(216,195,138,.25));
       animation: twinkle 3.8s ease-in-out infinite;
@@ -100,6 +103,7 @@
       border-radius:50%;
     }
     .star-east:after{
+      content:"";
       position:absolute;
       left:50%; top:50%;
       width: 80px; height: 2px;
@@ -116,6 +120,7 @@
       display:block;
     }
     @keyframes twinkle{
+      /* Keep centered while scaling */
       0%,100%{transform:translateX(-50%) scale(1); opacity:.85}
       50%{transform:translateX(-50%) scale(1.08); opacity:1}
     }
@@ -134,11 +139,12 @@
       border-radius:28px;
       background: linear-gradient(180deg, var(--card), var(--card2));
       border: 1px solid #ffffff1a;
+      /* --- MUCH MORE PROMINENT GLOW --- */
       box-shadow: 
-        0 0 0 1px rgba(255,255,255,0.05),
-        var(--shadow),
-        0 0 120px rgba(216, 195, 138, 0.4),
-        inset 0 1px 0 rgba(255,255,255,0.1);
+        0 0 0 1px rgba(255,255,255,0.05), /* subtle inner light */
+        var(--shadow), /* original shadow */
+        0 0 120px rgba(216, 195, 138, 0.4), /* large, visible outer glow */
+        inset 0 1px 0 rgba(255,255,255,0.1); /* top highlight */
       padding: clamp(22px, 4vw, 42px);
       backdrop-filter: blur(14px);
       position:relative;
@@ -161,7 +167,7 @@
 
     .toprow{
       display:flex;
-      justify-content:center;
+      justify-content:center; /* Centered the badge */
       align-items:center;
       gap:14px;
       margin-bottom:16px;
@@ -173,14 +179,15 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:14px 18px;
+      padding:14px 18px;                /* larger */
       border-radius:999px;
       background:#00000022;
       border:1px solid #ffffff1a;
       font-weight:900;
       letter-spacing:.06em;
       color: var(--gold);
-      font-size: clamp(18px, 3.2vw, 30px);
+      font-size: clamp(18px, 3.2vw, 30px); /* larger */
+      /* --- ADDED GLOW AND PULSE --- */
       box-shadow: 0 0 15px rgba(216, 195, 138, 0.4);
       animation: pulse-glow 8s ease-in-out infinite;
     }
@@ -255,7 +262,7 @@
       letter-spacing:.06em;
       font-size: clamp(12px, 2.2vw, 16px);
       color: var(--muted);
-      margin-top: 40px;
+      margin-top: 40px; /* Added more space before the verses */
     }
 
     .verse + .verse{ margin-top:18px; }
@@ -285,7 +292,10 @@
 
 <body>
   <div class="aurora"></div>
+  <!-- Star Timelapse Canvas -->
   <canvas id="starfield"></canvas>
+
+  <!-- One star in east, now centered -->
   <div class="star-east" aria-hidden="true"><i></i></div>
 
   <div class="wrap">
@@ -323,7 +333,7 @@
 
 <script>
 (() => {
-  // STARFIELD TIMELAPSE
+  // STARFIELD TIMELAPSE (LESS STREAKY)
   const starCanvas = document.getElementById('starfield');
   const starCtx = starCanvas.getContext('2d');
   let stars = [];
@@ -348,20 +358,30 @@
         x: Math.random() * starCanvas.width,
         y: Math.random() * starCanvas.height,
         size: Math.random() * 1.5,
-        speed: Math.random() * 0.5 + 0.1,
+        // SLOWER, MORE REALISTIC DRIFT
+        speed: Math.random() * 0.25 + 0.05,
         opacity: Math.random() * 0.8 + 0.2
       });
     }
+
+    // Start with a clean frame
+    starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
     animateStars();
   }
 
   function animateStars() {
-    starCtx.fillStyle = 'rgba(5, 9, 22, 0.10)';
+    // STRONGER FADE = FAR LESS TRAILING/STREAKING
+    starCtx.fillStyle = 'rgba(5, 9, 22, 0.28)'; // was ~0.10 earlier
     starCtx.fillRect(0, 0, starCanvas.width, starCanvas.height);
 
     starCtx.fillStyle = '#ffffff';
+    const t = performance.now() * 0.001;
+
     for (const star of stars) {
-      starCtx.globalAlpha = star.opacity;
+      // SUBTLE TWINKLE (REPLACES NEED FOR LONG TRAILS)
+      const tw = 0.85 + Math.sin(t + star.x * 0.01) * 0.15;
+      starCtx.globalAlpha = star.opacity * tw;
+
       starCtx.beginPath();
       starCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
       starCtx.fill();
@@ -369,8 +389,8 @@
       star.x -= star.speed;
       if (star.x < 0) star.x = starCanvas.width;
     }
-    starCtx.globalAlpha = 1;
 
+    starCtx.globalAlpha = 1;
     animationId = requestAnimationFrame(animateStars);
   }
 
@@ -468,7 +488,6 @@
   function brushSize(){
     const r = wrap.getBoundingClientRect();
     const base = Math.min(r.width, r.height);
-
     // Big, kid-friendly finger brush
     return Math.max(58, Math.min(96, base * 0.34));
   }
@@ -497,8 +516,8 @@
     const steps = Math.max(1, Math.ceil(dist / step));
 
     for (let i = 1; i <= steps; i++){
-      const t = i / steps;
-      stamp(lastX + dx * t, lastY + dy * t, rr);
+      const tt = i / steps;
+      stamp(lastX + dx * tt, lastY + dy * tt, rr);
     }
 
     lastX = x; lastY = y;
