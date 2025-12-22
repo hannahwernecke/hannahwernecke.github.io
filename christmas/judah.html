@@ -1,367 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🎄</title>
-  <style>
-    :root{
-      --bg1:#081611;
-      --bg2:#0f2a1f;
-      --card:#ffffff12;
-      --card2:#ffffff0a;
-      --text:#f7f3ea;
-      --muted:#e9dfcfcc;
-      --gold:#f2d38a;
-      --shadow: 0 20px 60px #00000066;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
-      overflow:hidden;
-      background:
-        radial-gradient(1200px 800px at 20% 10%, #1a3b2d 0%, transparent 60%),
-        radial-gradient(1200px 800px at 80% 20%, #2c1b2c 0%, transparent 55%),
-        linear-gradient(160deg, var(--bg1), var(--bg2));
-    }
-    .aurora{
-      position:fixed; inset:-20%;
-      background:
-        radial-gradient(closest-side at 30% 30%, #ffffff12, transparent 65%),
-        radial-gradient(closest-side at 60% 40%, #f2d38a12, transparent 70%),
-        radial-gradient(closest-side at 70% 60%, #5ad6a214, transparent 72%),
-        radial-gradient(closest-side at 40% 70%, #ff6b6b12, transparent 72%);
-      filter: blur(30px);
-      animation: drift 14s ease-in-out infinite alternate;
-      pointer-events:none;
-    }
-    @keyframes drift{
-      from{transform:translate3d(-2%, -1%, 0) scale(1.02) rotate(-2deg)}
-      to{transform:translate3d(2%, 1%, 0) scale(1.05) rotate(2deg)}
-    }
-    .snow{
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.55;
-      background-image:
-        radial-gradient(2px 2px at 20px 30px, #ffffffcc 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 60px 80px, #ffffffaa 50%, transparent 51%),
-        radial-gradient(2px 2px at 120px 140px, #ffffffbb 50%, transparent 51%),
-        radial-gradient(1px 1px at 160px 40px, #ffffff99 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 200px 120px, #ffffffaa 50%, transparent 51%);
-      background-size: 220px 180px;
-      animation: snow 10s linear infinite;
-    }
-    @keyframes snow{
-      from{background-position: 0 0}
-      to{background-position: 0 220px}
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎄</title>
 
-    .wrap{
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:24px;
-      position:relative;
-      z-index:2;
-    }
-    .card{
-      width:min(860px, 94vw);
-      border-radius:30px;
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      border: 1px solid #ffffff1a;
-      box-shadow: var(--shadow);
-      padding: clamp(22px, 4vw, 44px);
-      backdrop-filter: blur(14px);
-      position:relative;
-      overflow:hidden;
-    }
-    .card:before{
-      content:"";
-      position:absolute; inset:0;
-      border-radius:30px;
-      padding:1.5px;
-      background: linear-gradient(90deg, #f2d38a66, #ffffff22, #5ad6a266, #ff6b6b66);
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      pointer-events:none;
-    }
+<style>
+:root{
+  --bg:#f6efe6;
+  --ink:#3a2f2a;
+  --muted:#6f5f55;
+  --gold:#c6a55b;
+  --card:#fffaf2;
+}
 
-    .top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      margin-bottom:18px;
-      flex-wrap:wrap;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      background:#00000022;
-      border:1px solid #ffffff1a;
-      font-weight:700;
-      letter-spacing:.02em;
-    }
-    .from{
-      color:var(--muted);
-      font-weight:650;
-      letter-spacing:.02em;
-      padding:10px 14px;
-      border-radius:999px;
-      background:#00000018;
-      border:1px solid #ffffff14;
-      white-space:nowrap;
-    }
+*{box-sizing:border-box}
 
-    .name{
-      margin: 10px 0 10px;
-      font-weight: 950;
-      letter-spacing: .02em;
-      line-height: 1;
-      font-size: clamp(56px, 10vw, 120px);
-      text-align:center;
-      text-shadow:
-        0 0 22px #ffffff12,
-        0 0 44px #f2d38a18;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top, #fff 0%, var(--bg) 65%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color:var(--ink);
+  display:grid;
+  place-items:center;
+}
 
-    .hint{
-      margin: 0 0 18px;
-      text-align:center;
-      color:var(--muted);
-      font-size: clamp(16px, 2.7vw, 20px);
-      line-height:1.45;
-    }
+.card{
+  width:min(720px,92vw);
+  background:var(--card);
+  border:2px solid var(--gold);
+  padding:48px 40px 56px;
+  text-align:center;
+  position:relative;
+}
 
-    /* Scratch area */
-    .scratchWrap{
-      position:relative;
-      border-radius:22px;
-      overflow:hidden;
-      border: 1px solid #ffffff1a;
-      background:#00000020;
-    }
-    .reveal{
-      padding: 22px 18px;
-      text-align:center;
-      background:
-        radial-gradient(900px 260px at 50% 0%, #f2d38a14, transparent 60%),
-        linear-gradient(180deg, #00000014, #00000022);
-    }
-    .reveal .title{
-      font-size: clamp(22px, 3.6vw, 30px);
-      font-weight: 900;
-      letter-spacing:.01em;
-      color:var(--gold);
-      margin:0 0 8px;
-    }
-    .reveal .msg{
-      margin:0;
-      font-size: clamp(18px, 3.2vw, 24px);
-      line-height:1.35;
-      color:var(--text);
-    }
+.card::before,
+.card::after{
+  content:"✦";
+  position:absolute;
+  color:var(--gold);
+  font-size:22px;
+}
+.card::before{top:18px; left:50%; transform:translateX(-50%)}
+.card::after{bottom:18px; left:50%; transform:translateX(-50%)}
 
-    canvas{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      touch-action:none; /* important for iOS swipe */
-    }
+.symbols{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:22px;
+  color:var(--gold);
+  margin-bottom:28px;
+}
+.symbols span{width:33%; text-align:center}
 
-    .footer{
-      margin-top: 14px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .tiny{
-      color:var(--muted);
-      font-size: 14px;
-    }
-    button{
-      appearance:none;
-      border:1px solid #ffffff22;
-      background:#00000022;
-      color:var(--text);
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:800;
-      cursor:pointer;
-    }
-    button:hover{background:#0000002f}
-    button:active{transform: translateY(1px)}
-  </style>
+.from{
+  font-variant:small-caps;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin-bottom:36px;
+}
+
+.nameWrap{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  margin:0 auto 30px;
+}
+
+.nameReveal{
+  font-size:64px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  touch-action:none;
+}
+
+.scripture{
+  font-style:italic;
+  color:var(--muted);
+  margin-top:30px;
+  font-size:18px;
+}
+
+.footer{
+  margin-top:26px;
+  font-variant:small-caps;
+  letter-spacing:.14em;
+  font-size:14px;
+  color:var(--muted);
+}
+</style>
 </head>
 
 <body>
-  <div class="aurora"></div>
-  <div class="snow"></div>
 
-  <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div class="badge">Holiday Delivery 🎁</div>
-        <div class="from">from Uncle Dantan &amp; Auntie Hannie</div>
-      </div>
+<div class="card">
 
-      <!-- CHANGE THIS ONCE PER FILE -->
-      <div class="name">RECIPIENT_NAME</div>
-
-      <p class="hint">Scratch the silver area with your finger ❄️</p>
-
-      <div class="scratchWrap" id="scratchWrap" aria-label="Scratch-off message">
-        <div class="reveal">
-          <p class="title">Merry Christmas 🎄</p>
-          <p class="msg">You’re loved more than you know.</p>
-        </div>
-        <canvas id="scratch"></canvas>
-      </div>
-
-      <div class="footer">
-        <div class="tiny">Tip: scratch a big “X” across the middle.</div>
-        <button id="reset" type="button">Reset Scratch</button>
-      </div>
-    </div>
+  <div class="symbols">
+    <span>✶ Star</span>
+    <span>✝︎ Christ</span>
+    <span>❦ Lamb</span>
   </div>
 
-  <script>
-    (function(){
-      const wrap = document.getElementById('scratchWrap');
-      const canvas = document.getElementById('scratch');
-      const ctx = canvas.getContext('2d');
+  <div class="from">
+    A Christmas Gift from<br>
+    <strong>Uncle Dantan &amp; Auntie Hannie</strong>
+  </div>
 
-      let drawing = false;
-      let lastX = 0, lastY = 0;
-      let dpr = Math.max(1, window.devicePixelRatio || 1);
+  <!-- SCRATCH AREA -->
+  <div class="nameWrap" id="wrap">
+    <div class="nameReveal">RECIPIENT_NAME</div>
+    <canvas id="scratch"></canvas>
+  </div>
 
-      function resize(){
-        const rect = wrap.getBoundingClientRect();
-        canvas.width = Math.floor(rect.width * dpr);
-        canvas.height = Math.floor(rect.height * dpr);
-        canvas.style.width = rect.width + 'px';
-        canvas.style.height = rect.height + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // draw in CSS pixels
+  <div class="scripture">
+    “For unto us a Child is born.” — Isaiah 9:6
+  </div>
 
-        paintOverlay();
-      }
+  <div class="footer">
+    Christmas • Peace • Emmanuel
+  </div>
 
-      function paintOverlay(){
-        const rect = wrap.getBoundingClientRect();
-        // base silver layer
-        const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
-        g.addColorStop(0, '#cfd3d8');
-        g.addColorStop(0.5, '#aeb4bb');
-        g.addColorStop(1, '#e3e6ea');
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = g;
-        ctx.fillRect(0,0,rect.width,rect.height);
+</div>
 
-        // subtle texture dots
-        ctx.fillStyle = 'rgba(0,0,0,.08)';
-        for(let i=0;i<800;i++){
-          const x = Math.random()*rect.width;
-          const y = Math.random()*rect.height;
-          const r = Math.random()*1.2;
-          ctx.beginPath();
-          ctx.arc(x,y,r,0,Math.PI*2);
-          ctx.fill();
-        }
+<script>
+(() => {
+  const wrap = document.getElementById('wrap');
+  const canvas = document.getElementById('scratch');
+  const ctx = canvas.getContext('2d');
+  let drawing=false,lastX=0,lastY=0;
 
-        // instruction text on top of overlay
-        ctx.fillStyle = 'rgba(0,0,0,.55)';
-        ctx.font = '800 18px system-ui, -apple-system, BlinkMacSystemFont';
-        ctx.textAlign = 'center';
-        ctx.fillText('SCRATCH HERE', rect.width/2, rect.height/2 - 6);
-        ctx.font = '600 14px system-ui, -apple-system, BlinkMacSystemFont';
-        ctx.fillStyle = 'rgba(0,0,0,.45)';
-        ctx.fillText('use your finger', rect.width/2, rect.height/2 + 18);
+  function resize(){
+    const r = wrap.getBoundingClientRect();
+    canvas.width = r.width * devicePixelRatio;
+    canvas.height = r.height * devicePixelRatio;
+    canvas.style.width = r.width+"px";
+    canvas.style.height = r.height+"px";
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    paint();
+  }
 
-        // set eraser mode for scratching
-        ctx.globalCompositeOperation = 'destination-out';
-      }
+  function paint(){
+    ctx.globalCompositeOperation='source-over';
+    ctx.fillStyle='#c9b89e';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgba(255,255,255,.35)';
+    ctx.font='700 18px serif';
+    ctx.textAlign='center';
+    ctx.fillText('SCRATCH', wrap.clientWidth/2, wrap.clientHeight/2);
+    ctx.globalCompositeOperation='destination-out';
+  }
 
-      function getPoint(e){
-        const rect = canvas.getBoundingClientRect();
-        if(e.touches && e.touches.length){
-          return {
-            x: e.touches[0].clientX - rect.left,
-            y: e.touches[0].clientY - rect.top
-          };
-        }
-        return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
-      }
+  function point(e){
+    const r=canvas.getBoundingClientRect();
+    const t=e.touches?.[0]||e;
+    return {x:t.clientX-r.left,y:t.clientY-r.top};
+  }
 
-      function scratchTo(x,y){
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.lineWidth = 34;  // scratch thickness
-        ctx.beginPath();
-        ctx.moveTo(lastX,lastY);
-        ctx.lineTo(x,y);
-        ctx.stroke();
+  function start(e){
+    e.preventDefault();
+    drawing=true;
+    const p=point(e);
+    lastX=p.x; lastY=p.y;
+  }
+  function move(e){
+    if(!drawing)return;
+    e.preventDefault();
+    const p=point(e);
+    ctx.lineWidth=36;
+    ctx.lineCap='round';
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.lineTo(p.x,p.y);
+    ctx.stroke();
+    lastX=p.x; lastY=p.y;
+  }
+  function end(){drawing=false}
 
-        // also punch a circle at the point to avoid gaps
-        ctx.beginPath();
-        ctx.arc(x,y,18,0,Math.PI*2);
-        ctx.fill();
+  canvas.addEventListener('pointerdown',start,{passive:false});
+  canvas.addEventListener('pointermove',move,{passive:false});
+  window.addEventListener('pointerup',end);
+  window.addEventListener('resize',resize);
 
-        lastX = x; lastY = y;
-      }
+  resize();
+})();
+</script>
 
-      function start(e){
-        e.preventDefault();
-        drawing = true;
-        const p = getPoint(e);
-        lastX = p.x; lastY = p.y;
-        scratchTo(p.x, p.y);
-      }
-      function move(e){
-        if(!drawing) return;
-        e.preventDefault();
-        const p = getPoint(e);
-        scratchTo(p.x, p.y);
-      }
-      function end(){
-        drawing = false;
-      }
-
-      document.getElementById('reset').addEventListener('click', () => {
-        paintOverlay();
-      });
-
-      // Pointer events (best) + fallback
-      canvas.addEventListener('pointerdown', start, {passive:false});
-      canvas.addEventListener('pointermove', move, {passive:false});
-      window.addEventListener('pointerup', end);
-
-      canvas.addEventListener('touchstart', start, {passive:false});
-      canvas.addEventListener('touchmove', move, {passive:false});
-      window.addEventListener('touchend', end);
-
-      window.addEventListener('resize', () => {
-        // repaint on resize so overlay fits
-        resize();
-      });
-
-      resize();
-    })();
-  </script>
 </body>
 </html>
