@@ -1,79 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>🎄</title>
 
 <style>
 :root{
-  --bg:#f6efe6;
-  --ink:#3a2f2a;
-  --muted:#6f5f55;
-  --gold:#c6a55b;
-  --card:#fffaf2;
+  --cream:#F4F2ED;
+  --pine:#1F3D32;
+  --red:#8F2F2B;
+  --frost:#D7D9D6;
+  --ink:#1E2421;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  min-height:100vh;
+  height:100vh;
+  background: var(--cream);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  color: var(--ink);
+  overflow:hidden;
+}
+
+/* soft Nordic blocks (quiet, not loud) */
+.blocks{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
   background:
-    radial-gradient(circle at top, #fff 0%, var(--bg) 65%);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  color:var(--ink);
+    linear-gradient(90deg,
+      rgba(31,61,50,.08) 0 18%,
+      transparent 18% 82%,
+      rgba(143,47,43,.08) 82% 100%),
+    linear-gradient(180deg,
+      rgba(215,217,214,.35) 0 14%,
+      transparent 14% 86%,
+      rgba(215,217,214,.35) 86% 100%);
+}
+
+.stage{
+  height:100vh;
+  display:grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items:center;
+  justify-items:center;
+  padding:22px;
+  position:relative;
+}
+
+.top{
+  text-align:center;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:13px;
+  color: rgba(30,36,33,.75);
+}
+.symbol{
+  margin-top:8px;
+  font-size:42px;
+  color: var(--pine);
+}
+
+/* name stage */
+.wrap{
+  width:min(920px,94vw);
+  height:min(52vh,420px);
   display:grid;
   place-items:center;
+  position:relative;
 }
 
-.card{
-  width:min(720px,92vw);
-  background:var(--card);
-  border:2px solid var(--gold);
-  padding:48px 40px 56px;
+.name{
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
   text-align:center;
-  position:relative;
-}
-
-.card::before,
-.card::after{
-  content:"✦";
-  position:absolute;
-  color:var(--gold);
-  font-size:22px;
-}
-.card::before{top:18px; left:50%; transform:translateX(-50%)}
-.card::after{bottom:18px; left:50%; transform:translateX(-50%)}
-
-.symbols{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:22px;
-  color:var(--gold);
-  margin-bottom:28px;
-}
-.symbols span{width:33%; text-align:center}
-
-.from{
-  font-variant:small-caps;
-  letter-spacing:.12em;
-  color:var(--muted);
-  margin-bottom:36px;
-}
-
-.nameWrap{
-  position:relative;
-  width:100%;
-  max-width:420px;
-  margin:0 auto 30px;
-}
-
-.nameReveal{
-  font-size:64px;
-  font-weight:700;
-  letter-spacing:.04em;
+  font-size: clamp(54px, 12vw, 140px);
+  line-height:.95;
+  color: var(--ink);
 }
 
 canvas{
@@ -84,52 +92,53 @@ canvas{
   touch-action:none;
 }
 
-.scripture{
-  font-style:italic;
-  color:var(--muted);
-  margin-top:30px;
-  font-size:18px;
-}
-
-.footer{
-  margin-top:26px;
-  font-variant:small-caps;
+.bottom{
+  text-align:center;
+  font-weight:800;
   letter-spacing:.14em;
-  font-size:14px;
-  color:var(--muted);
+  text-transform:uppercase;
+  font-size:12px;
+  color: rgba(30,36,33,.75);
+}
+.from{
+  margin-top:10px;
+  font-size:12px;
+  letter-spacing:.12em;
+  font-weight:800;
+  text-transform:none;
+}
+.from strong{color:var(--ink)}
+
+.scripture{
+  margin-top:8px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color: rgba(30,36,33,.65);
 }
 </style>
 </head>
 
 <body>
+<div class="blocks"></div>
 
-<div class="card">
-
-  <div class="symbols">
-    <span>✶ Star</span>
-    <span>✝︎ Christ</span>
-    <span>❦ Lamb</span>
+<div class="stage">
+  <div class="top">
+    CHRISTMAS DELIVERY
+    <div class="symbol">✶</div>
   </div>
 
-  <div class="from">
-    A Christmas Gift from<br>
-    <strong>Uncle Dantan &amp; Auntie Hannie</strong>
-  </div>
-
-  <!-- SCRATCH AREA -->
-  <div class="nameWrap" id="wrap">
-    <div class="nameReveal">RECIPIENT_NAME</div>
+  <div class="wrap" id="wrap">
+    <!-- CHANGE THIS -->
+    <div class="name">JUDAH</div>
     <canvas id="scratch"></canvas>
   </div>
 
-  <div class="scripture">
-    “For unto us a Child is born.” — Isaiah 9:6
+  <div class="bottom">
+    SCRATCH TO REVEAL
+    <div class="from">from <strong>Uncle Dantan</strong> &amp; <strong>Auntie Hannie</strong></div>
+    <div class="scripture">FOR UNTO YOU IS BORN — LUKE 2:11</div>
   </div>
-
-  <div class="footer">
-    Christmas • Peace • Emmanuel
-  </div>
-
 </div>
 
 <script>
@@ -137,52 +146,72 @@ canvas{
   const wrap = document.getElementById('wrap');
   const canvas = document.getElementById('scratch');
   const ctx = canvas.getContext('2d');
-  let drawing=false,lastX=0,lastY=0;
+  let drawing=false, lastX=0, lastY=0;
+  const dpr=Math.max(1,devicePixelRatio||1);
 
   function resize(){
-    const r = wrap.getBoundingClientRect();
-    canvas.width = r.width * devicePixelRatio;
-    canvas.height = r.height * devicePixelRatio;
-    canvas.style.width = r.width+"px";
-    canvas.style.height = r.height+"px";
-    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    paint();
+    const r=wrap.getBoundingClientRect();
+    canvas.width=r.width*dpr;
+    canvas.height=r.height*dpr;
+    canvas.style.width=r.width+"px";
+    canvas.style.height=r.height+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    paint(r.width,r.height);
   }
 
-  function paint(){
-    ctx.globalCompositeOperation='source-over';
-    ctx.fillStyle='#c9b89e';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='rgba(255,255,255,.35)';
-    ctx.font='700 18px serif';
-    ctx.textAlign='center';
-    ctx.fillText('SCRATCH', wrap.clientWidth/2, wrap.clientHeight/2);
-    ctx.globalCompositeOperation='destination-out';
+  function paint(w,h){
+    ctx.globalCompositeOperation="source-over";
+
+    // Scandinavian “paper sticker” overlay
+    ctx.fillStyle = getComputedStyle(document.documentElement)
+      .getPropertyValue('--frost');
+    ctx.fillRect(0,0,w,h);
+
+    // subtle grain
+    ctx.fillStyle="rgba(0,0,0,.08)";
+    for(let i=0;i<700;i++){
+      const x=Math.random()*w, y=Math.random()*h, r=Math.random()*1.1;
+      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    }
+
+    // instruction
+    ctx.textAlign="center";
+    ctx.fillStyle="rgba(30,36,33,.55)";
+    ctx.font="900 22px system-ui, -apple-system, BlinkMacSystemFont";
+    ctx.fillText("SCRATCH", w/2, h/2);
+
+    ctx.globalCompositeOperation="destination-out";
   }
 
-  function point(e){
+  function pt(e){
     const r=canvas.getBoundingClientRect();
     const t=e.touches?.[0]||e;
     return {x:t.clientX-r.left,y:t.clientY-r.top};
   }
 
+  function scratchTo(x,y){
+    ctx.lineCap="round";
+    ctx.lineJoin="round";
+    ctx.lineWidth=46;
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.lineTo(x,y);
+    ctx.stroke();
+    lastX=x; lastY=y;
+  }
+
   function start(e){
     e.preventDefault();
     drawing=true;
-    const p=point(e);
+    const p=pt(e);
     lastX=p.x; lastY=p.y;
+    scratchTo(p.x,p.y);
   }
   function move(e){
     if(!drawing)return;
     e.preventDefault();
-    const p=point(e);
-    ctx.lineWidth=36;
-    ctx.lineCap='round';
-    ctx.beginPath();
-    ctx.moveTo(lastX,lastY);
-    ctx.lineTo(p.x,p.y);
-    ctx.stroke();
-    lastX=p.x; lastY=p.y;
+    const p=pt(e);
+    scratchTo(p.x,p.y);
   }
   function end(){drawing=false}
 
@@ -194,6 +223,5 @@ canvas{
   resize();
 })();
 </script>
-
 </body>
 </html>
