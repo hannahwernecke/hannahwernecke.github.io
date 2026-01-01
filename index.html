@@ -528,7 +528,7 @@
     }
     .sectionTitle p{ margin:0; color: var(--muted); font-size:13px; max-width: 76ch; font-weight:650; }
 
-    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; position:relative; z-index:1; }
+    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; position:relative; z-index:1; align-items:start; }
     .card{
       grid-column: span 4;
       border-radius: 22px;
@@ -541,20 +541,27 @@
       min-height: 164px;
       position:relative;
       overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      isolation:isolate;
     }
     .card::after{
       content:""; position:absolute; inset:-18% 60% auto -18%; height:120%;
       background: radial-gradient(circle at 40% 20%, rgba(108,29,69,.12), transparent 56%);
-      opacity:.5; pointer-events:none;
+      opacity:.5; pointer-events:none; z-index:0;
     }
+    .card > *{ position:relative; z-index:1; }
     .card h3{
       margin:0 0 8px;
       font-family: var(--font-display);
       font-size:16px;
       font-weight: 650;
       letter-spacing: -.2px;
+      word-break: break-word;
     }
     .card p{ margin:0 0 12px; font-size:13px; color: var(--muted); font-weight:650; line-height:1.45; }
+    .cardActions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
     .link{
       display:inline-flex; align-items:center; justify-content:center;
       padding: 9px 12px; border-radius: 14px;
@@ -568,6 +575,27 @@
       background: rgba(108,29,69,.10);
       transition: background .18s var(--ease);
     }
+
+    .staffRow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .staff{
+      display:flex; align-items:center; gap:8px;
+      padding: 7px 9px;
+      border-radius: 14px;
+      background: rgba(108,29,69,.06);
+      border: 1px solid rgba(108,29,69,.10);
+      box-shadow: 0 8px 16px rgba(0,0,0,.05);
+    }
+    .staffBadge{
+      width: 44px; height: 44px; border-radius:50%;
+      background: radial-gradient(circle at 32% 28%, rgba(247,244,239,.92), rgba(108,29,69,.26));
+      border: 1px solid rgba(108,29,69,.18);
+      box-shadow: 0 10px 22px rgba(108,29,69,.20);
+      display:grid; place-items:center;
+      font-weight:900; letter-spacing:.2px;
+    }
+    .staffLabel{ font-size:12px; color: var(--muted); font-weight:800; }
+    .quiet-mode .staff{ background: rgba(90,140,200,.12); border-color: rgba(232,236,245,.20); }
+    .quiet-mode .staffBadge{ background: radial-gradient(circle at 32% 28%, rgba(232,236,245,.82), rgba(58,110,165,.34)); border-color: rgba(232,236,245,.22); box-shadow: 0 10px 22px rgba(0,0,0,.24); }
 
     footer{
       padding: 26px 0 34px;
@@ -799,12 +827,12 @@
           </div>
 
           <div class="cards">
-            <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><a class="link" href="#">Explore burial</a></article>
-            <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><a class="link" href="#">Explore cremation</a></article>
-            <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><a class="link" href="#">Veterans resources</a></article>
-            <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><a class="link" href="#">Start planning</a></article>
-            <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><a class="link" href="#">Search obituaries</a></article>
-            <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><a class="link" href="#immediate">Call your chapel</a></article>
+            <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><div class="cardActions"><a class="link" href="#">Explore burial</a></div></article>
+            <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><div class="cardActions"><a class="link" href="#">Explore cremation</a></div></article>
+            <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><div class="cardActions"><a class="link" href="#">Veterans resources</a></div></article>
+            <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><div class="cardActions"><a class="link" href="#">Start planning</a></div></article>
+            <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><div class="cardActions"><a class="link" href="#">Search obituaries</a></div></article>
+            <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><div class="cardActions"><a class="link" href="#immediate">Call your chapel</a></div></article>
           </div>
         </div>
       </section>
@@ -980,6 +1008,12 @@
     }
     el("tipBtn").addEventListener("click", newTip);
 
+    const STAFF_PLACEHOLDERS = [
+      { label: "Director", initials: "D" },
+      { label: "Care", initials: "C" },
+      { label: "Greeter", initials: "G" }
+    ];
+
     function setActive(id){
       const loc = LOCS.find(x => x.id === id);
       if(!loc) return;
@@ -1065,7 +1099,15 @@
         card.innerHTML = `
           <h3>${loc.displayName}</h3>
           <p>${formatLocationLine(loc)}<br>${loc.serviceAreaLine || ""}</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div class="staffRow" aria-label="Key staff (placeholder images)">
+            ${STAFF_PLACEHOLDERS.map(p => `
+              <span class="staff">
+                <span class="staffBadge">${p.initials}</span>
+                <span class="staffLabel">${p.label}</span>
+              </span>
+            `).join("")}
+          </div>
+          <div class="cardActions">
             <a class="link" href="tel:${loc.phone}">Call ${loc.phoneDisplay || ""}</a>
             <a class="link" href="./locations/${loc.id}.html">View this chapel</a>
             <a class="link" href="#" data-pick="${loc.id}">Make this my location</a>
