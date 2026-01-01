@@ -1,47 +1,611 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Home</title>
+  <meta name="theme-color" content="#6C1D45" />
+  <title>Snyder Director — Local-First Demo</title>
+  <meta name="description" content="Local-first, multi-location funeral home website demo for Snyder Funeral Homes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Satisfy&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      --burgundy:#6C1D45;
+      --cream:#F4F2ED;
+      --ink:#151515;
+      --muted:#575757;
+      --card:#ffffff;
+      --border: rgba(21,21,21,.14);
+      --softBorder: rgba(21,21,21,.10);
+      --shadow: 0 18px 55px rgba(0,0,0,.10);
+      --shadow2: 0 10px 28px rgba(0,0,0,.10);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1160px;
+      --focus: 0 0 0 4px rgba(108,29,69,.22);
+      --motion: 1;
+    }
+    [data-motion="reduced"]{ --motion:0; }
+
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
-      background:#050916;
-      color:#f4f2ed;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:24px;
+      font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1000px 600px at 18% 2%, rgba(108,29,69,.10), transparent 55%),
+        linear-gradient(180deg, var(--cream), #ffffff 42%);
+      overflow-x:hidden;
     }
+    a{ color:inherit; text-decoration:none; }
+    button, input, select{ font:inherit; color:inherit; }
+    :focus-visible{ outline:none; box-shadow: var(--focus); border-radius: 14px; }
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(244,242,237,.90);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(21,21,21,.08);
+    }
+    .hdr{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding: 14px 0;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
+    .mark{
+      width:44px; height:44px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(108,29,69,1), rgba(108,29,69,.78));
+      box-shadow: 0 16px 36px rgba(108,29,69,.22);
+      position:relative; overflow:hidden;
+    }
+    .mark::after{
+      content:""; position:absolute; inset:-60%;
+      background: radial-gradient(circle at 30% 30%, rgba(244,242,237,.35), transparent 55%);
+      transform: rotate(18deg);
+      opacity:.95;
+    }
+    .brand h1{ margin:0; font-size:15px; font-weight:600; letter-spacing:.2px; line-height:1.1; }
+    .brand .accent{ font-family:"Satisfy", cursive; font-size:18px; color: var(--burgundy); margin-top:2px; display:block; }
+
+    nav{ display:flex; gap:16px; align-items:center; justify-content:center; flex:1; }
+    nav a{
+      padding:10px 10px; border-radius:12px;
+      color: rgba(21,21,21,.80); font-weight:500; font-size:14px;
+    }
+    nav a:hover{ background: rgba(108,29,69,.06); transition: background .22s ease; }
+
+    .hdrActions{ display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width: 260px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 11px 14px; border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      cursor:pointer; user-select:none;
+      font-weight:600; font-size:14px;
+    }
+    .btn:hover{ transform: translateY(calc(-1px * var(--motion))); transition: transform .18s ease; }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(108,29,69,1), rgba(108,29,69,.86));
+      border-color: rgba(108,29,69,.30);
+      color: var(--cream);
+      box-shadow: 0 18px 44px rgba(108,29,69,.22);
+    }
+    .btn.ghost{ background: rgba(255,255,255,.65); border-color: rgba(21,21,21,.10); box-shadow:none; }
+
+    .hero{ padding: 34px 0 24px; }
+    .heroGrid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items:stretch; }
+    .heroCard{
+      border-radius: var(--radius2);
+      border: 1px solid var(--softBorder);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow);
+      padding: 26px 26px 22px;
+      position:relative; overflow:hidden;
+    }
+    .heroCard::before{
+      content:""; position:absolute; inset:-20%;
+      background: radial-gradient(600px 360px at 15% 20%, rgba(108,29,69,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; }
+    .kicker span{
+      display:inline-flex; padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(108,29,69,.14);
+      background: rgba(244,242,237,.82);
+      font-size:13px; font-weight:500; color: rgba(21,21,21,.78);
+    }
+    .title{ margin:0; font-size: 44px; line-height:1.06; letter-spacing: -0.8px; font-weight:600; position:relative; z-index:1; }
+    .title em{ font-style:normal; color: var(--burgundy); }
+    .subtitle{ margin: 14px 0 18px; color: var(--muted); font-size: 16px; max-width: 62ch; position:relative; z-index:1; }
+    .heroCtas{ display:flex; flex-wrap:wrap; gap:10px; position:relative; z-index:1; }
+
+    .side{ display:flex; flex-direction:column; gap: 14px; }
+    .panel{
+      border-radius: var(--radius2);
+      border: 1px solid var(--softBorder);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .panelHd{
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(21,21,21,.08);
+      background: linear-gradient(180deg, rgba(244,242,237,.92), rgba(255,255,255,.70));
+    }
+    .panelHd h3{ margin:0; font-size:15px; font-weight:700; }
+    .panelHd p{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+    .panelBd{ padding: 14px 16px 16px; }
+
+    .field{
+      display:flex; gap:10px; align-items:center;
+      padding: 12px 12px; border-radius: 16px;
+      border: 1px solid rgba(21,21,21,.12);
+      background: rgba(244,242,237,.78);
+    }
+    .field input, .field select{
+      width:100%; border:none; outline:none; background:transparent; font-size:14px;
+    }
+    .stack{ display:flex; flex-direction:column; gap:10px; }
+    .muteline{ font-size:12px; color: var(--muted); }
+
+    .trust{ padding: 18px 0 6px; }
+    .trustRow{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .trustItem{
+      border-radius: 18px;
+      border: 1px solid rgba(21,21,21,.10);
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
+    }
+    .trustItem strong{ display:block; font-size:13px; }
+    .trustItem span{ display:block; margin-top:4px; font-size:12px; color: var(--muted); }
+
+    .section{ padding: 26px 0; }
+    .sectionTitle{ display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom: 12px; }
+    .sectionTitle h2{ margin:0; font-size:22px; letter-spacing:-.2px; }
+    .sectionTitle p{ margin:0; color: var(--muted); font-size:13px; max-width: 70ch; }
+
+    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
     .card{
-      width:min(820px, 95vw);
-      background: rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.12);
-      border-radius:20px;
-      padding:22px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      grid-column: span 4;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(21,21,21,.10);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow2);
+      padding: 16px 16px;
+      min-height: 148px;
     }
-    h1{margin:0 0 10px; font-size:22px;}
-    p{margin:0 0 14px; color:rgba(231,226,214,0.85)}
-    a{
-      display:inline-block;
-      padding:12px 14px;
-      border-radius:14px;
-      text-decoration:none;
-      color:#f4f2ed;
-      background: rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.10);
+    .card h3{ margin:0 0 8px; font-size:15px; font-weight:700; }
+    .card p{ margin:0 0 12px; font-size:13px; color: var(--muted); }
+    .link{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 9px 11px; border-radius: 14px;
+      border: 1px solid rgba(108,29,69,.18);
+      background: rgba(108,29,69,.07);
+      color: var(--burgundy);
+      font-weight:700;
+      font-size:13px;
     }
-    a:hover{background: rgba(255,255,255,0.10)}
+
+    footer{
+      padding: 26px 0 34px;
+      border-top: 1px solid rgba(21,21,21,.10);
+      color: rgba(21,21,21,.78);
+    }
+    footer small{ color: var(--muted); }
+
+    /* Location picker modal */
+    .backdrop{
+      position:fixed; inset:0; z-index:200;
+      background: rgba(0,0,0,.38);
+      display:none; align-items:center; justify-content:center;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .modal{
+      width: min(760px, 100%);
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 26px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    .mhd{
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(21,21,21,.10);
+      background: linear-gradient(180deg, rgba(244,242,237,.92), rgba(255,255,255,.70));
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 14px;
+    }
+    .mhd h3{ margin:0; font-size:16px; }
+    .mhd p{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+    .mbd{ padding: 14px 16px 16px; }
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .locBtn{
+      width:100%;
+      text-align:left;
+      padding: 12px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(21,21,21,.12);
+      background: rgba(244,242,237,.70);
+      cursor:pointer;
+      font-weight:700;
+    }
+    .locBtn small{ display:block; font-weight:500; color:var(--muted); margin-top:4px; }
+    .mft{ padding: 12px 16px 16px; display:flex; gap:10px; justify-content:space-between; align-items:center; }
+    .tiny{ font-size:12px; color:var(--muted); }
+
+    @media (max-width: 980px){
+      nav{ display:none; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .trustRow{ grid-template-columns: 1fr 1fr; }
+      .cards .card{ grid-column: span 6; }
+      .title{ font-size: 40px; }
+      .hdrActions{ min-width:auto; }
+    }
+    @media (max-width: 640px){
+      .cards .card{ grid-column: span 12; }
+      .trustRow{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .title{ font-size: 34px; }
+    }
   </style>
 </head>
-<body>
-  <div class="card">
-    <h1>Site Home</h1>
-    <p>Temporary homepage. Christmas tags live here:</p>
-    <a href="./christmas/">🎄 Christmas Gift Tags</a>
+
+<body data-motion="full">
+  <header>
+    <div class="wrap">
+      <div class="hdr">
+        <a class="brand" href="#" aria-label="Snyder Director">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <h1 id="brandLine">Snyder Funeral Homes <span class="accent">Tending to Hearts</span></h1>
+            <div style="font-size:12px;color:rgba(21,21,21,.68);font-weight:600;" id="chapelLine">Choose your nearest chapel</div>
+          </div>
+        </a>
+
+        <nav aria-label="Primary">
+          <a href="#immediate">Immediate Need</a>
+          <a href="#services">Services</a>
+          <a href="#support">Grief</a>
+          <a href="#locations">Locations</a>
+        </nav>
+
+        <div class="hdrActions">
+          <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
+          <button class="btn ghost" type="button" id="btnMotion">Reduce motion</button>
+          <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="heroCard">
+            <div class="kicker">
+              <span>Family-owned since 1922</span>
+              <span id="kLocal">Local chapel focus</span>
+              <span>Burial • Cremation • Preplanning</span>
+            </div>
+
+            <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
+            <p class="subtitle" id="heroSub">
+              Pick your nearest chapel once, and this site stays local every time you come back.
+            </p>
+
+            <div class="heroCtas">
+              <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
+              <button class="btn" type="button" id="heroPick">Choose location</button>
+              <a class="btn" href="#locations">View locations</a>
+            </div>
+          </div>
+
+          <aside class="side" aria-label="Immediate Need">
+            <div class="panel" id="immediate">
+              <div class="panelHd">
+                <h3 id="immediateTitle">Immediate Need</h3>
+                <p id="immediateDesc">Choose a chapel and call. This will update the whole page.</p>
+              </div>
+              <div class="panelBd">
+                <div class="stack">
+                  <div class="field">
+                    <select id="locPick" aria-label="Choose a location"></select>
+                  </div>
+
+                  <a class="btn primary" id="callBtn" href="tel:+14198841711">Call now</a>
+                  <div class="muteline" id="callNote">Placeholder number until you fill in real chapel data.</div>
+
+                  <div class="field">
+                    <input id="nameSearch" type="search" placeholder="Search obituaries by name (demo)..." autocomplete="off" />
+                  </div>
+                  <button class="btn" type="button" id="obitBtn">Search obituaries (demo)</button>
+
+                  <div class="muteline">
+                    Local-first rule: one chapel number, one clear next step.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panelHd">
+                <h3>Plan Ahead</h3>
+                <p>Start now, pause anytime, continue later.</p>
+              </div>
+              <div class="panelBd">
+                <button class="btn primary" type="button" id="preplanBtn">Start preplanning (demo)</button>
+                <div class="muteline" style="margin-top:10px;">Later: e-sign + secure vault + family sharing.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="trust" aria-label="Trust signals">
+          <div class="trustRow">
+            <div class="trustItem"><strong>Clear guidance</strong><span>Simple steps, no pressure.</span></div>
+            <div class="trustItem"><strong>Local staff</strong><span>People who live and work nearby.</span></div>
+            <div class="trustItem"><strong>Every detail handled</strong><span>So families can breathe.</span></div>
+            <div class="trustItem"><strong>Personal tributes</strong><span>Meaningful and tasteful.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Services</h2>
+            <p>These are the core intents. Keep them obvious and chapel-specific.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><a class="link" href="#">Explore burial</a></article>
+          <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><a class="link" href="#">Explore cremation</a></article>
+          <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><a class="link" href="#">Veterans resources</a></article>
+          <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><a class="link" href="#">Start planning</a></article>
+          <article class="card" id="support"><h3>Grief Support</h3><p>Practical help week-by-week.</p><a class="link" href="#">Explore support</a></article>
+          <article class="card"><h3>Obituaries</h3><p>Service details, guestbook, livestream (later).</p><a class="link" href="#">Search obituaries</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="locations">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Locations</h2>
+            <p>This list is powered by <code>locations.json</code>. Editing one file updates everything.</p>
+          </div>
+        </div>
+
+        <div id="locCards" class="cards"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
+          <div style="display:flex; gap:12px; align-items:center;">
+            <div class="mark" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;"></div>
+            <div>
+              <div style="font-weight:700;">Snyder Director (Demo)</div>
+              <small>SFH Burgundy #6C1D45 • SFH Cream #F4F2ED • Poppins + Satisfy</small>
+            </div>
+          </div>
+          <small>© <span id="year"></span> Snyder Funeral Homes.</small>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Location picker modal -->
+  <div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal">
+      <div class="mhd">
+        <div>
+          <h3 id="mTitle">Choose your nearest chapel</h3>
+          <p>Pick once. The site stays local next time.</p>
+        </div>
+        <button class="btn" type="button" id="mClose">Close</button>
+      </div>
+      <div class="mbd">
+        <div class="field" style="margin-bottom:10px;">
+          <input id="mSearch" type="search" placeholder="Type a city (e.g., Mansfield, Mount Vernon)..." autocomplete="off">
+        </div>
+        <div class="grid2" id="mList"></div>
+      </div>
+      <div class="mft">
+        <div class="tiny" id="mHint">Tip: you can change this anytime in the header.</div>
+        <button class="btn primary" type="button" id="mClear">Clear saved location</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reduce motion
+    document.getElementById("btnMotion").addEventListener("click", () => {
+      const reduced = document.body.getAttribute("data-motion") === "reduced";
+      document.body.setAttribute("data-motion", reduced ? "full" : "reduced");
+      document.getElementById("btnMotion").textContent = reduced ? "Reduce motion" : "Motion reduced";
+    });
+
+    // Load locations.json
+    const LS_KEY = "sfh_location";
+    let LOCS = [];
+    let ACTIVE = null;
+
+    const el = (id) => document.getElementById(id);
+
+    function formatLocationLine(loc){
+      const addr = [loc.addressLine, `${loc.city}, ${loc.state} ${loc.zip}`].filter(Boolean).join(", ");
+      return addr || "";
+    }
+
+    function setActive(id){
+      const loc = LOCS.find(x => x.id === id);
+      if(!loc) return;
+      ACTIVE = loc;
+      localStorage.setItem(LS_KEY, id);
+
+      el("chapelLine").textContent = loc.displayName;
+      el("kLocal").textContent = loc.serviceAreaLine || "Serving nearby communities";
+      el("heroSub").textContent = loc.heroLine || `Serving ${loc.city || "local"} families with calm, clear guidance.`;
+
+      el("topCall").textContent = `Call ${loc.city || "your chapel"}`;
+      el("topCall").href = `tel:${loc.phone}`;
+
+      el("heroCall").textContent = `Call ${loc.displayName}`;
+      el("heroCall").href = `tel:${loc.phone}`;
+
+      el("callBtn").textContent = `Call ${loc.phoneDisplay || loc.phone}`;
+      el("callBtn").href = `tel:${loc.phone}`;
+      el("callNote").textContent = `${loc.displayName} • ${formatLocationLine(loc)}`;
+
+      // Update dropdown selection
+      el("locPick").value = id;
+      closeModal();
+    }
+
+    function clearActive(){
+      localStorage.removeItem(LS_KEY);
+      ACTIVE = null;
+      el("chapelLine").textContent = "Choose your nearest chapel";
+      el("kLocal").textContent = "Local chapel focus";
+      el("heroSub").textContent = "Pick your nearest chapel once, and this site stays local every time you come back.";
+      el("topCall").textContent = "Immediate Need";
+      el("topCall").href = "#immediate";
+      el("heroCall").textContent = "Call your chapel";
+      el("heroCall").href = "#immediate";
+      el("callBtn").textContent = "Call now";
+      el("callBtn").href = "tel:+14198841711";
+      el("callNote").textContent = "Placeholder number until you fill in real chapel data.";
+      openModal();
+    }
+
+    function buildDropdown(){
+      const sel = el("locPick");
+      sel.innerHTML = "";
+      const opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = "Select a location…";
+      sel.appendChild(opt0);
+
+      for(const loc of LOCS){
+        const o = document.createElement("option");
+        o.value = loc.id;
+        o.textContent = loc.displayName;
+        sel.appendChild(o);
+      }
+
+      sel.addEventListener("change", () => {
+        if(sel.value) setActive(sel.value);
+        else openModal();
+      });
+    }
+
+    function buildCards(){
+      const box = el("locCards");
+      box.innerHTML = "";
+      for(const loc of LOCS){
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h3>${loc.displayName}</h3>
+          <p>${formatLocationLine(loc)}<br>${loc.serviceAreaLine || ""}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="link" href="tel:${loc.phone}">Call ${loc.phoneDisplay || ""}</a>
+            <a class="link" href="#" data-pick="${loc.id}">Make this my location</a>
+          </div>
+        `;
+        box.appendChild(card);
+      }
+
+      box.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-pick]");
+        if(!a) return;
+        e.preventDefault();
+        setActive(a.getAttribute("data-pick"));
+      });
+    }
+
+    // Modal
+    const backdrop = el("backdrop");
+    function openModal(){ backdrop.style.display = "flex"; el("mSearch").value=""; renderModalList(""); el("mSearch").focus(); }
+    function closeModal(){ backdrop.style.display = "none"; }
+
+    el("btnChangeLoc").addEventListener("click", openModal);
+    el("heroPick").addEventListener("click", openModal);
+    el("mClose").addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e) => { if(e.target === backdrop) closeModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape" && backdrop.style.display === "flex") closeModal(); });
+
+    el("mClear").addEventListener("click", clearActive);
+
+    function renderModalList(filter){
+      const q = (filter || "").toLowerCase().trim();
+      const list = el("mList");
+      list.innerHTML = "";
+      const results = LOCS.filter(loc =>
+        !q ||
+        (loc.displayName || "").toLowerCase().includes(q) ||
+        (loc.city || "").toLowerCase().includes(q)
+      );
+
+      for(const loc of results){
+        const b = document.createElement("button");
+        b.className = "locBtn";
+        b.type = "button";
+        b.innerHTML = `${loc.displayName}<small>${formatLocationLine(loc)} • ${loc.serviceAreaLine || ""}</small>`;
+        b.addEventListener("click", () => setActive(loc.id));
+        list.appendChild(b);
+      }
+
+      if(results.length === 0){
+        const d = document.createElement("div");
+        d.className = "muteline";
+        d.textContent = "No matches. Try a city name.";
+        list.appendChild(d);
+      }
+    }
+
+    el("mSearch").addEventListener("input", () => renderModalList(el("mSearch").value));
+
+    // Demo buttons
+    el("obitBtn").addEventListener("click", () => alert("Demo: wire this to your obituary system / TT."));
+    el("preplanBtn").addEventListener("click", () => alert("Demo: wire this to your preplanning flow."));
+
+    async function init(){
+      const r = await fetch("./locations.json", { cache: "no-store" });
+      LOCS = await r.json();
+
+      buildDropdown();
+      buildCards();
+      renderModalList("");
+
+      const saved = localStorage.getItem(LS_KEY);
+      if(saved && LOCS.some(x => x.id === saved)){
+        setActive(saved);
+      } else {
+        openModal();
+      }
+    }
+
+    init().catch(() => {
+      alert("Could not load locations.json. Make sure you created it in the repo root.");
+    });
+  </script>
 </body>
 </html>
