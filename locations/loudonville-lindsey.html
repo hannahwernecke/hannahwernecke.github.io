@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#6C1D45" />
+  <title>Snyder Funeral Homes | Location</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=Playball&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy: #6C1D45;
+      --cream: #F4F2ED;
+      --ink: #1F1B1D;
+      --muted: #5B5657;
+      --accent: #A5745D;
+      --surface: rgba(255,255,255,0.85);
+      --border: rgba(31,27,29,0.12);
+      --shadow: 0 18px 40px rgba(0,0,0,0.12);
+      --radius: 18px;
+      --font-display: "Fraunces", "Times New Roman", serif;
+      --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+      --font-accent: "Playball", cursive;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--burgundy); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 72px;
+    }
+    header.site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0 10px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.01em;
+      color: var(--burgundy);
+    }
+    .brand-tag {
+      font-family: var(--font-accent);
+      font-size: 18px;
+      color: var(--muted);
+    }
+    nav.top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .link { font-weight: 600; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+      background: transparent;
+      transition: transform 120ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+      box-shadow: none;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; }
+    .btn.primary { background: var(--burgundy); color: #fff; }
+    .btn.ghost { border-color: transparent; color: var(--burgundy); background: rgba(108,29,69,0.06); }
+    .btn.outline { background: #fff; }
+    .hero {
+      background: linear-gradient(145deg, rgba(108,29,69,0.08), rgba(255,255,255,0.9));
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-top: 10px;
+    }
+    .hero .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 38px);
+      margin: 0 0 10px;
+      color: var(--burgundy);
+    }
+    .hero .address, .hero .service-area {
+      margin: 4px 0;
+      font-size: 17px;
+      color: var(--ink);
+    }
+    .hero .service-area { color: var(--muted); }
+    .cta-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .panels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      color: var(--burgundy);
+      font-size: 22px;
+    }
+    .card p { margin: 0 0 10px; color: var(--ink); }
+    .card ul { margin: 0; padding-left: 18px; color: var(--ink); line-height: 1.5; }
+    .card ul li { margin-bottom: 8px; }
+    .card.plan { display: flex; flex-direction: column; gap: 12px; justify-content: space-between; }
+    .local { margin-top: 28px; background: var(--surface); border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .local h2 { font-family: var(--font-display); color: var(--burgundy); margin: 0 0 8px; font-size: 24px; }
+    .local p { margin: 0 0 14px; color: var(--ink); }
+    .local-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-top: 6px; }
+    .placeholder {
+      background: linear-gradient(135deg, rgba(108,29,69,0.12), rgba(108,29,69,0.06));
+      border: 1px dashed rgba(108,29,69,0.35);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--burgundy);
+      font-weight: 600;
+      text-align: center;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+    }
+    .callout { margin-top: 16px; padding: 14px; border-radius: 14px; background: rgba(108,29,69,0.07); color: var(--ink); border: 1px solid rgba(108,29,69,0.18); }
+    .callout h3 { margin: 0 0 6px; font-family: var(--font-display); color: var(--burgundy); }
+    footer { margin-top: auto; padding: 26px 20px; text-align: center; color: var(--muted); font-size: 14px; }
+    footer a { color: var(--burgundy); }
+    .status { margin-top: 14px; color: var(--burgundy); font-weight: 600; min-height: 20px; }
+    @media (max-width: 640px) {
+      header.site-header { flex-direction: column; align-items: flex-start; }
+      nav.top-actions { justify-content: flex-start; }
+      .hero { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-title">Snyder Funeral Homes</span>
+        <span class="brand-tag">Tending to Hearts</span>
+      </div>
+      <nav class="top-actions">
+        <a class="link" href="../index.html">Back to Home</a>
+        <a class="link" href="../index.html#locations">Change location</a>
+        <a class="btn primary" id="header-call" href="#">Call this chapel</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" data-requires-location>
+        <p class="eyebrow">Chapel location</p>
+        <h1 id="title">Loading chapel...</h1>
+        <p class="address" id="address"></p>
+        <p class="service-area" id="service-area"></p>
+        <div class="cta-row">
+          <a class="btn primary" id="call-cta" href="#">Call now</a>
+          <a class="btn outline" id="directions-cta" href="#" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" id="obits-cta" href="../index.html#services">View obituaries</a>
+        </div>
+      </section>
+
+      <section class="panels">
+        <div class="card need">
+          <h2>Immediate Need</h2>
+          <p>We’re here when you need us most.</p>
+          <ul>
+            <li>Call us first—we’ll coordinate with the care facility or family contact.</li>
+            <li>Have names, dates, and a contact phone available if you can.</li>
+            <li>We’ll guide next steps, transportation, and a calm timeline together.</li>
+          </ul>
+        </div>
+        <div class="card plan">
+          <h2>Plan Ahead</h2>
+          <p>Create a plan that honors traditions and eases future decisions.</p>
+          <a class="btn primary" href="../index.html#services">Start planning</a>
+        </div>
+      </section>
+
+      <section class="local" data-requires-location>
+        <div class="local-header">
+          <h2>Local touches</h2>
+          <p id="local-serving">Serving neighbors with care.</p>
+        </div>
+        <div class="local-grid">
+          <div class="placeholder">Quiet spaces to gather</div>
+          <div class="placeholder">Welcoming lounge</div>
+          <div class="placeholder">Thoughtful remembrance</div>
+        </div>
+        <div class="callout">
+          <h3>Typical first call</h3>
+          <p>We’ll ask where your loved one is in care, next-of-kin contact, and any immediate wishes.</p>
+        </div>
+      </section>
+
+      <div class="status" id="status" aria-live="polite"></div>
+    </main>
+  </div>
+  <footer>
+    <div>&copy; <span id="year"></span> Snyder Funeral Homes. All rights reserved.</div>
+    <div><a href="../index.html">Return to homepage</a></div>
+  </footer>
+
+  <script>
+    const LOCATION_ID = "loudonville-lindsey";
+    const titleEl = document.getElementById('title');
+    const addressEl = document.getElementById('address');
+    const serviceAreaEl = document.getElementById('service-area');
+    const localServingEl = document.getElementById('local-serving');
+    const headerCall = document.getElementById('header-call');
+    const callCta = document.getElementById('call-cta');
+    const directionsCta = document.getElementById('directions-cta');
+    const statusEl = document.getElementById('status');
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+    statusEl.textContent = 'Loading location details...';
+
+    const handleMissingData = (message) => {
+      titleEl.textContent = "We’re ready to help";
+      addressEl.textContent = message;
+      serviceAreaEl.textContent = "Please return to the homepage or call us for assistance.";
+      callCta.textContent = 'Call main line';
+      callCta.href = '../index.html';
+      directionsCta.href = '../index.html#locations';
+      headerCall.href = '../index.html#locations';
+      statusEl.textContent = message;
+    };
+
+    fetch('../locations.json')
+      .then((resp) => {
+        if (!resp.ok) throw new Error('Network error');
+        return resp.json();
+      })
+      .then((locations) => {
+        if (!Array.isArray(locations)) throw new Error('Invalid data');
+        const entry = locations.find((loc) => loc.id === LOCATION_ID);
+        if (!entry) throw new Error('Location not found');
+
+        const fullAddress = `${entry.addressLine}, ${entry.city}, ${entry.state} ${entry.zip}`;
+        titleEl.textContent = entry.displayName;
+        addressEl.textContent = fullAddress;
+        serviceAreaEl.textContent = entry.serviceAreaLine;
+        localServingEl.textContent = `Serving: ${entry.serviceAreaLine}`;
+
+        const phoneHref = `tel:${entry.phone}`;
+        callCta.href = phoneHref;
+        callCta.textContent = `Call now ${entry.phoneDisplay}`;
+        headerCall.href = phoneHref;
+        headerCall.textContent = `Call this chapel`;
+
+        const mapsQuery = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}`;
+        directionsCta.href = mapsQuery;
+
+        statusEl.textContent = '';
+      })
+      .catch((err) => {
+        console.error(err);
+        handleMissingData('We could not load this chapel right now.');
+      });
+  </script>
+</body>
+</html>
