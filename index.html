@@ -95,10 +95,10 @@
       content:"";
       position:fixed; inset:0;
       background:
-        radial-gradient(circle at 18% 22%, rgba(176,133,78,.22), transparent 32%),
-        radial-gradient(circle at 82% 10%, rgba(108,29,69,.08), transparent 28%),
-        repeating-linear-gradient(135deg, rgba(176,133,78,.08), rgba(176,133,78,.08) 1px, transparent 1px, transparent 18px);
-      opacity:.24;
+        radial-gradient(1200px 780px at 18% 22%, rgba(176,133,78,.20), transparent 42%),
+        radial-gradient(980px 640px at 82% 10%, rgba(108,29,69,.10), transparent 48%),
+        radial-gradient(960px 520px at 58% 44%, rgba(108,29,69,.05), transparent 62%);
+      opacity:.22;
       pointer-events:none;
       z-index:0;
     }
@@ -941,9 +941,10 @@
 
     function applyMotion(){
       const root = document.documentElement;
-      const effective = !quietMode && !motionMq.matches;
+      const prefersReduced = motionMq.matches;
+      const effective = !prefersReduced && !quietMode;
       root.style.setProperty("--motion", effective ? "1" : "0");
-      root.classList.toggle("no-motion", !effective);
+      root.classList.toggle("no-motion", prefersReduced);
       if(ambient) ambient.style.animationPlayState = effective ? "running" : "paused";
       updateBreatheState();
     }
