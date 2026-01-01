@@ -1,194 +1,178 @@
 [
   {
     "id": "bellville-butler",
-    "displayName": "Bellville Butler Chapel",
-    "phone": "+14198862491",
-    "phoneDisplay": "(419) 886-2491",
+    "displayName": "Snyder Funeral Homes, Bellville Butler Chapel",
     "addressLine": "81 Mill Road",
     "city": "Bellville",
     "state": "OH",
     "zip": "44813",
-    "serviceAreaLine": "Serving Bellville, Butler, and surrounding communities",
-    "heroLine": "Bellville Butler Chapel — calm guidance for families in Bellville and Butler."
+    "phone": "+14198862491",
+    "phoneDisplay": "(419) 886-2491",
+    "serviceAreaLine": "Serving Bellville and surrounding communities"
   },
   {
     "id": "carey-stombaugh-batton",
-    "displayName": "Stombaugh Batton Chapel",
-    "phone": "+14193967520",
-    "phoneDisplay": "(419) 396-7520",
+    "displayName": "Snyder Funeral Homes, Stombaugh Batton Chapel",
     "addressLine": "225 West Findlay Street",
     "city": "Carey",
     "state": "OH",
     "zip": "43316",
-    "serviceAreaLine": "Serving Carey and the surrounding area",
-    "heroLine": "Stombaugh Batton Chapel — clear steps and steady care in Carey."
+    "phone": "+14193967520",
+    "phoneDisplay": "(419) 396-7520",
+    "serviceAreaLine": "Serving Carey and nearby communities"
   },
   {
     "id": "delaware-rodman",
     "displayName": "Snyder Rodman Funeral Center",
-    "phone": "+17403621611",
-    "phoneDisplay": "(740) 362-1611",
     "addressLine": "101 Valleyside Drive",
     "city": "Delaware",
     "state": "OH",
     "zip": "43015",
-    "serviceAreaLine": "Serving Delaware and the surrounding area",
-    "heroLine": "Snyder Rodman Funeral Center — serving Delaware families with clarity and care."
+    "phone": "+17403621611",
+    "phoneDisplay": "(740) 362-1611",
+    "serviceAreaLine": "Serving Delaware and surrounding communities"
   },
   {
     "id": "galion-richardson-davis",
-    "displayName": "Richardson Davis Chapel",
-    "phone": "+14194681424",
-    "phoneDisplay": "(419) 468-1424",
+    "displayName": "Snyder Funeral Homes, Richardson Davis Chapel",
     "addressLine": "218 South Market Street",
     "city": "Galion",
     "state": "OH",
     "zip": "44833",
-    "serviceAreaLine": "Serving Galion and the surrounding area",
-    "heroLine": "Richardson Davis Chapel — local care for Galion families."
+    "phone": "+14194681424",
+    "phoneDisplay": "(419) 468-1424",
+    "serviceAreaLine": "Serving Galion and nearby communities"
   },
   {
     "id": "loudonville-lindsey",
-    "displayName": "Lindsey Chapel",
-    "phone": "+14199943030",
-    "phoneDisplay": "(419) 994-3030",
+    "displayName": "Snyder Funeral Homes, Lindsey Chapel",
     "addressLine": "123 North Market Street",
     "city": "Loudonville",
     "state": "OH",
     "zip": "44842",
-    "serviceAreaLine": "Serving Loudonville and the surrounding area",
-    "heroLine": "Lindsey Chapel — steady guidance for Loudonville families."
+    "phone": "+14199943030",
+    "phoneDisplay": "(419) 994-3030",
+    "serviceAreaLine": "Serving Loudonville and surrounding communities"
   },
   {
-    "id": "mansfield-lexington",
-    "displayName": "Lexington Avenue Chapel",
-    "phone": "+14198841711",
-    "phoneDisplay": "(419) 884-1711",
+    "id": "mansfield-lexington-avenue",
+    "displayName": "Snyder Funeral Homes, Lexington Avenue Chapel",
     "addressLine": "2553 Lexington Avenue",
     "city": "Mansfield",
     "state": "OH",
     "zip": "44904",
-    "serviceAreaLine": "Serving Mansfield and the surrounding area",
-    "heroLine": "Lexington Avenue Chapel — start here for Mansfield families, day or night."
+    "phone": "+14198841711",
+    "phoneDisplay": "(419) 884-1711",
+    "serviceAreaLine": "Serving Mansfield and nearby neighborhoods"
   },
   {
     "id": "mansfield-finefrock",
-    "displayName": "Finefrock Chapel",
-    "phone": "+14195254411",
-    "phoneDisplay": "(419) 525-4411",
+    "displayName": "Snyder Funeral Homes, Finefrock Chapel",
     "addressLine": "350 Marion Avenue",
     "city": "Mansfield",
     "state": "OH",
     "zip": "44903",
-    "serviceAreaLine": "Serving Mansfield and the surrounding area",
-    "heroLine": "Finefrock Chapel — calm, clear guidance for Mansfield families."
+    "phone": "+14195254411",
+    "phoneDisplay": "(419) 525-4411",
+    "serviceAreaLine": "Serving Mansfield and surrounding communities"
   },
   {
     "id": "marion-denzer",
-    "displayName": "Denzer Chapel",
-    "phone": "+17403879136",
-    "phoneDisplay": "(740) 387-9136",
+    "displayName": "Snyder Funeral Homes, Denzer Chapel",
     "addressLine": "360 East Center Street",
     "city": "Marion",
     "state": "OH",
     "zip": "43302",
-    "serviceAreaLine": "Serving Marion and the surrounding area",
-    "heroLine": "Denzer Chapel — local care for Marion families."
+    "phone": "+17403879136",
+    "phoneDisplay": "(740) 387-9136",
+    "serviceAreaLine": "Serving Marion and nearby communities"
   },
   {
     "id": "marion-gunder-hall",
-    "displayName": "Gunder Hall Chapel",
-    "phone": "+17403823612",
-    "phoneDisplay": "(740) 382-3612",
+    "displayName": "Snyder Funeral Homes, Gunder Hall Chapel",
     "addressLine": "347 West Center Street",
     "city": "Marion",
     "state": "OH",
     "zip": "43302",
-    "serviceAreaLine": "Serving Marion and the surrounding area",
-    "heroLine": "Gunder Hall Chapel — steady guidance for Marion families."
+    "phone": "+17403823612",
+    "phoneDisplay": "(740) 382-3612",
+    "serviceAreaLine": "Serving Marion and surrounding communities"
   },
   {
     "id": "marysville-ingram",
-    "displayName": "Ingram Chapel",
-    "phone": "+19376424861",
-    "phoneDisplay": "(937) 642-4861",
+    "displayName": "Snyder Funeral Homes, Ingram Chapel",
     "addressLine": "975 North Maple Street",
     "city": "Marysville",
     "state": "OH",
     "zip": "43040",
-    "serviceAreaLine": "Serving Marysville and the surrounding area",
-    "heroLine": "Ingram Chapel — serving Marysville families with calm, clear direction."
+    "phone": "+19376424861",
+    "phoneDisplay": "(937) 642-4861",
+    "serviceAreaLine": "Serving Marysville and nearby communities"
   },
   {
     "id": "marysville-underwood",
-    "displayName": "Underwood Chapel",
-    "phone": "+19376427039",
-    "phoneDisplay": "(937) 642-7039",
+    "displayName": "Snyder Funeral Homes, Underwood Chapel",
     "addressLine": "703 East 5th Street",
     "city": "Marysville",
     "state": "OH",
     "zip": "43040",
-    "serviceAreaLine": "Serving Marysville and the surrounding area",
-    "heroLine": "Underwood Chapel — local care for Marysville families."
+    "phone": "+19376427039",
+    "phoneDisplay": "(937) 642-7039",
+    "serviceAreaLine": "Serving Marysville and surrounding communities"
   },
   {
     "id": "mount-gilead-craven",
-    "displayName": "Craven Chapel",
-    "phone": "+14199463040",
-    "phoneDisplay": "(419) 946-3040",
+    "displayName": "Snyder Funeral Homes, Craven Chapel",
     "addressLine": "67 North Main Street",
     "city": "Mount Gilead",
     "state": "OH",
     "zip": "43338",
-    "serviceAreaLine": "Serving Mount Gilead and the surrounding area",
-    "heroLine": "Craven Chapel — steady guidance for Mount Gilead families."
+    "phone": "+14199463040",
+    "phoneDisplay": "(419) 946-3040",
+    "serviceAreaLine": "Serving Mount Gilead and nearby communities"
   },
   {
     "id": "mount-vernon-dowds",
-    "displayName": "Dowds Chapel",
-    "phone": "+17403931076",
-    "phoneDisplay": "(740) 393-1076",
+    "displayName": "Snyder Funeral Homes, Dowds Chapel",
     "addressLine": "201 Newark Road",
     "city": "Mount Vernon",
     "state": "OH",
     "zip": "43050",
-    "serviceAreaLine": "Serving Mount Vernon and Knox County",
-    "heroLine": "Dowds Chapel — serving Mount Vernon and Knox County families."
+    "phone": "+17403931076",
+    "phoneDisplay": "(740) 393-1076",
+    "serviceAreaLine": "Serving Mount Vernon and surrounding communities"
   },
   {
     "id": "mount-vernon-flowers",
-    "displayName": "Flowers Chapel",
-    "phone": "+17403926956",
-    "phoneDisplay": "(740) 392-6956",
+    "displayName": "Snyder Funeral Homes, Flowers Chapel",
     "addressLine": "619 East High Street",
     "city": "Mount Vernon",
     "state": "OH",
     "zip": "43050",
-    "serviceAreaLine": "Serving Mount Vernon and Knox County",
-    "heroLine": "Flowers Chapel — local care for Mount Vernon and Knox County families."
+    "phone": "+17403926956",
+    "phoneDisplay": "(740) 392-6956",
+    "serviceAreaLine": "Serving Mount Vernon and neighboring communities"
   },
   {
     "id": "mount-vernon-lasater",
-    "displayName": "Lasater Chapel",
-    "phone": "+17403920005",
-    "phoneDisplay": "(740) 392-0005",
+    "displayName": "Snyder Funeral Homes, Lasater Chapel",
     "addressLine": "11337 Upper Gilchrist Road",
     "city": "Mount Vernon",
     "state": "OH",
     "zip": "43050",
-    "serviceAreaLine": "Serving Mount Vernon and Knox County",
-    "heroLine": "Lasater Chapel — steady guidance for Knox County families."
+    "phone": "+17403920005",
+    "phoneDisplay": "(740) 392-0005",
+    "serviceAreaLine": "Serving Mount Vernon and Knox County"
   },
   {
     "id": "sunbury-devore",
-    "displayName": "DeVore Chapel",
-    "phone": "+17409653936",
-    "phoneDisplay": "(740) 965-3936",
+    "displayName": "Snyder Funeral Homes, DeVore Chapel",
     "addressLine": "637 State Route 61",
     "city": "Sunbury",
     "state": "OH",
     "zip": "43074",
-    "serviceAreaLine": "Serving Sunbury and the surrounding area",
-    "heroLine": "DeVore Chapel — local care for Sunbury families."
+    "phone": "+17409653936",
+    "phoneDisplay": "(740) 965-3936",
+    "serviceAreaLine": "Serving Sunbury and surrounding communities"
   }
 ]
