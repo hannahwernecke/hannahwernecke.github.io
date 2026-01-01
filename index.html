@@ -72,6 +72,15 @@
       letter-spacing: .1px;
     }
 
+    :root.quiet-mode body{
+      font-size: 105%;
+      background:
+        radial-gradient(1000px 640px at 18% 6%, rgba(108,29,69,.07), transparent 52%),
+        radial-gradient(820px 520px at 82% 12%, rgba(244,242,237,.18), transparent 58%),
+        linear-gradient(180deg, #f5f1eb, #ffffff 55%);
+      filter: brightness(.98) saturate(.96);
+    }
+
     /* Time-of-day tint layer */
     .tod{
       position:fixed; inset:0;
@@ -106,6 +115,7 @@
       z-index:0;
     }
     .no-motion .ambient{ animation: none; }
+    .quiet-mode .ambient{ animation: none; opacity:.35; }
     @keyframes drift{
       from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
       to  { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
@@ -181,6 +191,7 @@
       background: rgba(108,29,69,.06);
       transition: background .22s var(--ease);
     }
+    .quiet-mode nav a:hover{ background: rgba(108,29,69,.04); transition: none; }
 
     .hdrActions{ display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width: 260px; }
 
@@ -199,6 +210,7 @@
       transform: translate3d(0, calc(-1px * var(--motion)), 0);
       transition: transform .20s var(--ease);
     }
+    .quiet-mode .btn:hover{ transform:none; transition:none; }
     .btn.primary{
       background: linear-gradient(135deg, rgba(108,29,69,1), rgba(108,29,69,.86));
       border-color: rgba(108,29,69,.28);
@@ -233,6 +245,7 @@
       pointer-events:none;
       opacity:.95;
     }
+    .quiet-mode .heroCard::before{ opacity:.65; }
 
     .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; position:relative; z-index:1; }
     .kicker span{
@@ -330,6 +343,37 @@
       color:var(--muted);
       font-weight:650;
     }
+
+    .breathe{
+      border-radius: 18px;
+      border: 1px solid rgba(108,29,69,.12);
+      background: rgba(255,255,255,.78);
+      padding: 12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .breatheCircle{
+      width:48px; height:48px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(244,242,237,.8), rgba(108,29,69,.30));
+      box-shadow: 0 12px 28px rgba(108,29,69,.20);
+      animation: breathe 6s ease-in-out infinite;
+      flex-shrink:0;
+    }
+    .no-motion .breatheCircle, .quiet-mode .breatheCircle{ animation-play-state: paused; }
+    .breatheCircle.paused{ animation-play-state: paused; }
+    @keyframes breathe{
+      0%{ transform: scale(.92); opacity:.82; }
+      50%{ transform: scale(1.05); opacity:1; }
+      100%{ transform: scale(.92); opacity:.82; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .breatheCircle{ animation: none; }
+    }
+    .breatheText{ font-size:13px; font-weight:800; color: var(--muted); line-height:1.3; }
+    .breatheControls{ display:flex; gap:8px; align-items:center; }
+    .breathe button{ padding: 9px 12px; }
 
     .section{ padding: 18px 0 26px; }
     .sectionTitle{
@@ -506,6 +550,7 @@
           <div class="hdrActions">
             <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
             <button class="btn ghost" type="button" id="btnMotion">Reduce motion</button>
+            <button class="btn" type="button" id="btnQuiet" aria-pressed="false">Quiet mode</button>
             <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
           </div>
         </div>
@@ -560,6 +605,14 @@
                         <strong>One gentle step</strong>
                         <span id="gentleTip">Call first. We’ll guide you through the next step.</span>
                         <button class="link" id="tipBtn" type="button" style="margin-top:10px;">New tip</button>
+                      </div>
+                    </div>
+
+                    <div class="breathe" aria-live="polite">
+                      <div class="breatheCircle" id="breatheCircle" aria-hidden="true"></div>
+                      <div class="breatheControls">
+                        <div class="breatheText">Breathe<br>In… 2… 3… 4…  Out… 2… 3… 4…</div>
+                        <button class="btn ghost" type="button" id="breatheToggle">Pause</button>
                       </div>
                     </div>
 
@@ -696,14 +749,30 @@
     const btnMotion = document.getElementById("btnMotion");
     const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const ambient = document.querySelector(".ambient");
+    const breatheCircle = document.getElementById("breatheCircle");
+    const breatheToggle = document.getElementById("breatheToggle");
+    let motionEnabled = true;
+    let quietMode = false;
+    let breathePaused = false;
+
+    function updateBreatheState(){
+      if(!breatheCircle || !breatheToggle) return;
+      const root = document.documentElement;
+      const shouldPause = breathePaused || quietMode || motionMq.matches || root.classList.contains("no-motion");
+      breatheCircle.classList.toggle("paused", shouldPause);
+      breatheToggle.textContent = shouldPause ? "Resume" : "Pause";
+    }
 
     function applyMotion(enabled){
+      motionEnabled = enabled;
       const root = document.documentElement;
-      root.style.setProperty("--motion", enabled ? "1" : "0");
-      root.classList.toggle("no-motion", !enabled);
-      btnMotion.textContent = enabled ? "Reduce motion" : "Motion reduced";
-      btnMotion.setAttribute("aria-pressed", enabled ? "false" : "true");
-      if(ambient) ambient.style.animationPlayState = enabled ? "running" : "paused";
+      const effective = enabled && !quietMode && !motionMq.matches;
+      root.style.setProperty("--motion", effective ? "1" : "0");
+      root.classList.toggle("no-motion", !effective);
+      btnMotion.textContent = effective ? "Reduce motion" : "Motion reduced";
+      btnMotion.setAttribute("aria-pressed", effective ? "false" : "true");
+      if(ambient) ambient.style.animationPlayState = effective ? "running" : "paused";
+      updateBreatheState();
     }
 
     btnMotion.addEventListener("click", () => {
@@ -713,6 +782,35 @@
 
     motionMq.addEventListener("change", (e) => applyMotion(!e.matches));
     applyMotion(!motionMq.matches);
+
+    // Quiet mode
+    const QUIET_KEY = "sfh_quiet_mode";
+    const btnQuiet = document.getElementById("btnQuiet");
+
+    function applyQuiet(enabled){
+      quietMode = enabled;
+      const root = document.documentElement;
+      root.classList.toggle("quiet-mode", enabled);
+      btnQuiet.textContent = enabled ? "Quiet mode on" : "Quiet mode";
+      btnQuiet.setAttribute("aria-pressed", enabled ? "true" : "false");
+      localStorage.setItem(QUIET_KEY, enabled ? "1" : "0");
+      applyMotion(motionEnabled);
+    }
+
+    btnQuiet.addEventListener("click", () => {
+      applyQuiet(!quietMode);
+    });
+
+    if(breatheToggle){
+      breatheToggle.addEventListener("click", () => {
+        breathePaused = !breathePaused;
+        updateBreatheState();
+      });
+    }
+
+    const savedQuiet = localStorage.getItem(QUIET_KEY) === "1";
+    applyQuiet(savedQuiet);
+    updateBreatheState();
 
     // Local-first state
     const LS_KEY = "sfh_location";
