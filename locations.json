@@ -1,7 +1,7 @@
 [
   {
     "id": "bellville-butler",
-    "displayName": "Snyder Funeral Homes, Bellville Butler Chapel",
+    "displayName": "Bellville Butler Chapel",
     "addressLine": "81 Mill Road",
     "city": "Bellville",
     "state": "OH",
@@ -12,7 +12,7 @@
   },
   {
     "id": "carey-stombaugh-batton",
-    "displayName": "Snyder Funeral Homes, Stombaugh Batton Chapel",
+    "displayName": "Stombaugh Batton Chapel",
     "addressLine": "225 West Findlay Street",
     "city": "Carey",
     "state": "OH",
@@ -34,7 +34,7 @@
   },
   {
     "id": "galion-richardson-davis",
-    "displayName": "Snyder Funeral Homes, Richardson Davis Chapel",
+    "displayName": "Richardson Davis Chapel",
     "addressLine": "218 South Market Street",
     "city": "Galion",
     "state": "OH",
@@ -56,7 +56,7 @@
   },
   {
     "id": "mansfield-lexington-avenue",
-    "displayName": "Snyder Funeral Homes, Lexington Avenue Chapel",
+    "displayName": "Lexington Avenue Chapel",
     "addressLine": "2553 Lexington Avenue",
     "city": "Mansfield",
     "state": "OH",
@@ -67,7 +67,7 @@
   },
   {
     "id": "mansfield-finefrock",
-    "displayName": "Snyder Funeral Homes, Finefrock Chapel",
+    "displayName": "Finefrock Chapel",
     "addressLine": "350 Marion Avenue",
     "city": "Mansfield",
     "state": "OH",
@@ -78,7 +78,7 @@
   },
   {
     "id": "marion-denzer",
-    "displayName": "Snyder Funeral Homes, Denzer Chapel",
+    "displayName": "Denzer Chapel",
     "addressLine": "360 East Center Street",
     "city": "Marion",
     "state": "OH",
@@ -89,7 +89,7 @@
   },
   {
     "id": "marion-gunder-hall",
-    "displayName": "Snyder Funeral Homes, Gunder Hall Chapel",
+    "displayName": "Gunder Hall Chapel",
     "addressLine": "347 West Center Street",
     "city": "Marion",
     "state": "OH",
@@ -100,7 +100,7 @@
   },
   {
     "id": "marysville-ingram",
-    "displayName": "Snyder Funeral Homes, Ingram Chapel",
+    "displayName": "Ingram Chapel",
     "addressLine": "975 North Maple Street",
     "city": "Marysville",
     "state": "OH",
@@ -111,7 +111,7 @@
   },
   {
     "id": "marysville-underwood",
-    "displayName": "Snyder Funeral Homes, Underwood Chapel",
+    "displayName": "Underwood Chapel",
     "addressLine": "703 East 5th Street",
     "city": "Marysville",
     "state": "OH",
@@ -122,7 +122,7 @@
   },
   {
     "id": "mount-gilead-craven",
-    "displayName": "Snyder Funeral Homes, Craven Chapel",
+    "displayName": "Craven Chapel",
     "addressLine": "67 North Main Street",
     "city": "Mount Gilead",
     "state": "OH",
@@ -133,7 +133,7 @@
   },
   {
     "id": "mount-vernon-dowds",
-    "displayName": "Snyder Funeral Homes, Dowds Chapel",
+    "displayName": "Dowds Chapel",
     "addressLine": "201 Newark Road",
     "city": "Mount Vernon",
     "state": "OH",
@@ -144,7 +144,7 @@
   },
   {
     "id": "mount-vernon-flowers",
-    "displayName": "Snyder Funeral Homes, Flowers Chapel",
+    "displayName": "Flowers Chapel",
     "addressLine": "619 East High Street",
     "city": "Mount Vernon",
     "state": "OH",
@@ -155,7 +155,7 @@
   },
   {
     "id": "mount-vernon-lasater",
-    "displayName": "Snyder Funeral Homes, Lasater Chapel",
+    "displayName": "Lasater Chapel",
     "addressLine": "11337 Upper Gilchrist Road",
     "city": "Mount Vernon",
     "state": "OH",
@@ -166,7 +166,7 @@
   },
   {
     "id": "sunbury-devore",
-    "displayName": "Snyder Funeral Homes, DeVore Chapel",
+    "displayName": "DeVore Chapel",
     "addressLine": "637 State Route 61",
     "city": "Sunbury",
     "state": "OH",
