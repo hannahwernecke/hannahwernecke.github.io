@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mansfield-lexington",
+    "displayName": "Mansfield — Lexington Avenue Chapel",
+    "phone": "+14198841711",
+    "phoneDisplay": "419-884-1711",
+    "addressLine": "2553 Lexington Ave",
+    "city": "Mansfield",
+    "state": "OH",
+    "zip": "44907",
+    "serviceAreaLine": "Serving Mansfield, Bellville, Butler, and surrounding communities",
+    "heroLine": "Serving Mansfield families with calm, clear guidance — day and night."
+  },
+  {
+    "id": "mansfield-marion",
+    "displayName": "Mansfield — Marion Avenue Chapel",
+    "phone": "+14195254411",
+    "phoneDisplay": "419-525-4411",
+    "addressLine": "170 S. Main St (placeholder)",
+    "city": "Mansfield",
+    "state": "OH",
+    "zip": "44902",
+    "serviceAreaLine": "Serving Mansfield and the surrounding area",
+    "heroLine": "Your Marion Avenue chapel — steady guidance, clear steps."
+  },
+  {
+    "id": "mount-vernon",
+    "displayName": "Mount Vernon Chapel",
+    "phone": "+17403923388",
+    "phoneDisplay": "740-392-3388",
+    "addressLine": "123 Example St (placeholder)",
+    "city": "Mount Vernon",
+    "state": "OH",
+    "zip": "43050",
+    "serviceAreaLine": "Serving Mount Vernon and Knox County",
+    "heroLine": "Serving Knox County families with care and precision."
+  }
+]
