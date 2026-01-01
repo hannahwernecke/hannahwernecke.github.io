@@ -54,6 +54,7 @@
 
     @media (prefers-reduced-motion: reduce){
       :root{ --motion:0; }
+      .ambient{ animation: none; }
     }
 
     *{ box-sizing:border-box; }
@@ -104,6 +105,7 @@
       animation: drift 18s var(--ease) infinite alternate;
       z-index:0;
     }
+    .no-motion .ambient{ animation: none; }
     @keyframes drift{
       from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
       to  { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
@@ -690,18 +692,27 @@
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Motion toggle (optional)
+    // Motion toggle (respects prefers-reduced-motion)
     const btnMotion = document.getElementById("btnMotion");
+    const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const ambient = document.querySelector(".ambient");
+
+    function applyMotion(enabled){
+      const root = document.documentElement;
+      root.style.setProperty("--motion", enabled ? "1" : "0");
+      root.classList.toggle("no-motion", !enabled);
+      btnMotion.textContent = enabled ? "Reduce motion" : "Motion reduced";
+      btnMotion.setAttribute("aria-pressed", enabled ? "false" : "true");
+      if(ambient) ambient.style.animationPlayState = enabled ? "running" : "paused";
+    }
+
     btnMotion.addEventListener("click", () => {
       const reduced = document.documentElement.style.getPropertyValue("--motion") === "0";
-      if(reduced){
-        document.documentElement.style.setProperty("--motion","1");
-        btnMotion.textContent = "Reduce motion";
-      } else {
-        document.documentElement.style.setProperty("--motion","0");
-        btnMotion.textContent = "Motion reduced";
-      }
+      applyMotion(reduced);
     });
+
+    motionMq.addEventListener("change", (e) => applyMotion(!e.matches));
+    applyMotion(!motionMq.matches);
 
     // Local-first state
     const LS_KEY = "sfh_location";
