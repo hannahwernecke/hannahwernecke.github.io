@@ -35,6 +35,14 @@
 
       --motion: 1;
       --ease: cubic-bezier(.2,.9,.2,1);
+
+      /* Time-of-day tint variables (set by JS on load) */
+      --tintA: rgba(108,29,69,.00);
+      --tintB: rgba(108,29,69,.00);
+      --tintC: rgba(244,242,237,.00);
+      --tintInk: rgba(0,0,0,0);
+      --tintSat: 1;
+      --tintBright: 1;
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -43,6 +51,7 @@
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
+
     body{
       margin:0;
       font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -54,7 +63,27 @@
       overflow-x:hidden;
     }
 
-    /* Gentle ambient shimmer (subtle) */
+    /* Time-of-day tint layer (subtle, non-distracting) */
+    .tod{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:1;
+      background:
+        radial-gradient(1200px 780px at 18% 6%, var(--tintA), transparent 58%),
+        radial-gradient(1100px 760px at 88% 10%, var(--tintB), transparent 62%),
+        linear-gradient(180deg, var(--tintC), rgba(255,255,255,0) 42%);
+      mix-blend-mode: multiply;
+    }
+
+    /* Tiny global softening at night (set via variables) */
+    .pageTone{
+      position:relative;
+      z-index:1;
+      filter: saturate(var(--tintSat)) brightness(var(--tintBright));
+    }
+
+    /* Gentle ambient shimmer (subtle drift) */
     .ambient{
       position:fixed; inset:-40%;
       background:
@@ -66,6 +95,7 @@
       pointer-events:none;
       transform: translate3d(0,0,0);
       animation: drift 18s var(--ease) infinite alternate;
+      z-index:0;
     }
     @keyframes drift{
       from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
@@ -398,187 +428,249 @@
 </head>
 
 <body>
+  <!-- Time-of-day tint -->
+  <div class="tod" aria-hidden="true"></div>
+  <!-- Gentle ambient drift -->
   <div class="ambient" aria-hidden="true"></div>
 
-  <header>
-    <div class="wrap">
-      <div class="hdr">
-        <a class="brand" href="#" aria-label="Snyder Funeral Homes home">
-          <div class="mark" aria-hidden="true"></div>
-          <div>
-            <h1 id="brandLine">Snyder Funeral Homes <span class="accent">Tending to Hearts</span></h1>
-            <div class="chapelLine" id="chapelLine">Choose your nearest chapel</div>
-          </div>
-        </a>
-
-        <nav aria-label="Primary">
-          <a href="#immediate">Immediate Need</a>
-          <a href="#services">Services</a>
-          <a href="#support">Support</a>
-          <a href="#locations">Locations</a>
-        </nav>
-
-        <div class="hdrActions">
-          <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
-          <button class="btn ghost" type="button" id="btnMotion">Reduce motion</button>
-          <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
+  <div class="pageTone">
+    <header>
       <div class="wrap">
-        <div class="heroGrid">
-          <div class="heroCard">
-            <div class="kicker">
-              <span>Family-owned since 1922</span>
-              <span id="kLocal">Local chapel focus</span>
-              <span>Burial • Cremation • Preplanning</span>
-            </div>
-
-            <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
-            <p class="subtitle" id="heroSub">
-              Choose your nearest chapel once. From then on, this site stays local every time you come back.
-            </p>
-
-            <div class="heroCtas">
-              <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
-              <button class="btn" type="button" id="heroPick">Choose location</button>
-              <a class="btn" href="#locations">View locations</a>
-            </div>
-          </div>
-
-          <aside class="side" aria-label="Immediate Need">
-            <div class="panel" id="immediate">
-              <div class="panelHd">
-                <h3 id="immediateTitle">Immediate Need</h3>
-                <p id="immediateDesc">Choose a chapel and call. The page updates instantly.</p>
-              </div>
-              <div class="panelBd">
-                <div class="stack">
-                  <div class="field">
-                    <select id="locPick" aria-label="Choose a location"></select>
-                  </div>
-
-                  <a class="btn primary" id="callBtn" href="#immediate">Call now</a>
-                  <div class="muteline" id="callNote">Choose a chapel to see the correct phone number.</div>
-
-                  <div class="miniGrid" aria-label="Quiet utilities">
-                    <div class="mini">
-                      <strong>Quick directions</strong>
-                      <span id="dirHint">Select a chapel to enable.</span>
-                      <a class="link" id="dirBtn" href="#" target="_blank" rel="noopener" style="margin-top:10px; display:inline-flex;">Directions</a>
-                    </div>
-                    <div class="mini">
-                      <strong>One gentle step</strong>
-                      <span id="gentleTip">Call first. We’ll guide you through the next step.</span>
-                      <button class="link" id="tipBtn" type="button" style="margin-top:10px;">New tip</button>
-                    </div>
-                  </div>
-
-                  <div class="muteline">
-                    Local-first rule: one chapel phone number, one clear next step.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel" id="support">
-              <div class="panelHd">
-                <h3>Support</h3>
-                <p>Practical resources that don’t overwhelm.</p>
-              </div>
-              <div class="panelBd">
-                <div class="stack">
-                  <a class="btn" href="#" id="griefBtn">Grief resources (placeholder)</a>
-                  <a class="btn" href="#" id="checklistBtn">First 24 hours checklist (placeholder)</a>
-                  <div class="muteline">These buttons are placeholders until you wire real pages.</div>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="wrap">
-        <div class="sectionTitle">
-          <div>
-            <h2>Services</h2>
-            <p>Keep the primary intents obvious. Each can be chapel-specific later.</p>
-          </div>
-        </div>
-
-        <div class="cards">
-          <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><a class="link" href="#">Explore burial</a></article>
-          <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><a class="link" href="#">Explore cremation</a></article>
-          <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><a class="link" href="#">Veterans resources</a></article>
-          <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><a class="link" href="#">Start planning</a></article>
-          <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><a class="link" href="#">Search obituaries</a></article>
-          <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><a class="link" href="#immediate">Call your chapel</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="locations">
-      <div class="wrap">
-        <div class="sectionTitle">
-          <div>
-            <h2>Locations</h2>
-            <p>This list is powered by <code>locations.json</code>. Update one file; everything updates.</p>
-          </div>
-        </div>
-
-        <div id="locCards" class="cards"></div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="wrap">
-        <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
-          <div style="display:flex; gap:12px; align-items:center;">
-            <div class="mark" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;"></div>
+        <div class="hdr">
+          <a class="brand" href="#" aria-label="Snyder Funeral Homes home">
+            <div class="mark" aria-hidden="true"></div>
             <div>
-              <div style="font-weight:900;">Snyder Funeral Homes</div>
-              <small>SFH Burgundy #6C1D45 • SFH Cream #F4F2ED • Poppins + Satisfy</small>
+              <h1 id="brandLine">Snyder Funeral Homes <span class="accent">Tending to Hearts</span></h1>
+              <div class="chapelLine" id="chapelLine">Choose your nearest chapel</div>
+            </div>
+          </a>
+
+          <nav aria-label="Primary">
+            <a href="#immediate">Immediate Need</a>
+            <a href="#services">Services</a>
+            <a href="#support">Support</a>
+            <a href="#locations">Locations</a>
+          </nav>
+
+          <div class="hdrActions">
+            <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
+            <button class="btn ghost" type="button" id="btnMotion">Reduce motion</button>
+            <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <div class="heroGrid">
+            <div class="heroCard">
+              <div class="kicker">
+                <span>Family-owned since 1922</span>
+                <span id="kLocal">Local chapel focus</span>
+                <span>Burial • Cremation • Preplanning</span>
+              </div>
+
+              <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
+              <p class="subtitle" id="heroSub">
+                Choose your nearest chapel once. From then on, this site stays local every time you come back.
+              </p>
+
+              <div class="heroCtas">
+                <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
+                <button class="btn" type="button" id="heroPick">Choose location</button>
+                <a class="btn" href="#locations">View locations</a>
+              </div>
+            </div>
+
+            <aside class="side" aria-label="Immediate Need">
+              <div class="panel" id="immediate">
+                <div class="panelHd">
+                  <h3 id="immediateTitle">Immediate Need</h3>
+                  <p id="immediateDesc">Choose a chapel and call. The page updates instantly.</p>
+                </div>
+                <div class="panelBd">
+                  <div class="stack">
+                    <div class="field">
+                      <select id="locPick" aria-label="Choose a location"></select>
+                    </div>
+
+                    <a class="btn primary" id="callBtn" href="#immediate">Call now</a>
+                    <div class="muteline" id="callNote">Choose a chapel to see the correct phone number.</div>
+
+                    <div class="miniGrid" aria-label="Quiet utilities">
+                      <div class="mini">
+                        <strong>Quick directions</strong>
+                        <span id="dirHint">Select a chapel to enable.</span>
+                        <a class="link" id="dirBtn" href="#" target="_blank" rel="noopener" style="margin-top:10px; display:inline-flex;">Directions</a>
+                      </div>
+                      <div class="mini">
+                        <strong>One gentle step</strong>
+                        <span id="gentleTip">Call first. We’ll guide you through the next step.</span>
+                        <button class="link" id="tipBtn" type="button" style="margin-top:10px;">New tip</button>
+                      </div>
+                    </div>
+
+                    <div class="muteline">
+                      Local-first rule: one chapel phone number, one clear next step.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel" id="support">
+                <div class="panelHd">
+                  <h3>Support</h3>
+                  <p>Practical resources that don’t overwhelm.</p>
+                </div>
+                <div class="panelBd">
+                  <div class="stack">
+                    <a class="btn" href="#" id="griefBtn">Grief resources (placeholder)</a>
+                    <a class="btn" href="#" id="checklistBtn">First 24 hours checklist (placeholder)</a>
+                    <div class="muteline">These buttons are placeholders until you wire real pages.</div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="wrap">
+          <div class="sectionTitle">
+            <div>
+              <h2>Services</h2>
+              <p>Keep the primary intents obvious. Each can be chapel-specific later.</p>
             </div>
           </div>
-          <small>© <span id="year"></span> Snyder Funeral Homes • Family-owned since 1922</small>
+
+          <div class="cards">
+            <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><a class="link" href="#">Explore burial</a></article>
+            <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><a class="link" href="#">Explore cremation</a></article>
+            <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><a class="link" href="#">Veterans resources</a></article>
+            <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><a class="link" href="#">Start planning</a></article>
+            <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><a class="link" href="#">Search obituaries</a></article>
+            <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><a class="link" href="#immediate">Call your chapel</a></article>
+          </div>
         </div>
-      </div>
-    </footer>
-  </main>
+      </section>
 
-  <!-- Location picker modal -->
-  <div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <div class="modal">
-      <div class="mhd">
-        <div>
-          <h3 id="mTitle">Choose your nearest chapel</h3>
-          <p>Pick once. The site stays local next time.</p>
+      <section class="section" id="locations">
+        <div class="wrap">
+          <div class="sectionTitle">
+            <div>
+              <h2>Locations</h2>
+              <p>This list is powered by <code>locations.json</code>. Update one file; everything updates.</p>
+            </div>
+          </div>
+
+          <div id="locCards" class="cards"></div>
         </div>
-        <button class="btn" type="button" id="mClose">Close</button>
-      </div>
+      </section>
 
-      <div class="mbd">
-        <div class="field" style="margin-bottom:10px;">
-          <input id="mSearch" type="search" placeholder="Type a city (e.g., Mansfield, Mount Vernon)..." autocomplete="off">
+      <footer>
+        <div class="wrap">
+          <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="mark" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;"></div>
+              <div>
+                <div style="font-weight:900;">Snyder Funeral Homes</div>
+                <small>SFH Burgundy #6C1D45 • SFH Cream #F4F2ED • Poppins + Satisfy</small>
+              </div>
+            </div>
+            <small>© <span id="year"></span> Snyder Funeral Homes • Family-owned since 1922</small>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Location picker modal -->
+    <div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <div class="modal">
+        <div class="mhd">
+          <div>
+            <h3 id="mTitle">Choose your nearest chapel</h3>
+            <p>Pick once. The site stays local next time.</p>
+          </div>
+          <button class="btn" type="button" id="mClose">Close</button>
         </div>
 
-        <div class="grid2" id="mList"></div>
-      </div>
+        <div class="mbd">
+          <div class="field" style="margin-bottom:10px;">
+            <input id="mSearch" type="search" placeholder="Type a city (e.g., Mansfield, Mount Vernon)..." autocomplete="off">
+          </div>
 
-      <div class="mft">
-        <div class="tiny" id="mHint">Tip: you can change this anytime in the header.</div>
-        <button class="btn primary" type="button" id="mClear">Clear saved location</button>
+          <div class="grid2" id="mList"></div>
+        </div>
+
+        <div class="mft">
+          <div class="tiny" id="mHint">Tip: you can change this anytime in the header.</div>
+          <button class="btn primary" type="button" id="mClear">Clear saved location</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+    // Time-of-day tint (heritage-safe, subtle, no tracking)
+    // Local device time only; no cookies; no network calls.
+    (function applyTimeOfDayTone(){
+      const h = new Date().getHours();
+      const r = document.documentElement;
+
+      // Helper to set variables
+      function setTone({tintA, tintB, tintC, sat, bright}){
+        r.style.setProperty("--tintA", tintA);
+        r.style.setProperty("--tintB", tintB);
+        r.style.setProperty("--tintC", tintC);
+        r.style.setProperty("--tintSat", String(sat));
+        r.style.setProperty("--tintBright", String(bright));
+      }
+
+      // Morning 6-11: crisp/neutral
+      if(h >= 6 && h < 11){
+        setTone({
+          tintA: "rgba(108,29,69,.05)",
+          tintB: "rgba(108,29,69,.03)",
+          tintC: "rgba(244,242,237,.05)",
+          sat: 1.02,
+          bright: 1.01
+        });
+      }
+      // Midday 11-17: baseline (almost no tint)
+      else if(h >= 11 && h < 17){
+        setTone({
+          tintA: "rgba(108,29,69,.03)",
+          tintB: "rgba(108,29,69,.02)",
+          tintC: "rgba(244,242,237,.03)",
+          sat: 1.00,
+          bright: 1.00
+        });
+      }
+      // Evening 17-21: warmer / more welcoming
+      else if(h >= 17 && h < 21){
+        setTone({
+          tintA: "rgba(108,29,69,.07)",
+          tintB: "rgba(108,29,69,.05)",
+          tintC: "rgba(244,242,237,.08)",
+          sat: 0.99,
+          bright: 0.995
+        });
+      }
+      // Night 21-6: soft, reduced glare
+      else {
+        setTone({
+          tintA: "rgba(108,29,69,.11)",
+          tintB: "rgba(108,29,69,.08)",
+          tintC: "rgba(244,242,237,.10)",
+          sat: 0.97,
+          bright: 0.985
+        });
+      }
+    })();
+
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -612,7 +704,7 @@
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
     }
 
-    // “Peaceful” tips (non-therapy, practical)
+    // Practical “quiet tips”
     const TIPS = [
       "Call first. We’ll guide you through the next step.",
       "If you have it handy: full name, date of birth, and location of passing.",
@@ -737,7 +829,6 @@
       backdrop.style.display = "flex";
       el("mSearch").value = "";
       renderModalList("");
-      // focus after paint
       setTimeout(() => el("mSearch").focus(), 0);
     }
     function closeModal(){ backdrop.style.display = "none"; }
