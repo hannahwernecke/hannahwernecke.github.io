@@ -50,8 +50,18 @@
     }
     .brand {
       display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-text{
+      display:flex;
       flex-direction: column;
-      gap: 6px;
+      gap:4px;
+    }
+    .brand-logo{
+      height:48px;
+      width:auto;
+      display:block;
     }
     .brand-title {
       font-family: var(--font-display);
@@ -179,8 +189,11 @@
   <div class="page">
     <header class="site-header">
       <div class="brand">
-        <span class="brand-title">Snyder Funeral Homes</span>
-        <span class="brand-tag">Tending to Hearts</span>
+        <img class="brand-logo" src="../2022 SFH Bold Logo.png" alt="Snyder Funeral Homes logo">
+        <div class="brand-text">
+          <span class="brand-title">Snyder Funeral Homes</span>
+          <span class="brand-tag">Tending to Hearts</span>
+        </div>
       </div>
       <nav class="top-actions">
         <a class="link" href="../index.html">Back to Home</a>
