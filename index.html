@@ -1,1199 +1,238 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#6C1D45" />
-  <title>Snyder Funeral Homes</title>
-  <meta name="description" content="Local-first funeral care for families across North Central Ohio. Choose your nearest Snyder Funeral Homes chapel." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tending to Hearts – Breathing Guides</title>
 
-  <!-- FONTS -->
-  <!-- Display/Headings: Fraunces (heritage serif) -->
-  <!-- Body/UI: Source Sans 3 (calm, readable) -->
-  <!-- Accent Script: Playball (engraved traditional flourish) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=Playball&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=Playball&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --burgundy:#6C1D45;
-      --gilded:#b0854e;
-      --cream:#F7F4EF;
-      --ink:#121013;
-      --muted:#5c555c;
+<style>
+  :root{
+    --burgundy:#6C1D45;
+    --cream:#F4F2ED;
+    --gold:#B0854E;
+    --ink:#1F2230;
+    --muted:#5C5F6B;
+    --card:#ffffff;
+    --shadow:0 18px 55px rgba(0,0,0,.14);
+    --shadow2:0 8px 22px rgba(0,0,0,.10);
+    --radius:22px;
+  }
 
-      --font-body: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
-      --font-accent: "Playball", cursive;
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 700px at 20% 10%, rgba(108,29,69,.16), transparent 55%),
+      radial-gradient(900px 520px at 85% 25%, rgba(176,133,78,.14), transparent 55%),
+      var(--cream);
+    font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--ink);
+  }
 
-      --card: rgba(255,255,255,.88);
-      --card2: rgba(255,255,255,.78);
-      --border: rgba(20,18,20,.14);
-      --softBorder: rgba(20,18,20,.10);
+  .wrap{max-width:1050px;margin:0 auto;padding:28px 18px 40px;}
+  header{margin-bottom:16px;}
+  h1{margin:0;font-family:"Fraunces",serif;font-size:clamp(24px,3.2vw,38px);line-height:1.05;letter-spacing:.2px;}
+  .script{font-family:"Playball",cursive;color:var(--burgundy);font-size:22px;margin-top:-4px;}
+  .lead{color:var(--muted);font-size:16px;max-width:70ch;margin:8px 0 0;}
 
-      --shadow: 0 22px 60px rgba(0,0,0,.10);
-      --shadow2: 0 14px 30px rgba(0,0,0,.10);
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+  @media(max-width:860px){.grid{grid-template-columns:1fr;}}
 
-      --radius: 18px;
-      --radius2: 26px;
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.78));
+    border:1px solid rgba(108,29,69,.12);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;inset:-2px;
+    background:
+      radial-gradient(520px 280px at 15% 10%,rgba(108,29,69,.14),transparent 60%),
+      radial-gradient(520px 280px at 85% 12%,rgba(176,133,78,.10),transparent 60%);
+    pointer-events:none;
+  }
 
-      --max: 1180px;
+  .inner{position:relative;padding:18px 18px 16px;}
+  .tag{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 10px;border-radius:999px;
+    font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+    background:rgba(108,29,69,.08);
+    border:1px solid rgba(108,29,69,.14);
+    color:var(--burgundy);
+  }
+  .title{margin:10px 0 0;font-family:"Fraunces",serif;font-size:22px;letter-spacing:.2px;}
 
-      --focus: 0 0 0 4px rgba(108,29,69,.22);
+  .stage{
+    margin-top:14px;
+    height:290px;border-radius:18px;
+    background:
+      radial-gradient(900px 420px at 45% 35%,rgba(108,29,69,.08),transparent 58%),
+      linear-gradient(180deg,rgba(31,34,48,.06),rgba(31,34,48,.02));
+    border:1px solid rgba(31,34,48,.08);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),var(--shadow2);
+    display:grid;place-items:center;position:relative;overflow:hidden;
+  }
 
-      --motion: 1;
-      --ease: cubic-bezier(.2,.9,.2,1);
+  .dot{
+    width:6px;height:6px;border-radius:999px;
+    background:rgba(31,34,48,.85);
+    position:absolute;
+    box-shadow:0 0 0 10px rgba(108,29,69,.08);
+  }
 
-      /* Time-of-day tint variables (set by JS on load) */
-      --tintA: rgba(108,29,69,.00);
-      --tintB: rgba(108,29,69,.00);
-      --tintC: rgba(244,242,237,.00);
-      --tintSat: 1;
-      --tintBright: 1;
-    }
+  .heart{
+    width:min(220px,58vw);
+    height:auto;
+    filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+    transform-origin:50% 60%;
+  }
 
-    :root.quiet-mode{
-      --burgundy:#3a6ea5;
-      --cream:#e8ecf5;
-      --ink:#e8ecf5;
-      --muted: rgba(232,236,245,.75);
+  /* -----------------------------
+     ANIMATION TIMING (LOCKED)
+     -----------------------------
+     Physiological sigh: double inhale + prolonged exhale.
+     Total 6.5s:
+       IN nose ~1.6s  (0%–25%)
+       IN nose ~0.6s  (25%–34%)
+       OUT mouth ~4.3s (34%–100%)
+     (Pattern aligns with Stanford descriptions emphasizing extended exhale.) :contentReference[oaicite:3]{index=3}
+  */
+  @keyframes sighPulse {
+    0%   { transform: scale(.82); }
+    25%  { transform: scale(1.08); } /* first inhale */
+    34%  { transform: scale(1.18); } /* top-off inhale */
+    86%  { transform: scale(.78); }  /* long exhale (most of the cycle) */
+    100% { transform: scale(.82); }  /* small settle */
+  }
 
-      --card: rgba(20,29,46,.86);
-      --card2: rgba(16,24,38,.82);
-      --border: rgba(232,236,245,.16);
-      --softBorder: rgba(232,236,245,.12);
+  /* Box breathing 4-4-4-4 (16s): inhale, hold, exhale, hold. :contentReference[oaicite:4]{index=4} */
+  @keyframes boxPulse {
+    0%   { transform: scale(.84); }  /* empty-hold start */
+    25%  { transform: scale(1.10); } /* inhale 4s */
+    50%  { transform: scale(1.10); } /* hold 4s */
+    75%  { transform: scale(.84); }  /* exhale 4s */
+    100% { transform: scale(.84); }  /* hold 4s */
+  }
 
-      --shadow: 0 22px 60px rgba(0,0,0,.34);
-      --shadow2: 0 14px 30px rgba(0,0,0,.30);
+  .panic .heart{ animation: sighPulse 6.5s ease-in-out infinite; }
+  .steady .heart{ animation: boxPulse 16s linear infinite; }
 
-      --focus: 0 0 0 4px rgba(58,110,165,.32);
-    }
+  /* Cue pill (text is driven by CSS, so it cannot drift) */
+  .cue{
+    position:absolute;
+    font-family:"Fraunces",serif;
+    font-weight:700;
+    font-size:14px;
+    line-height:1.15;
+    text-align:center;
+    color:rgba(244,242,237,.95);
+    text-shadow:0 8px 22px rgba(0,0,0,.35);
+    background:rgba(0,0,0,.20);
+    border:1px solid rgba(244,242,237,.18);
+    padding:10px 12px;
+    border-radius:999px;
+    backdrop-filter:blur(8px);
+    letter-spacing:.08em;
+    max-width: 235px;
+  }
+  .cue::after{ content:""; }
 
-    @media (prefers-reduced-motion: reduce){
-      :root{ --motion:0; }
-      .ambient{ animation: none; }
-    }
+  /* Physiological sigh cue – synced to sighPulse (6.5s) */
+  @keyframes sighCue {
+    0%, 25%          { content:"IN 👃🏼"; }
+    25.001%, 34%     { content:"QUICK SNIF 👃🏼"; }
+    34.001%, 100%    { content:"OUT 👄"; }
+  }
+  .panic .cue::after{
+    animation: sighCue 6.5s steps(1,end) infinite;
+  }
 
-    *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+  /* Box cue – synced to boxPulse (16s) */
+  @keyframes boxCue {
+    0%, 25%          { content:"IN 👃🏼"; }
+    25.001%, 50%     { content:"HOLD"; }
+    50.001%, 75%     { content:"OUT 👄"; }
+    75.001%, 100%    { content:"HOLD"; }
+  }
+  .steady .cue::after{
+    animation: boxCue 16s steps(1,end) infinite;
+  }
 
-    body{
-      margin:0;
-      font-family: var(--font-body);
-      color:var(--ink);
-      background:
-        radial-gradient(1100px 680px at 15% 5%, rgba(108,29,69,.12), transparent 55%),
-        radial-gradient(820px 520px at 88% 12%, rgba(108,29,69,.09), transparent 58%),
-        linear-gradient(180deg, #ffffff 0%, var(--cream) 14%, #ffffff 48%);
-      overflow-x:hidden;
-      letter-spacing: .1px;
-      position:relative;
-      isolation:isolate;
-    }
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      background:
-        radial-gradient(1200px 780px at 18% 22%, rgba(176,133,78,.20), transparent 42%),
-        radial-gradient(980px 640px at 82% 10%, rgba(108,29,69,.10), transparent 48%),
-        radial-gradient(960px 520px at 58% 44%, rgba(108,29,69,.05), transparent 62%);
-      opacity:.22;
-      pointer-events:none;
-      z-index:0;
-    }
-
-    :root.quiet-mode body{
-      font-size: 105%;
-      background:
-        radial-gradient(1100px 680px at 20% 8%, rgba(58,110,165,.30), transparent 54%),
-        radial-gradient(940px 600px at 82% 12%, rgba(42,78,130,.22), transparent 58%),
-        linear-gradient(180deg, #0f1726, #0b1220 55%);
-      filter: brightness(.98) saturate(1.02);
-    }
-
-    /* Time-of-day tint layer */
-    .tod{
-      position:fixed; inset:0;
-      pointer-events:none;
-      z-index:0;
-      background:
-        radial-gradient(1200px 780px at 18% 6%, var(--tintA), transparent 58%),
-        radial-gradient(1100px 760px at 88% 10%, var(--tintB), transparent 62%),
-        linear-gradient(180deg, var(--tintC), rgba(255,255,255,0) 42%);
-      mix-blend-mode: multiply;
-    }
-
-    /* Global tone softening at night */
-    .pageTone{
-      position:relative;
-      z-index:1;
-      filter: saturate(var(--tintSat)) brightness(var(--tintBright));
-    }
-
-    /* Gentle ambient drift */
-    .ambient{
-      position:fixed; inset:-40%;
-      background:
-        radial-gradient(circle at 20% 25%, rgba(108,29,69,.11), transparent 45%),
-        radial-gradient(circle at 80% 20%, rgba(108,29,69,.08), transparent 52%),
-        radial-gradient(circle at 35% 80%, rgba(108,29,69,.06), transparent 50%);
-      filter: blur(28px);
-      opacity:.55;
-      pointer-events:none;
-      transform: translate3d(0,0,0);
-      animation: drift 18s var(--ease) infinite alternate;
-      z-index:0;
-    }
-    .no-motion .ambient{ animation: none; }
-    .quiet-mode .ambient{
-      animation: none;
-      opacity:.40;
-      background:
-        radial-gradient(circle at 20% 25%, rgba(58,110,165,.25), transparent 45%),
-        radial-gradient(circle at 78% 24%, rgba(42,78,130,.20), transparent 50%),
-        radial-gradient(circle at 32% 78%, rgba(58,110,165,.16), transparent 50%);
-    }
-    @keyframes drift{
-      from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
-      to  { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .ambient{ animation:none; }
-    }
-
-    a{ color:inherit; text-decoration:none; }
-    button, input, select{ font:inherit; color:inherit; }
-    :focus-visible{ outline:none; box-shadow: var(--focus); border-radius: 14px; }
-
-    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-
-    header{
-      position:sticky; top:0; z-index:60;
-      background: linear-gradient(180deg, rgba(247,244,239,.92), rgba(255,255,255,.82));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(20,18,20,.08);
-      box-shadow: 0 14px 36px rgba(0,0,0,.05);
-    }
-
-    .quiet-mode header{
-      background: rgba(12,18,30,.88);
-      border-bottom: 1px solid rgba(232,236,245,.14);
-    }
-    .hdr{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding: 14px 0;
-    }
-
-    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
-    .mark{
-      width:46px; height:46px; border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 18px 38px rgba(108,29,69,.12), 0 0 0 1px rgba(255,255,255,.35) inset;
-      position:relative; overflow:hidden;
-      border: 1px solid rgba(176,133,78,.25);
-      display:flex; align-items:center; justify-content:center;
-      padding:4px;
-    }
-    .mark img{
-      width:100%; height:100%; object-fit:contain;
-      display:block;
-    }
-
-    .brand h1{
-      margin:0;
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 650;
-      letter-spacing: -.2px;
-      line-height: 1.05;
-    }
-    .brand .accent{
-      font-family: var(--font-accent);
-      font-size: 20px;
-      color: var(--burgundy);
-      margin-top:3px;
-      display:block;
-      font-weight:400;
-      line-height: 1;
-    }
-    .chapelLine{
-      font-size:12px;
-      color: rgba(20,18,20,.68);
-      font-weight:650;
-      margin-top:3px;
-    }
-
-    nav{ display:flex; gap:16px; align-items:center; justify-content:center; flex:1; }
-    nav a{
-      position:relative;
-      padding:10px 10px; border-radius:12px;
-      color: rgba(20,18,20,.82);
-      font-weight:750; font-size:14px;
-      letter-spacing: .2px;
-      transition: color .18s var(--ease);
-    }
-    nav a::after{
-      content:""; position:absolute; left:10px; right:10px; bottom:6px;
-      height:2px; border-radius:999px;
-      background: linear-gradient(90deg, rgba(176,133,78,.0), rgba(176,133,78,.65), rgba(176,133,78,.0));
-      opacity:0; transform: translateY(3px);
-      transition: opacity .22s var(--ease), transform .22s var(--ease);
-    }
-    nav a:hover{ color: var(--burgundy); }
-    nav a:hover::after{ opacity:1; transform: translateY(0); }
-    .quiet-mode nav a:hover{ background: rgba(108,29,69,.04); transition: none; }
-
-    .hdrActions{ display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width: 260px; }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 11px 15px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,18,20,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(247,244,239,.82));
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
-      cursor:pointer; user-select:none;
-      font-weight:825; font-size:14px;
-      transform: translate3d(0,0,0);
-      transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
-    }
-    .btn:hover{
-      transform: translate3d(0, calc(-1px * var(--motion)), 0);
-      box-shadow: 0 16px 30px rgba(0,0,0,.10);
-      border-color: rgba(20,18,20,.20);
-    }
-    .quiet-mode .btn:hover{ transform:none; transition:none; }
-    .btn.primary{
-      background:
-        linear-gradient(120deg, rgba(176,133,78,.25), rgba(176,133,78,.08) 32%),
-        linear-gradient(135deg, rgba(108,29,69,1), rgba(108,29,69,.82));
-      border-color: rgba(108,29,69,.28);
-      color: var(--cream);
-      box-shadow: 0 18px 44px rgba(108,29,69,.20);
-    }
-    .btn.ghost{
-      background: rgba(255,255,255,.62);
-      border-color: rgba(20,18,20,.12);
-      box-shadow:none;
-    }
-
-    .quiet-mode .btn{
-      background: rgba(20,29,46,.78);
-      border-color: rgba(232,236,245,.14);
-      color: var(--ink);
-      box-shadow: 0 10px 24px rgba(0,0,0,.30);
-    }
-    .quiet-mode .btn.primary{
-      background: linear-gradient(135deg, #3a6ea5, #1f2f4a);
-      border-color: rgba(90,140,200,.35);
-      box-shadow: 0 18px 44px rgba(0,0,0,.34);
-    }
-    .quiet-mode .btn.ghost{
-      background: rgba(15,23,36,.82);
-      border-color: rgba(232,236,245,.12);
-    }
-
-    /* Hero */
-    .hero{ padding: 42px 0 24px; position:relative; }
-    .hero::after{
-      content:""; position:absolute; inset:14px 0 auto; height:140px; z-index:0;
-      background: linear-gradient(90deg, rgba(108,29,69,.04), rgba(255,255,255,0), rgba(176,133,78,.08));
-      pointer-events:none;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 16px;
-      align-items:stretch;
-    }
-    .heroCard{
-      border-radius: var(--radius2);
-      border: 1px solid var(--softBorder);
-      background: var(--card);
-      box-shadow: 0 28px 60px rgba(0,0,0,.12);
-      padding: 28px 28px 24px;
-      position:relative; overflow:hidden;
-    }
-    .heroCard::before{
-      content:""; position:absolute; inset:-30%;
-      background:
-        radial-gradient(720px 420px at 12% 18%, rgba(108,29,69,.12), transparent 62%),
-        linear-gradient(160deg, rgba(176,133,78,.16), rgba(255,255,255,0));
-      pointer-events:none;
-      opacity:.95;
-    }
-    
-    .quiet-mode .heroCard::before{ opacity:.65; }
-
-    .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; position:relative; z-index:1; }
-    .kicker span{
-      display:inline-flex; padding:8px 11px;
-      border-radius:999px;
-      border:1px solid rgba(108,29,69,.14);
-      background: linear-gradient(120deg, rgba(176,133,78,.12), rgba(244,242,237,.88));
-      font-size:13px; font-weight:775; color: rgba(20,18,20,.82);
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-    }
-
-    .quiet-mode .kicker span{
-      border-color: rgba(90,140,200,.28);
-      background: rgba(21,32,50,.80);
-      color: rgba(232,236,245,.88);
-    }
-
-    .title{
-      margin:0;
-      font-family: var(--font-display);
-      font-size: 48px;
-      line-height:1.02;
-      letter-spacing: -0.8px;
-      font-weight: 650;
-      position:relative; z-index:1;
-    }
-    .title em{ font-style:normal; color: var(--burgundy); }
-
-    .subtitle{
-      margin: 16px 0 20px;
-      color: var(--muted);
-      font-size: 17px;
-      max-width: 66ch;
-      position:relative; z-index:1;
-      font-weight: 575;
-      line-height:1.6;
-    }
-    .heroCtas{ display:flex; flex-wrap:wrap; gap:10px; position:relative; z-index:1; }
-
-    /* Right panels */
-    .side{ display:flex; flex-direction:column; gap: 14px; }
-    .panel{
-      border-radius: var(--radius2);
-      border: 1px solid var(--softBorder);
-      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(244,242,237,.80));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .panel::before{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(120deg, rgba(176,133,78,.16), transparent 40%);
-      opacity:.55; pointer-events:none;
-    }
-    .panelHd{
-      padding: 16px 16px 12px;
-      border-bottom: 1px solid rgba(20,18,20,.08);
-      background: linear-gradient(180deg, rgba(244,242,237,.96), rgba(255,255,255,.72));
-      }
-    .panelHd h3{
-      margin:0;
-      font-family: var(--font-display);
-      font-size:16px;
-      font-weight: 650;
-      letter-spacing: -.2px;
-    }
-    .panelHd p{ margin:6px 0 0; color:var(--muted); font-size:13px; font-weight:650; }
-    .panelBd{ padding: 14px 16px 16px; }
-
-    .quiet-mode .panel{
-      border-color: rgba(232,236,245,.14);
-      box-shadow: 0 14px 32px rgba(0,0,0,.34);
-    }
-    .quiet-mode .panelHd{
-      border-color: rgba(232,236,245,.14);
-      background: linear-gradient(180deg, rgba(28,41,64,.86), rgba(18,28,46,.76));
-    }
-
-    .field{
-      display:flex; gap:10px; align-items:center;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(20,18,20,.12);
-      background: rgba(244,242,237,.86);
-    }
-    .field input, .field select{
-      width:100%;
-      border:none; outline:none;
-      background:transparent;
-      font-size:14px;
-      font-weight:650;
-    }
-    .stack{ display:flex; flex-direction:column; gap:10px; }
-    .muteline{ font-size:12px; color: var(--muted); font-weight:650; }
-
-    .miniGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-    .mini{
-      border-radius: 18px;
-      border: 1px solid rgba(20,18,20,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(247,244,239,.80));
-      padding: 12px 12px;
-      box-shadow: 0 8px 18px rgba(0,0,0,.06);
-    }
-    .mini strong{
-      display:block;
-      font-size:13px;
-      font-weight:850;
-      letter-spacing: .2px;
-    }
-    .mini span{
-      display:block;
-      margin-top:5px;
-      font-size:12px;
-      color:var(--muted);
-      font-weight:650;
-    }
-
-    .section{ padding: 22px 0 32px; position:relative; }
-    .section::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background: linear-gradient(180deg, rgba(108,29,69,.02), rgba(255,255,255,0));
-      pointer-events:none;
-    }
-    .breathe{
-      border-radius: 18px;
-      border: 1px solid rgba(108,29,69,.12);
-      background: rgba(255,255,255,.78);
-      padding: 12px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .breatheCircle{
-      width:48px; height:48px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(244,242,237,.8), rgba(108,29,69,.30));
-      box-shadow: 0 12px 28px rgba(108,29,69,.20);
-      animation: breathe 6s ease-in-out infinite;
-      flex-shrink:0;
-    }
-    .no-motion .breatheCircle, .quiet-mode .breatheCircle{ animation-play-state: paused; }
-    .breatheCircle.paused{ animation-play-state: paused; }
-    @keyframes breathe{
-      0%{ transform: scale(.92); opacity:.82; }
-      50%{ transform: scale(1.05); opacity:1; }
-      100%{ transform: scale(.92); opacity:.82; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .breatheCircle{ animation: none; }
-    }
-    .breatheText{ font-size:13px; font-weight:800; color: var(--muted); line-height:1.3; }
-    .breatheControls{ display:flex; gap:8px; align-items:center; }
-    .breathe button{ padding: 9px 12px; }
-
-    .quiet-mode .field{
-      background: rgba(18,26,40,.86);
-      border-color: rgba(232,236,245,.12);
-    }
-    .quiet-mode .mini{
-      border-color: rgba(232,236,245,.12);
-      background: rgba(18,26,40,.80);
-    }
-    .quiet-mode .breathe{
-      border-color: rgba(90,140,200,.20);
-      background: rgba(15,23,36,.86);
-    }
-    .quiet-mode .breatheCircle{
-      background: radial-gradient(circle at 30% 30%, rgba(232,236,245,.72), rgba(58,110,165,.32));
-      box-shadow: 0 12px 28px rgba(0,0,0,.26);
-    }
-
-    .section{ padding: 18px 0 26px; }
-    .sectionTitle{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
-      margin-bottom: 12px;
-    }
-    .sectionTitle h2{
-      margin:0;
-      font-family: var(--font-display);
-      font-size:24px;
-      font-weight: 650;
-      letter-spacing: -.3px;
-    }
-    .sectionTitle p{ margin:0; color: var(--muted); font-size:13px; max-width: 76ch; font-weight:650; }
-
-    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; position:relative; z-index:1; align-items:start; }
-    .card{
-      grid-column: span 4;
-      border-radius: 22px;
-      border: 1px solid rgba(20,18,20,.12);
-      background:
-        linear-gradient(140deg, rgba(176,133,78,.10), rgba(255,255,255,.92)),
-        rgba(255,255,255,.90);
-      box-shadow: 0 16px 34px rgba(0,0,0,.10);
-      padding: 18px 18px;
-      min-height: 164px;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      isolation:isolate;
-    }
-    .card::after{
-      content:""; position:absolute; inset:-18% 60% auto -18%; height:120%;
-      background: radial-gradient(circle at 40% 20%, rgba(108,29,69,.12), transparent 56%);
-      opacity:.5; pointer-events:none; z-index:0;
-    }
-    .card > *{ position:relative; z-index:1; }
-    .card h3{
-      margin:0 0 8px;
-      font-family: var(--font-display);
-      font-size:16px;
-      font-weight: 650;
-      letter-spacing: -.2px;
-      word-break: break-word;
-    }
-    .card p{ margin:0 0 12px; font-size:13px; color: var(--muted); font-weight:650; line-height:1.45; }
-    .cardActions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
-    .link{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding: 9px 12px; border-radius: 14px;
-      border: 1px solid rgba(108,29,69,.18);
-      background: linear-gradient(120deg, rgba(108,29,69,.09), rgba(176,133,78,.08));
-      color: var(--burgundy);
-      font-weight:900; font-size:13px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.08);
-    }
-    .link:hover{
-      background: rgba(108,29,69,.10);
-      transition: background .18s var(--ease);
-    }
-
-    .staffRow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .staff{
-      display:flex; align-items:center; gap:8px;
-      padding: 7px 9px;
-      border-radius: 14px;
-      background: rgba(108,29,69,.06);
-      border: 1px solid rgba(108,29,69,.10);
-      box-shadow: 0 8px 16px rgba(0,0,0,.05);
-    }
-    .staffBadge{
-      width: 44px; height: 44px; border-radius:50%;
-      background: radial-gradient(circle at 32% 28%, rgba(247,244,239,.92), rgba(108,29,69,.26));
-      border: 1px solid rgba(108,29,69,.18);
-      box-shadow: 0 10px 22px rgba(108,29,69,.20);
-      display:grid; place-items:center;
-      font-weight:900; letter-spacing:.2px;
-    }
-    .staffLabel{ font-size:12px; color: var(--muted); font-weight:800; }
-    .quiet-mode .staff{ background: rgba(90,140,200,.12); border-color: rgba(232,236,245,.20); }
-    .quiet-mode .staffBadge{ background: radial-gradient(circle at 32% 28%, rgba(232,236,245,.82), rgba(58,110,165,.34)); border-color: rgba(232,236,245,.22); box-shadow: 0 10px 22px rgba(0,0,0,.24); }
-
-    footer{
-      padding: 26px 0 34px;
-      border-top: 1px solid rgba(20,18,20,.10);
-      color: rgba(20,18,20,.78);
-      font-weight:650;
-    }
-    footer small{ color: var(--muted); font-weight:650; }
-
-    /* Modal */
-    .backdrop{
-      position:fixed; inset:0; z-index:200;
-      background: rgba(0,0,0,.38);
-      display:none;
-      align-items:center; justify-content:center;
-      padding: 18px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .modal{
-      width: min(820px, 100%);
-      max-height: min(86vh, 760px);
-      background: rgba(255,255,255,.94);
-      border: 1px solid rgba(255,255,255,.20);
-      border-radius: 26px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.25);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    .mhd{
-      padding: 16px 16px 12px;
-      border-bottom: 1px solid rgba(20,18,20,.10);
-      background: linear-gradient(180deg, rgba(244,242,237,.92), rgba(255,255,255,.70));
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 14px;
-    }
-    .mhd h3{
-      margin:0;
-      font-family: var(--font-display);
-      font-size:18px;
-      font-weight:650;
-      letter-spacing:-.2px;
-    }
-    .mhd p{ margin:6px 0 0; color:var(--muted); font-size:13px; font-weight:650; }
-
-    .mbd{
-      padding: 14px 16px 16px;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    #mList{
-      max-height: 52vh;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .locBtn{
-      width:100%;
-      text-align:left;
-      padding: 12px 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(20,18,20,.12);
-      background: rgba(244,242,237,.70);
-      cursor:pointer;
-      font-weight:900;
-      transform: translate3d(0,0,0);
-    }
-    .locBtn:hover{
-      background: rgba(244,242,237,.92);
-      transform: translate3d(0, calc(-1px * var(--motion)), 0);
-      transition: transform .18s var(--ease), background .18s var(--ease);
-    }
-    .locBtn small{
-      display:block;
-      font-weight:650;
-      color:var(--muted);
-      margin-top:4px;
-      line-height:1.25;
-    }
-    .mft{
-      padding: 12px 16px 16px;
-      display:flex; gap:10px;
-      justify-content:space-between; align-items:center;
-      border-top: 1px solid rgba(20,18,20,.08);
-      background: rgba(255,255,255,.72);
-    }
-    .tiny{ font-size:12px; color:var(--muted); font-weight:650; }
-
-    @media (max-width: 980px){
-      nav{ display:none; }
-      .heroGrid{ grid-template-columns: 1fr; }
-      .cards .card{ grid-column: span 6; }
-      .title{ font-size: 42px; }
-      .hdrActions{ min-width:auto; }
-      .grid2{ grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px){
-      .cards .card{ grid-column: span 12; }
-      .title{ font-size: 36px; }
-      .miniGrid{ grid-template-columns: 1fr; }
-    }
-    @media (max-width: 430px){
-      .hero{ padding: 32px 0 18px; }
-      .heroCard{ padding: 22px 18px 20px; }
-      .kicker{ gap:8px; row-gap:10px; margin-bottom: 16px; }
-      .kicker span{ font-size:12px; padding:7px 10px; line-height:1.25; }
-      .title{ font-size: 32px; line-height:1.12; }
-      .subtitle{ margin: 14px 0 18px; font-size:15px; line-height:1.5; }
-      .heroCtas{ flex-direction:column; align-items:stretch; gap:8px; }
-      .heroCtas .btn{ width:100%; justify-content:center; }
-    }
-  </style>
+  /* Reduced motion */
+  @media(prefers-reduced-motion:reduce){
+    .panic .heart, .steady .heart{ animation:none; }
+    .panic .cue::after{ content:"IN THROUGH YOUR NOSE"; }
+    .steady .cue::after{ content:"IN THROUGH YOUR NOSE"; }
+  }
+</style>
 </head>
 
 <body>
-  <div class="tod" aria-hidden="true"></div>
-  <div class="ambient" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <h1>Just breathe. We’ll handle the rest.</h1>
+    <div class="script">Tending to Hearts</div>
+    <p class="lead">Two visual guides—no controls. Just look and breathe.</p>
+  </header>
 
-  <div class="pageTone">
-    <header>
-      <div class="wrap">
-        <div class="hdr">
-          <a class="brand" href="#" aria-label="Snyder Funeral Homes home">
-            <div class="mark" aria-hidden="true">
-              <img src="/2022-sfh-bold-logo.png" alt="Snyder Funeral Homes logo">
-            </div>
-            <div>
-              <h1 id="brandLine">Snyder Funeral Homes <span class="accent">Tending to Hearts</span></h1>
-              <div class="chapelLine" id="chapelLine">Choose your nearest chapel</div>
-            </div>
-          </a>
+  <section class="grid">
+    <!-- Immediate Panic Relief -->
+    <article class="card">
+      <div class="inner panic">
+        <span class="tag">Immediate panic relief</span>
+        <h2 class="title">Physiological Sigh</h2>
 
-          <nav aria-label="Primary">
-            <a href="#immediate">Immediate Need</a>
-            <a href="#services">Services</a>
-            <a href="#support">Support</a>
-            <a href="#locations">Locations</a>
-          </nav>
-
-          <div class="hdrActions">
-            <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
-            <button class="btn" type="button" id="btnQuiet" aria-pressed="false">Quiet mode</button>
-            <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
-          </div>
+        <div class="stage" aria-label="Breathing animation: physiological sigh">
+          <svg class="heart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="gradPanicHeart" cx="30%" cy="25%" r="80%">
+                <stop offset="0%" stop-color="#8a2b59"/>
+                <stop offset="60%" stop-color="#6C1D45"/>
+                <stop offset="100%" stop-color="#4f1331"/>
+              </radialGradient>
+            </defs>
+            <path fill="url(#gradPanicHeart)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
+              -16.6 123.2 -10.6 219.8 43 273.5l175.4 178.7c12 12.3 28.2 19.1 45.5 19.1
+              c17.3 0 33.5-6.9 45.5-19.1L469 273.5c53.7-53.8 59.6-150.4-6.7-210.8z"/>
+          </svg>
+          <div class="dot" aria-hidden="true"></div>
+          <div class="cue" aria-hidden="true"></div>
         </div>
       </div>
-    </header>
+    </article>
 
-    <main>
-      <section class="hero">
-        <div class="wrap">
-          <div class="heroGrid">
-            <div class="heroCard">
-              <div class="kicker">
-                <span>Family-owned since 1922</span>
-                <span id="kLocal">Local chapel focus</span>
-                <span>Burial • Cremation • Preplanning</span>
-              </div>
+    <!-- Stress Management -->
+    <article class="card">
+      <div class="inner steady">
+        <span class="tag">Stress management</span>
+        <h2 class="title">Box Breathing (4-4-4-4)</h2>
 
-              <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
-              <p class="subtitle" id="heroSub">
-                Choose your nearest chapel once. From then on, this site stays local every time you come back.
-              </p>
-
-              <div class="heroCtas">
-                <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
-                <button class="btn" type="button" id="heroPick">Choose location</button>
-                <a class="btn" href="#locations">View locations</a>
-              </div>
-            </div>
-
-            <aside class="side" aria-label="Immediate Need">
-              <div class="panel" id="immediate">
-                <div class="panelHd">
-                  <h3 id="immediateTitle">Immediate Need</h3>
-                  <p id="immediateDesc">Choose a chapel and call. The page updates instantly.</p>
-                </div>
-                <div class="panelBd">
-                  <div class="stack">
-                    <div class="field">
-                      <select id="locPick" aria-label="Choose a location"></select>
-                    </div>
-
-                    <a class="btn primary" id="callBtn" href="#immediate">Call now</a>
-                    <div class="muteline" id="callNote">Choose a chapel to see the correct phone number.</div>
-
-                    <div class="miniGrid" aria-label="Quiet utilities">
-                      <div class="mini">
-                        <strong>Quick directions</strong>
-                        <span id="dirHint">Select a chapel to enable.</span>
-                        <a class="link" id="dirBtn" href="#" target="_blank" rel="noopener" style="margin-top:10px; display:inline-flex;">Directions</a>
-                      </div>
-                      <div class="mini">
-                        <strong>One gentle step</strong>
-                        <span id="gentleTip">Call first. We’ll guide you through the next step.</span>
-                        <button class="link" id="tipBtn" type="button" style="margin-top:10px;">New tip</button>
-                      </div>
-                    </div>
-
-                    <div class="breathe" aria-live="polite">
-                      <div class="breatheCircle" id="breatheCircle" aria-hidden="true"></div>
-                      <div class="breatheControls">
-                        <div class="breatheText">Breathe<br>In… 2… 3… 4…  Out… 2… 3… 4…</div>
-                        <button class="btn ghost" type="button" id="breatheToggle">Pause</button>
-                      </div>
-                    </div>
-
-                    <div class="muteline">
-                      Local-first rule: one chapel phone number, one clear next step.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="panel" id="support">
-                <div class="panelHd">
-                  <h3>Support</h3>
-                  <p>Practical resources that don’t overwhelm.</p>
-                </div>
-                <div class="panelBd">
-                  <div class="stack">
-                    <a class="btn" href="#" id="griefBtn">Grief resources (placeholder)</a>
-                    <a class="btn" href="#" id="checklistBtn">First 24 hours checklist (placeholder)</a>
-                    <div class="muteline">These buttons are placeholders until you wire real pages.</div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="services">
-        <div class="wrap">
-          <div class="sectionTitle">
-            <div>
-              <h2>Services</h2>
-              <p>Keep the primary intents obvious. Each can be chapel-specific later.</p>
-            </div>
-          </div>
-
-          <div class="cards">
-            <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><div class="cardActions"><a class="link" href="#">Explore burial</a></div></article>
-            <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><div class="cardActions"><a class="link" href="#">Explore cremation</a></div></article>
-            <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><div class="cardActions"><a class="link" href="#">Veterans resources</a></div></article>
-            <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><div class="cardActions"><a class="link" href="#">Start planning</a></div></article>
-            <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><div class="cardActions"><a class="link" href="#">Search obituaries</a></div></article>
-            <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><div class="cardActions"><a class="link" href="#immediate">Call your chapel</a></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="locations">
-        <div class="wrap">
-          <div class="sectionTitle">
-            <div>
-              <h2>Locations</h2>
-              <p>This list is powered by <code>locations.json</code>. Update one file; everything updates.</p>
-            </div>
-          </div>
-
-          <div id="locCards" class="cards"></div>
-        </div>
-      </section>
-
-      <footer>
-        <div class="wrap">
-          <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
-            <div style="display:flex; gap:12px; align-items:center;">
-              <div class="mark" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;">
-                <img src="/2022-sfh-bold-logo.png" alt="">
-              </div>
-              <div>
-                <div style="font-weight:900; font-family: var(--font-display); letter-spacing:-.2px;">Snyder Funeral Homes</div>
-                <small>SFH Burgundy #6C1D45 • SFH Cream #F4F2ED • Fraunces + Source Sans 3 + Playball</small>
-              </div>
-            </div>
-            <small>© <span id="year"></span> Snyder Funeral Homes • Family-owned since 1922</small>
-          </div>
-        </div>
-      </footer>
-    </main>
-
-    <!-- Location picker modal -->
-    <div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-      <div class="modal">
-        <div class="mhd">
-          <div>
-            <h3 id="mTitle">Choose your nearest chapel</h3>
-            <p>Pick once. The site stays local next time.</p>
-          </div>
-          <button class="btn" type="button" id="mClose">Close</button>
-        </div>
-
-        <div class="mbd">
-          <div class="field" style="margin-bottom:10px;">
-            <input id="mSearch" type="search" placeholder="Type a city (e.g., Mansfield, Mount Vernon)..." autocomplete="off">
-          </div>
-
-          <div class="grid2" id="mList"></div>
-        </div>
-
-        <div class="mft">
-          <div class="tiny" id="mHint">Tip: you can change this anytime in the header.</div>
-          <button class="btn primary" type="button" id="mClear">Clear saved location</button>
+        <div class="stage" aria-label="Breathing animation: box breathing">
+          <svg class="heart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="gradBoxHeart" cx="35%" cy="22%" r="85%">
+                <stop offset="0%" stop-color="#8a2b59"/>
+                <stop offset="65%" stop-color="#6C1D45"/>
+                <stop offset="100%" stop-color="#4f1331"/>
+              </radialGradient>
+            </defs>
+            <path fill="url(#gradBoxHeart)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
+              -16.6 123.2 -10.6 219.8 43 273.5l175.4 178.7c12 12.3 28.2 19.1 45.5 19.1
+              c17.3 0 33.5-6.9 45.5-19.1L469 273.5c53.7-53.8 59.6-150.4-6.7-210.8z"/>
+          </svg>
+          <div class="dot" aria-hidden="true"></div>
+          <div class="cue" aria-hidden="true"></div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <script>
-    // Time-of-day tint (heritage-safe, subtle, no tracking)
-    (function applyTimeOfDayTone(){
-      const h = new Date().getHours();
-      const r = document.documentElement;
-
-      function setTone({tintA, tintB, tintC, sat, bright}){
-        r.style.setProperty("--tintA", tintA);
-        r.style.setProperty("--tintB", tintB);
-        r.style.setProperty("--tintC", tintC);
-        r.style.setProperty("--tintSat", String(sat));
-        r.style.setProperty("--tintBright", String(bright));
-      }
-
-      if(h >= 6 && h < 11){
-        setTone({ tintA:"rgba(108,29,69,.05)", tintB:"rgba(108,29,69,.03)", tintC:"rgba(244,242,237,.05)", sat:1.02, bright:1.01 });
-      } else if(h >= 11 && h < 17){
-        setTone({ tintA:"rgba(108,29,69,.03)", tintB:"rgba(108,29,69,.02)", tintC:"rgba(244,242,237,.03)", sat:1.00, bright:1.00 });
-      } else if(h >= 17 && h < 21){
-        setTone({ tintA:"rgba(108,29,69,.07)", tintB:"rgba(108,29,69,.05)", tintC:"rgba(244,242,237,.08)", sat:0.99, bright:0.995 });
-      } else {
-        setTone({ tintA:"rgba(108,29,69,.11)", tintB:"rgba(108,29,69,.08)", tintC:"rgba(244,242,237,.10)", sat:0.97, bright:0.985 });
-      }
-    })();
-
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Motion toggle (respects prefers-reduced-motion)
-    const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const ambient = document.querySelector(".ambient");
-    const breatheCircle = document.getElementById("breatheCircle");
-    const breatheToggle = document.getElementById("breatheToggle");
-    let quietMode = false;
-    let breathePaused = false;
-
-    function updateBreatheState(){
-      if(!breatheCircle || !breatheToggle) return;
-      const root = document.documentElement;
-      const shouldPause = breathePaused || quietMode || motionMq.matches || root.classList.contains("no-motion");
-      breatheCircle.classList.toggle("paused", shouldPause);
-      breatheToggle.textContent = shouldPause ? "Resume" : "Pause";
-    }
-
-    function applyMotion(){
-      const root = document.documentElement;
-      const prefersReduced = motionMq.matches;
-      const effective = !prefersReduced && !quietMode;
-      root.style.setProperty("--motion", effective ? "1" : "0");
-      root.classList.toggle("no-motion", prefersReduced);
-      if(ambient) ambient.style.animationPlayState = effective ? "running" : "paused";
-      updateBreatheState();
-    }
-
-    motionMq.addEventListener("change", () => applyMotion());
-    applyMotion();
-
-    // Quiet mode
-    const QUIET_KEY = "sfh_quiet_mode";
-    const btnQuiet = document.getElementById("btnQuiet");
-
-    function applyQuiet(enabled){
-      quietMode = enabled;
-      const root = document.documentElement;
-      root.classList.toggle("quiet-mode", enabled);
-      btnQuiet.textContent = enabled ? "Quiet mode on" : "Quiet mode";
-      btnQuiet.setAttribute("aria-pressed", enabled ? "true" : "false");
-      localStorage.setItem(QUIET_KEY, enabled ? "1" : "0");
-      applyMotion();
-    }
-
-    btnQuiet.addEventListener("click", () => {
-      applyQuiet(!quietMode);
-    });
-
-    if(breatheToggle){
-      breatheToggle.addEventListener("click", () => {
-        breathePaused = !breathePaused;
-        updateBreatheState();
-      });
-    }
-
-    const savedQuiet = localStorage.getItem(QUIET_KEY) === "1";
-    applyQuiet(savedQuiet);
-    updateBreatheState();
-
-    // Local-first state
-    const LS_KEY = "sfh_location";
-    let LOCS = [];
-    let ACTIVE = null;
-
-    const el = (id) => document.getElementById(id);
-
-    function formatLocationLine(loc){
-      const addr = [loc.addressLine, `${loc.city}, ${loc.state} ${loc.zip}`].filter(Boolean).join(", ");
-      return addr || "";
-    }
-
-    function mapsLinkFor(loc){
-      const q = `${loc.addressLine}, ${loc.city}, ${loc.state} ${loc.zip}`;
-      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-    }
-
-    // Quiet tips
-    const TIPS = [
-      "Call first. We’ll guide you through the next step.",
-      "If you have it handy: full name, date of birth, and location of passing.",
-      "If hospice was involved, ask about any existing paperwork or wishes on file.",
-      "Choose one point person for the family to coordinate questions and updates.",
-      "If you’re unsure: start with the chapel phone number—everything else can wait."
-    ];
-    function newTip(){
-      el("gentleTip").textContent = TIPS[Math.floor(Math.random() * TIPS.length)];
-    }
-    el("tipBtn").addEventListener("click", newTip);
-
-    const STAFF_PLACEHOLDERS = [
-      { label: "Director", initials: "D" },
-      { label: "Care", initials: "C" },
-      { label: "Greeter", initials: "G" }
-    ];
-
-    function setActive(id){
-      const loc = LOCS.find(x => x.id === id);
-      if(!loc) return;
-
-      ACTIVE = loc;
-      localStorage.setItem(LS_KEY, id);
-
-      el("chapelLine").textContent = loc.displayName;
-      el("kLocal").textContent = loc.serviceAreaLine || "Serving nearby communities";
-      el("heroSub").textContent = loc.heroLine || `Serving ${loc.city || "local"} families with calm, clear guidance.`;
-
-      el("topCall").textContent = `Call ${loc.city || "your chapel"}`;
-      el("topCall").href = `tel:${loc.phone}`;
-
-      el("heroCall").textContent = `Call ${loc.displayName}`;
-      el("heroCall").href = `tel:${loc.phone}`;
-
-      el("callBtn").textContent = `Call ${loc.phoneDisplay || loc.phone}`;
-      el("callBtn").href = `tel:${loc.phone}`;
-
-      el("callNote").textContent = `${loc.displayName} • ${formatLocationLine(loc)}`;
-
-      el("dirHint").textContent = formatLocationLine(loc);
-      el("dirBtn").href = mapsLinkFor(loc);
-
-      el("locPick").value = id;
-      closeModal();
-    }
-
-    function clearActive(){
-      localStorage.removeItem(LS_KEY);
-      ACTIVE = null;
-
-      el("chapelLine").textContent = "Choose your nearest chapel";
-      el("kLocal").textContent = "Local chapel focus";
-      el("heroSub").textContent = "Choose your nearest chapel once. From then on, this site stays local every time you come back.";
-
-      el("topCall").textContent = "Immediate Need";
-      el("topCall").href = "#immediate";
-
-      el("heroCall").textContent = "Call your chapel";
-      el("heroCall").href = "#immediate";
-
-      el("callBtn").textContent = "Call now";
-      el("callBtn").href = "#immediate";
-
-      el("callNote").textContent = "Choose a chapel to see the correct phone number.";
-      el("dirHint").textContent = "Select a chapel to enable.";
-      el("dirBtn").href = "#immediate";
-
-      openModal();
-    }
-
-    function buildDropdown(){
-      const sel = el("locPick");
-      sel.innerHTML = "";
-
-      const opt0 = document.createElement("option");
-      opt0.value = "";
-      opt0.textContent = "Select a location…";
-      sel.appendChild(opt0);
-
-      for(const loc of LOCS){
-        const o = document.createElement("option");
-        o.value = loc.id;
-        o.textContent = loc.displayName;
-        sel.appendChild(o);
-      }
-
-      sel.addEventListener("change", () => {
-        if(sel.value) setActive(sel.value);
-        else openModal();
-      });
-    }
-
-    function buildCards(){
-      const box = el("locCards");
-      box.innerHTML = "";
-
-      for(const loc of LOCS){
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <h3>${loc.displayName}</h3>
-          <p>${formatLocationLine(loc)}<br>${loc.serviceAreaLine || ""}</p>
-          <div class="staffRow" aria-label="Key staff (placeholder images)">
-            ${STAFF_PLACEHOLDERS.map(p => `
-              <span class="staff">
-                <span class="staffBadge">${p.initials}</span>
-                <span class="staffLabel">${p.label}</span>
-              </span>
-            `).join("")}
-          </div>
-          <div class="cardActions">
-            <a class="link" href="tel:${loc.phone}">Call ${loc.phoneDisplay || ""}</a>
-            <a class="link" href="./locations/${loc.id}.html">View this chapel</a>
-            <a class="link" href="#" data-pick="${loc.id}">Make this my location</a>
-          </div>
-        `;
-        box.appendChild(card);
-      }
-
-      box.addEventListener("click", (e) => {
-        const a = e.target.closest("a[data-pick]");
-        if(!a) return;
-        e.preventDefault();
-        setActive(a.getAttribute("data-pick"));
-      });
-    }
-
-    // Modal
-    const backdrop = el("backdrop");
-    function openModal(){
-      backdrop.style.display = "flex";
-      el("mSearch").value = "";
-      renderModalList("");
-      setTimeout(() => el("mSearch").focus(), 0);
-    }
-    function closeModal(){ backdrop.style.display = "none"; }
-
-    el("btnChangeLoc").addEventListener("click", openModal);
-    el("heroPick").addEventListener("click", openModal);
-    el("mClose").addEventListener("click", closeModal);
-    backdrop.addEventListener("click", (e) => { if(e.target === backdrop) closeModal(); });
-    window.addEventListener("keydown", (e) => { if(e.key === "Escape" && backdrop.style.display === "flex") closeModal(); });
-
-    el("mClear").addEventListener("click", clearActive);
-
-    function renderModalList(filter){
-      const q = (filter || "").toLowerCase().trim();
-      const list = el("mList");
-      list.innerHTML = "";
-
-      const results = LOCS.filter(loc =>
-        !q ||
-        (loc.displayName || "").toLowerCase().includes(q) ||
-        (loc.city || "").toLowerCase().includes(q)
-      );
-
-      for(const loc of results){
-        const b = document.createElement("button");
-        b.className = "locBtn";
-        b.type = "button";
-        b.innerHTML = `${loc.displayName}<small>${formatLocationLine(loc)} • ${loc.serviceAreaLine || ""}</small>`;
-        b.addEventListener("click", () => setActive(loc.id));
-        list.appendChild(b);
-      }
-
-      if(results.length === 0){
-        const d = document.createElement("div");
-        d.className = "muteline";
-        d.textContent = "No matches. Try a city name.";
-        list.appendChild(d);
-      }
-    }
-
-    el("mSearch").addEventListener("input", () => renderModalList(el("mSearch").value));
-
-    async function init(){
-      const r = await fetch("./locations.json", { cache: "no-store" });
-      LOCS = await r.json();
-
-      buildDropdown();
-      buildCards();
-      newTip();
-
-      const saved = localStorage.getItem(LS_KEY);
-      if(saved && LOCS.some(x => x.id === saved)){
-        setActive(saved);
-      } else {
-        openModal();
-      }
-    }
-
-    init().catch(() => {
-      alert("Could not load locations.json. Make sure it exists in the repo root.");
-    });
-  </script>
+    </article>
+  </section>
+</div>
 </body>
 </html>
