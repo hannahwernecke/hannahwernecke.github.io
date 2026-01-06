@@ -8,9 +8,6 @@
   <meta name="description" content="Local-first funeral care for families across North Central Ohio. Choose your nearest Snyder Funeral Homes chapel." />
 
   <!-- FONTS -->
-  <!-- Display/Headings: Fraunces (heritage serif) -->
-  <!-- Body/UI: Source Sans 3 (calm, readable) -->
-  <!-- Accent Script: Playball (engraved traditional flourish) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=Playball&display=swap" rel="stylesheet">
@@ -112,7 +109,6 @@
       filter: brightness(.98) saturate(1.02);
     }
 
-    /* Time-of-day tint layer */
     .tod{
       position:fixed; inset:0;
       pointer-events:none;
@@ -124,14 +120,12 @@
       mix-blend-mode: multiply;
     }
 
-    /* Global tone softening at night */
     .pageTone{
       position:relative;
       z-index:1;
       filter: saturate(var(--tintSat)) brightness(var(--tintBright));
     }
 
-    /* Gentle ambient drift */
     .ambient{
       position:fixed; inset:-40%;
       background:
@@ -158,9 +152,6 @@
       from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
       to  { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
     }
-    @media (prefers-reduced-motion: reduce){
-      .ambient{ animation:none; }
-    }
 
     a{ color:inherit; text-decoration:none; }
     button, input, select{ font:inherit; color:inherit; }
@@ -176,7 +167,6 @@
       border-bottom: 1px solid rgba(20,18,20,.08);
       box-shadow: 0 14px 36px rgba(0,0,0,.05);
     }
-
     .quiet-mode header{
       background: rgba(12,18,30,.88);
       border-bottom: 1px solid rgba(232,236,245,.14);
@@ -265,6 +255,7 @@
       border-color: rgba(20,18,20,.20);
     }
     .quiet-mode .btn:hover{ transform:none; transition:none; }
+
     .btn.primary{
       background:
         linear-gradient(120deg, rgba(176,133,78,.25), rgba(176,133,78,.08) 32%),
@@ -324,7 +315,6 @@
       pointer-events:none;
       opacity:.95;
     }
-
     .quiet-mode .heroCard::before{ opacity:.65; }
 
     .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; position:relative; z-index:1; }
@@ -336,7 +326,6 @@
       font-size:13px; font-weight:775; color: rgba(20,18,20,.82);
       box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
-
     .quiet-mode .kicker span{
       border-color: rgba(90,140,200,.28);
       background: rgba(21,32,50,.80);
@@ -384,7 +373,7 @@
       padding: 16px 16px 12px;
       border-bottom: 1px solid rgba(20,18,20,.08);
       background: linear-gradient(180deg, rgba(244,242,237,.96), rgba(255,255,255,.72));
-      }
+    }
     .panelHd h3{
       margin:0;
       font-family: var(--font-display);
@@ -448,197 +437,13 @@
       font-weight:650;
     }
 
-    .section{ padding: 22px 0 32px; position:relative; }
+    /* Sections */
+    .section{ padding: 18px 0 26px; position:relative; }
     .section::before{
       content:""; position:absolute; inset:0; z-index:0;
       background: linear-gradient(180deg, rgba(108,29,69,.02), rgba(255,255,255,0));
       pointer-events:none;
     }
-
-    /* Original breathe container */
-    .breathe{
-      border-radius: 18px;
-      border: 1px solid rgba(108,29,69,.12);
-      background: rgba(255,255,255,.78);
-      padding: 12px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .breatheCircle{
-      width:48px; height:48px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(244,242,237,.8), rgba(108,29,69,.30));
-      box-shadow: 0 12px 28px rgba(108,29,69,.20);
-      animation: breathe 6s ease-in-out infinite;
-      flex-shrink:0;
-    }
-    .no-motion .breatheCircle, .quiet-mode .breatheCircle{ animation-play-state: paused; }
-    .breatheCircle.paused{ animation-play-state: paused; }
-    @keyframes breathe{
-      0%{ transform: scale(.92); opacity:.82; }
-      50%{ transform: scale(1.05); opacity:1; }
-      100%{ transform: scale(.92); opacity:.82; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .breatheCircle{ animation: none; }
-    }
-    .breatheText{ font-size:13px; font-weight:800; color: var(--muted); line-height:1.3; }
-    .breatheControls{ display:flex; gap:8px; align-items:center; }
-    .breathe button{ padding: 9px 12px; }
-
-    /* --- Breathing guides (compact, scoped) --- */
-    .breathe.breatheGuidesWrap{
-      display:block;          /* override original .breathe flex */
-      padding: 12px;
-    }
-
-    .bhGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-
-    @media (max-width: 640px){
-      .bhGrid{ grid-template-columns: 1fr; }
-    }
-
-    .bhCard{
-      border-radius: 16px;
-      border: 1px solid rgba(108,29,69,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(244,242,237,.74));
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-      padding: 10px;
-      overflow:hidden;
-    }
-
-    .bhTag{
-      display:inline-flex;
-      padding: 5px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: .7px;
-      text-transform: uppercase;
-      background: rgba(108,29,69,.08);
-      border: 1px solid rgba(108,29,69,.14);
-      color: var(--burgundy);
-    }
-
-    .bhTitle{
-      margin-top: 7px;
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 650;
-      letter-spacing: -.15px;
-    }
-
-    .bhStage{
-      margin-top: 9px;
-      height: 120px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,18,20,.08);
-      background:
-        radial-gradient(480px 220px at 42% 35%, rgba(108,29,69,.08), transparent 60%),
-        linear-gradient(180deg, rgba(31,34,48,.05), rgba(31,34,48,.02));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .bhHeart{
-      width: 74px;
-      height:auto;
-      filter: drop-shadow(0 14px 22px rgba(0,0,0,.14));
-      transform-origin: 50% 60%;
-    }
-
-    /* Cue pill */
-    .bhCue{
-      position:absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-display);
-      font-weight: 750;
-      font-size: 11px;
-      letter-spacing: .08em;
-      color: rgba(244,242,237,.95);
-      text-shadow: 0 8px 18px rgba(0,0,0,.30);
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(244,242,237,.18);
-      padding: 7px 9px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-      white-space: nowrap;
-    }
-    .bhCue::after{ content:""; }
-
-    /* --- Animations --- */
-    /* Physiological sigh: double inhale + long exhale (6.5s) */
-    @keyframes bhSighPulse{
-      0%   { transform: scale(.82); }
-      25%  { transform: scale(1.08); }
-      34%  { transform: scale(1.18); }
-      86%  { transform: scale(.78); }
-      100% { transform: scale(.82); }
-    }
-    @keyframes bhSighCue{
-      0%, 25%        { content:"IN (nose)"; }
-      25.001%, 34%   { content:"TOP-OFF (nose)"; }
-      34.001%, 100%  { content:"OUT (mouth)"; }
-    }
-    .bhPanic .bhHeart{ animation: bhSighPulse 6.5s ease-in-out infinite; }
-    .bhPanic .bhCue::after{ animation: bhSighCue 6.5s steps(1,end) infinite; }
-
-    /* Box breathing 4-4-4-4 (16s) */
-    @keyframes bhBoxPulse{
-      0%   { transform: scale(.84); }
-      25%  { transform: scale(1.10); }
-      50%  { transform: scale(1.10); }
-      75%  { transform: scale(.84); }
-      100% { transform: scale(.84); }
-    }
-    @keyframes bhBoxCue{
-      0%, 25%        { content:"IN (4)"; }
-      25.001%, 50%   { content:"HOLD (4)"; }
-      50.001%, 75%   { content:"OUT (4)"; }
-      75.001%, 100%  { content:"HOLD (4)"; }
-    }
-    .bhBox .bhHeart{ animation: bhBoxPulse 16s linear infinite; }
-    .bhBox .bhCue::after{ animation: bhBoxCue 16s steps(1,end) infinite; }
-
-    /* Respect your existing quiet/no-motion behavior */
-    :root.quiet-mode .bhHeart,
-    :root.no-motion .bhHeart{
-      animation-play-state: paused;
-    }
-    @media (prefers-reduced-motion: reduce){
-      .bhHeart{ animation: none !important; }
-      .bhPanic .bhCue::after{ content:"IN (nose)"; }
-      .bhBox .bhCue::after{ content:"IN (4)"; }
-    }
-
-    .quiet-mode .field{
-      background: rgba(18,26,40,.86);
-      border-color: rgba(232,236,245,.12);
-    }
-    .quiet-mode .mini{
-      border-color: rgba(232,236,245,.12);
-      background: rgba(18,26,40,.80);
-    }
-    .quiet-mode .breathe{
-      border-color: rgba(90,140,200,.20);
-      background: rgba(15,23,36,.86);
-    }
-    .quiet-mode .breatheCircle{
-      background: radial-gradient(circle at 30% 30%, rgba(232,236,245,.72), rgba(58,110,165,.32));
-      box-shadow: 0 12px 28px rgba(0,0,0,.26);
-    }
-
-    .section{ padding: 18px 0 26px; }
     .sectionTitle{
       display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
       margin-bottom: 12px;
@@ -652,6 +457,7 @@
     }
     .sectionTitle p{ margin:0; color: var(--muted); font-size:13px; max-width: 76ch; font-weight:650; }
 
+    /* Cards */
     .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; position:relative; z-index:1; align-items:start; }
     .card{
       grid-column: span 4;
@@ -661,13 +467,13 @@
         linear-gradient(140deg, rgba(176,133,78,.10), rgba(255,255,255,.92)),
         rgba(255,255,255,.90);
       box-shadow: 0 16px 34px rgba(0,0,0,.10);
-      padding: 18px 18px;
+      padding: 0;
       min-height: 164px;
       position:relative;
       overflow:hidden;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:0;
       isolation:isolate;
     }
     .card::after{
@@ -676,16 +482,51 @@
       opacity:.5; pointer-events:none; z-index:0;
     }
     .card > *{ position:relative; z-index:1; }
+
+    /* NEW: photo header on cards */
+    .cardPhoto{
+      height: 128px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(20,18,20,.10);
+      background: rgba(244,242,237,.85);
+    }
+    .cardPhoto img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.02) contrast(1.02);
+      transform: scale(1.02);
+    }
+    .cardPhoto::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.00), rgba(0,0,0,.12) 70%, rgba(0,0,0,.22)),
+        radial-gradient(520px 220px at 18% 20%, rgba(108,29,69,.22), transparent 55%);
+      pointer-events:none;
+    }
+    .cardBody{
+      padding: 16px 18px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex: 1;
+    }
+
     .card h3{
-      margin:0 0 8px;
+      margin:0 0 6px;
       font-family: var(--font-display);
       font-size:16px;
       font-weight: 650;
       letter-spacing: -.2px;
       word-break: break-word;
     }
-    .card p{ margin:0 0 12px; font-size:13px; color: var(--muted); font-weight:650; line-height:1.45; }
+    .card p{ margin:0 0 10px; font-size:13px; color: var(--muted); font-weight:650; line-height:1.45; }
     .cardActions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
+
     .link{
       display:inline-flex; align-items:center; justify-content:center;
       padding: 9px 12px; border-radius: 14px;
@@ -777,6 +618,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    /* NEW: modal buttons with thumb */
     .locBtn{
       width:100%;
       text-align:left;
@@ -787,19 +629,39 @@
       cursor:pointer;
       font-weight:900;
       transform: translate3d(0,0,0);
+      display:flex;
+      gap:10px;
+      align-items:center;
     }
-    .locBtn:hover{
-      background: rgba(244,242,237,.92);
-      transform: translate3d(0, calc(-1px * var(--motion)), 0);
-      transition: transform .18s var(--ease), background .18s var(--ease);
+    .locThumb{
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(20,18,20,.12);
+      flex: 0 0 auto;
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 10px 20px rgba(0,0,0,.08);
     }
-    .locBtn small{
+    .locThumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .locMeta small{
       display:block;
       font-weight:650;
       color:var(--muted);
       margin-top:4px;
       line-height:1.25;
     }
+    .locBtn:hover{
+      background: rgba(244,242,237,.92);
+      transform: translate3d(0, calc(-1px * var(--motion)), 0);
+      transition: transform .18s var(--ease), background .18s var(--ease);
+    }
+
     .mft{
       padding: 12px 16px 16px;
       display:flex; gap:10px;
@@ -808,6 +670,191 @@
       background: rgba(255,255,255,.72);
     }
     .tiny{ font-size:12px; color:var(--muted); font-weight:650; }
+
+    /* ------------------------------
+       NEW: Mini breathing guides
+       ------------------------------ */
+    .breathe{
+      border-radius: 18px;
+      border: 1px solid rgba(108,29,69,.12);
+      background: rgba(255,255,255,.78);
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .breatheHd{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .breatheHd strong{
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: -.1px;
+    }
+    .breatheHd span{
+      font-size:12px;
+      color: var(--muted);
+      font-weight:700;
+    }
+    .breatheGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .bMini{
+      border-radius: 16px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(244,242,237,.78));
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      padding: 10px;
+      position:relative;
+      overflow:hidden;
+      min-height: 130px;
+    }
+    .bMini::before{
+      content:"";
+      position:absolute; inset:-30%;
+      background:
+        radial-gradient(420px 260px at 18% 18%, rgba(108,29,69,.12), transparent 62%),
+        radial-gradient(420px 260px at 86% 16%, rgba(176,133,78,.10), transparent 62%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .bMini > *{ position:relative; z-index:1; }
+
+    .bMini .label{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom: 8px;
+    }
+    .pill{
+      display:inline-flex;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(108,29,69,.14);
+      background: rgba(108,29,69,.07);
+      color: var(--burgundy);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+    .bMini .name{
+      font-size: 12px;
+      font-weight: 850;
+      color: rgba(20,18,20,.82);
+      letter-spacing: .1px;
+    }
+
+    .stageMini{
+      height: 78px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,34,48,.08);
+      background:
+        radial-gradient(520px 240px at 45% 35%, rgba(108,29,69,.08), transparent 58%),
+        linear-gradient(180deg, rgba(31,34,48,.06), rgba(31,34,48,.02));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .heartMini{
+      width: 56px;
+      height:auto;
+      transform-origin:50% 60%;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.16));
+    }
+
+    /* Timing locked to your sample */
+    @keyframes sighPulse {
+      0%   { transform: scale(.82); }
+      25%  { transform: scale(1.08); }
+      34%  { transform: scale(1.18); }
+      86%  { transform: scale(.78); }
+      100% { transform: scale(.82); }
+    }
+    @keyframes boxPulse {
+      0%   { transform: scale(.84); }
+      25%  { transform: scale(1.10); }
+      50%  { transform: scale(1.10); }
+      75%  { transform: scale(.84); }
+      100% { transform: scale(.84); }
+    }
+
+    .panic .heartMini{ animation: sighPulse 6.5s ease-in-out infinite; }
+    .steady .heartMini{ animation: boxPulse 16s linear infinite; }
+
+    .cueMini{
+      margin-top: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.62);
+      padding: 8px 10px;
+      text-align:center;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      color: rgba(20,18,20,.80);
+      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+    }
+    .cueMini::after{ content:""; }
+
+    @keyframes sighCue {
+      0%, 25%          { content:"IN (NOSE)"; }
+      25.001%, 34%     { content:"SNIF (NOSE)"; }
+      34.001%, 100%    { content:"OUT (MOUTH)"; }
+    }
+    .panic .cueMini::after{ animation: sighCue 6.5s steps(1,end) infinite; }
+
+    @keyframes boxCue {
+      0%, 25%          { content:"IN (NOSE)"; }
+      25.001%, 50%     { content:"HOLD"; }
+      50.001%, 75%     { content:"OUT (MOUTH)"; }
+      75.001%, 100%    { content:"HOLD"; }
+    }
+    .steady .cueMini::after{ animation: boxCue 16s steps(1,end) infinite; }
+
+    /* Pausing rules: quiet-mode + prefers-reduced-motion + no-motion */
+    :root.quiet-mode .panic .heartMini,
+    :root.quiet-mode .steady .heartMini,
+    :root.no-motion .panic .heartMini,
+    :root.no-motion .steady .heartMini{
+      animation: none !important;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .panic .heartMini, .steady .heartMini{ animation:none !important; }
+      .cueMini::after{ content:"IN (NOSE)"; }
+    }
+
+    .quiet-mode .field{
+      background: rgba(18,26,40,.86);
+      border-color: rgba(232,236,245,.12);
+    }
+    .quiet-mode .mini{
+      border-color: rgba(232,236,245,.12);
+      background: rgba(18,26,40,.80);
+    }
+    .quiet-mode .breathe{
+      border-color: rgba(90,140,200,.20);
+      background: rgba(15,23,36,.86);
+    }
+    .quiet-mode .bMini{
+      border-color: rgba(232,236,245,.12);
+      background: rgba(18,26,40,.80);
+      box-shadow: 0 14px 28px rgba(0,0,0,.30);
+    }
+    .quiet-mode .cueMini{
+      background: rgba(15,23,36,.72);
+      border-color: rgba(232,236,245,.14);
+      color: rgba(232,236,245,.86);
+    }
 
     @media (max-width: 980px){
       nav{ display:none; }
@@ -821,6 +868,7 @@
       .cards .card{ grid-column: span 12; }
       .title{ font-size: 36px; }
       .miniGrid{ grid-template-columns: 1fr; }
+      .breatheGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 430px){
       .hero{ padding: 32px 0 18px; }
@@ -920,52 +968,61 @@
                       </div>
                     </div>
 
-                    <!-- Breathing guides (replaces the old breathe text + pause button) -->
-                    <div class="breathe breatheGuidesWrap" aria-label="Breathing guides">
-                      <div class="bhGrid">
-                        <!-- Immediate Panic Relief -->
-                        <article class="bhCard bhPanic" aria-label="Breathing guide: Physiological Sigh">
-                          <div class="bhTag">Immediate panic relief</div>
-                          <div class="bhTitle">Physiological Sigh</div>
+                    <!-- REPLACED: old breatheText + pause button -->
+                    <div class="breathe" aria-live="polite">
+                      <div class="breatheHd">
+                        <strong>Just breathe.</strong>
+                        <span>Two visual guides</span>
+                      </div>
 
-                          <div class="bhStage" aria-hidden="true">
-                            <svg class="bhHeart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                      <div class="breatheGrid">
+                        <div class="bMini panic" aria-label="Breathing guide: physiological sigh">
+                          <div class="label">
+                            <span class="pill">Immediate</span>
+                            <span class="name">Physiological sigh</span>
+                          </div>
+
+                          <div class="stageMini" aria-hidden="true">
+                            <svg class="heartMini" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <defs>
-                                <radialGradient id="bhGradPanic" cx="30%" cy="25%" r="80%">
+                                <radialGradient id="gradMiniPanic" cx="30%" cy="25%" r="80%">
+                                  <stop offset="0%" stop-color="#8a2b59"/>
+                                  <stop offset="60%" stop-color="#6C1D45"/>
+                                  <stop offset="100%" stop-color="#4f1331"/>
+                                </radialGradient>
+                              </defs>
+                              <path fill="url(#gradMiniPanic)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
+                                -16.6 123.2 -10.6 219.8 43 273.5l175.4 178.7c12 12.3 28.2 19.1 45.5 19.1
+                                c17.3 0 33.5-6.9 45.5-19.1L469 273.5c53.7-53.8 59.6-150.4-6.7-210.8z"/>
+                            </svg>
+                          </div>
+
+                          <div class="cueMini" aria-hidden="true"></div>
+                        </div>
+
+                        <div class="bMini steady" aria-label="Breathing guide: box breathing">
+                          <div class="label">
+                            <span class="pill">Steady</span>
+                            <span class="name">Box breathing (4-4-4-4)</span>
+                          </div>
+
+                          <div class="stageMini" aria-hidden="true">
+                            <svg class="heartMini" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                              <defs>
+                                <radialGradient id="gradMiniBox" cx="35%" cy="22%" r="85%">
                                   <stop offset="0%" stop-color="#8a2b59"/>
                                   <stop offset="65%" stop-color="#6C1D45"/>
                                   <stop offset="100%" stop-color="#4f1331"/>
                                 </radialGradient>
                               </defs>
-                              <path fill="url(#bhGradPanic)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
+                              <path fill="url(#gradMiniBox)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
                                 -16.6 123.2 -10.6 219.8 43 273.5l175.4 178.7c12 12.3 28.2 19.1 45.5 19.1
                                 c17.3 0 33.5-6.9 45.5-19.1L469 273.5c53.7-53.8 59.6-150.4-6.7-210.8z"/>
                             </svg>
-                            <div class="bhCue bhCuePanic"></div>
                           </div>
-                        </article>
 
-                        <!-- Stress Management -->
-                        <article class="bhCard bhBox" aria-label="Breathing guide: Box Breathing">
-                          <div class="bhTag">Stress management</div>
-                          <div class="bhTitle">Box (4–4–4–4)</div>
-
-                          <div class="bhStage" aria-hidden="true">
-                            <svg class="bhHeart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                              <defs>
-                                <radialGradient id="bhGradBox" cx="35%" cy="22%" r="85%">
-                                  <stop offset="0%" stop-color="#8a2b59"/>
-                                  <stop offset="70%" stop-color="#6C1D45"/>
-                                  <stop offset="100%" stop-color="#4f1331"/>
-                                </radialGradient>
-                              </defs>
-                              <path fill="url(#bhGradBox)" d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.3L256 96l-19.9-19.9C185.7 24.4 104.2 16.3 49.7 62.7
-                                -16.6 123.2 -10.6 219.8 43 273.5l175.4 178.7c12 12.3 28.2 19.1 45.5 19.1
-                                c17.3 0 33.5-6.9 45.5-19.1L469 273.5c53.7-53.8 59.6-150.4-6.7-210.8z"/>
-                            </svg>
-                            <div class="bhCue bhCueBox"></div>
-                          </div>
-                        </article>
+                          <div class="cueMini" aria-hidden="true"></div>
+                        </div>
                       </div>
                     </div>
 
@@ -1002,12 +1059,42 @@
           </div>
 
           <div class="cards">
-            <article class="card"><h3>Burial</h3><p>Visitation, service, cemetery coordination.</p><div class="cardActions"><a class="link" href="#">Explore burial</a></div></article>
-            <article class="card"><h3>Cremation</h3><p>From simple cremation to full ceremony.</p><div class="cardActions"><a class="link" href="#">Explore cremation</a></div></article>
-            <article class="card"><h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p><div class="cardActions"><a class="link" href="#">Veterans resources</a></div></article>
-            <article class="card"><h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p><div class="cardActions"><a class="link" href="#">Start planning</a></div></article>
-            <article class="card"><h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p><div class="cardActions"><a class="link" href="#">Search obituaries</a></div></article>
-            <article class="card"><h3>Contact</h3><p>Calls always go to your selected chapel.</p><div class="cardActions"><a class="link" href="#immediate">Call your chapel</a></div></article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Burial</h3><p>Visitation, service, cemetery coordination.</p>
+                <div class="cardActions"><a class="link" href="#">Explore burial</a></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Cremation</h3><p>From simple cremation to full ceremony.</p>
+                <div class="cardActions"><a class="link" href="#">Explore cremation</a></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Veterans</h3><p>Honors, paperwork help, benefits guidance.</p>
+                <div class="cardActions"><a class="link" href="#">Veterans resources</a></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Plan Ahead</h3><p>Make decisions once; spare your family later.</p>
+                <div class="cardActions"><a class="link" href="#">Start planning</a></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Obituaries</h3><p>Search, service details, guestbook (wire later).</p>
+                <div class="cardActions"><a class="link" href="#">Search obituaries</a></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="cardBody">
+                <h3>Contact</h3><p>Calls always go to your selected chapel.</p>
+                <div class="cardActions"><a class="link" href="#immediate">Call your chapel</a></div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -1101,21 +1188,7 @@
     // Motion toggle (respects prefers-reduced-motion)
     const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const ambient = document.querySelector(".ambient");
-
-    // These will be null now (since we replaced the old breathe widget) and that's fine.
-    const breatheCircle = document.getElementById("breatheCircle");
-    const breatheToggle = document.getElementById("breatheToggle");
-
     let quietMode = false;
-    let breathePaused = false;
-
-    function updateBreatheState(){
-      if(!breatheCircle || !breatheToggle) return;
-      const root = document.documentElement;
-      const shouldPause = breathePaused || quietMode || motionMq.matches || root.classList.contains("no-motion");
-      breatheCircle.classList.toggle("paused", shouldPause);
-      breatheToggle.textContent = shouldPause ? "Resume" : "Pause";
-    }
 
     function applyMotion(){
       const root = document.documentElement;
@@ -1124,7 +1197,6 @@
       root.style.setProperty("--motion", effective ? "1" : "0");
       root.classList.toggle("no-motion", prefersReduced);
       if(ambient) ambient.style.animationPlayState = effective ? "running" : "paused";
-      updateBreatheState();
     }
 
     motionMq.addEventListener("change", () => applyMotion());
@@ -1148,16 +1220,8 @@
       applyQuiet(!quietMode);
     });
 
-    if(breatheToggle){
-      breatheToggle.addEventListener("click", () => {
-        breathePaused = !breathePaused;
-        updateBreatheState();
-      });
-    }
-
     const savedQuiet = localStorage.getItem(QUIET_KEY) === "1";
     applyQuiet(savedQuiet);
-    updateBreatheState();
 
     // Local-first state
     const LS_KEY = "sfh_location";
@@ -1194,6 +1258,27 @@
       { label: "Care", initials: "C" },
       { label: "Greeter", initials: "G" }
     ];
+
+    /* ----------------------------------------------------
+       NEW: placeholder photos for chapel cards + modal list
+       ---------------------------------------------------- */
+    const PLACEHOLDER_PHOTOS = [
+      // OK (download endpoints verified via the links you provided)
+      "https://unsplash.com/photos/Z7wqFSH8mdM/download?force=true",
+      "https://unsplash.com/photos/R7Cbm4evh_A/download?force=true",
+      "https://unsplash.com/photos/mvKdVvwGJZg/download?force=true",
+      "https://unsplash.com/photos/ydlJdube27Y/download?force=true",
+      "https://unsplash.com/photos/5a3eFHcGl9U/download?force=true",
+
+      // TODO (these two Unsplash photo pages returned 403 when fetched, so I did not fabricate their download URLs)
+      // "https://unsplash.com/photos/6FhjliHh3_Y/download?force=true",
+      // "https://unsplash.com/photos/9t04Lccny3s/download?force=true",
+    ];
+
+    function photoForIndex(i){
+      if(!PLACEHOLDER_PHOTOS.length) return "";
+      return PLACEHOLDER_PHOTOS[i % PLACEHOLDER_PHOTOS.length];
+    }
 
     function setActive(id){
       const loc = LOCS.find(x => x.id === id);
@@ -1274,24 +1359,36 @@
       const box = el("locCards");
       box.innerHTML = "";
 
-      for(const loc of LOCS){
+      for(let i=0; i<LOCS.length; i++){
+        const loc = LOCS[i];
+        const img = loc.photo || photoForIndex(i);
+
         const card = document.createElement("article");
         card.className = "card";
+
         card.innerHTML = `
-          <h3>${loc.displayName}</h3>
-          <p>${formatLocationLine(loc)}<br>${loc.serviceAreaLine || ""}</p>
-          <div class="staffRow" aria-label="Key staff (placeholder images)">
-            ${STAFF_PLACEHOLDERS.map(p => `
-              <span class="staff">
-                <span class="staffBadge">${p.initials}</span>
-                <span class="staffLabel">${p.label}</span>
-              </span>
-            `).join("")}
+          <div class="cardPhoto" aria-hidden="true">
+            ${img ? `<img src="${img}" alt="" loading="lazy" decoding="async">` : ``}
           </div>
-          <div class="cardActions">
-            <a class="link" href="tel:${loc.phone}">Call ${loc.phoneDisplay || ""}</a>
-            <a class="link" href="./locations/${loc.id}.html">View this chapel</a>
-            <a class="link" href="#" data-pick="${loc.id}">Make this my location</a>
+
+          <div class="cardBody">
+            <h3>${loc.displayName}</h3>
+            <p>${formatLocationLine(loc)}<br>${loc.serviceAreaLine || ""}</p>
+
+            <div class="staffRow" aria-label="Key staff (placeholder images)">
+              ${STAFF_PLACEHOLDERS.map(p => `
+                <span class="staff">
+                  <span class="staffBadge">${p.initials}</span>
+                  <span class="staffLabel">${p.label}</span>
+                </span>
+              `).join("")}
+            </div>
+
+            <div class="cardActions">
+              <a class="link" href="tel:${loc.phone}">Call ${loc.phoneDisplay || ""}</a>
+              <a class="link" href="./locations/${loc.id}.html">View this chapel</a>
+              <a class="link" href="#" data-pick="${loc.id}">Make this my location</a>
+            </div>
           </div>
         `;
         box.appendChild(card);
@@ -1328,17 +1425,29 @@
       const list = el("mList");
       list.innerHTML = "";
 
-      const results = LOCS.filter(loc =>
-        !q ||
-        (loc.displayName || "").toLowerCase().includes(q) ||
-        (loc.city || "").toLowerCase().includes(q)
-      );
+      const results = LOCS
+        .map((loc, idx) => ({loc, idx}))
+        .filter(({loc}) =>
+          !q ||
+          (loc.displayName || "").toLowerCase().includes(q) ||
+          (loc.city || "").toLowerCase().includes(q)
+        );
 
-      for(const loc of results){
+      for(const {loc, idx} of results){
+        const img = loc.photo || photoForIndex(idx);
+
         const b = document.createElement("button");
         b.className = "locBtn";
         b.type = "button";
-        b.innerHTML = `${loc.displayName}<small>${formatLocationLine(loc)} • ${loc.serviceAreaLine || ""}</small>`;
+        b.innerHTML = `
+          <span class="locThumb" aria-hidden="true">
+            ${img ? `<img src="${img}" alt="" loading="lazy" decoding="async">` : ``}
+          </span>
+          <span class="locMeta">
+            ${loc.displayName}
+            <small>${formatLocationLine(loc)} • ${loc.serviceAreaLine || ""}</small>
+          </span>
+        `;
         b.addEventListener("click", () => setActive(loc.id));
         list.appendChild(b);
       }
