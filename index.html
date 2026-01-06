@@ -7,7 +7,6 @@
   <title>Snyder Funeral Homes</title>
   <meta name="description" content="Local-first funeral care for families across North Central Ohio. Choose your nearest Snyder Funeral Homes chapel." />
 
-  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=Playball&display=swap" rel="stylesheet">
@@ -50,21 +49,24 @@
       --tintBright: 1;
     }
 
-    :root.quiet-mode{
-      --burgundy:#3a6ea5;
-      --cream:#e8ecf5;
-      --ink:#e8ecf5;
-      --muted: rgba(232,236,245,.75);
+    /* CALMING MODE (renamed + contrast fixed) */
+    :root.calming-mode{
+      --burgundy:#3a6ea5;         /* calming blue accent */
+      --gilded:#7fb2e6;
+      --cream:#0c1423;            /* used only in a few gradients */
+      --ink:#eef2ff;              /* main text */
+      --muted: rgba(238,242,255,.78);
 
-      --card: rgba(20,29,46,.86);
-      --card2: rgba(16,24,38,.82);
-      --border: rgba(232,236,245,.16);
-      --softBorder: rgba(232,236,245,.12);
+      --card: rgba(18,26,40,.88);
+      --card2: rgba(14,20,32,.86);
 
-      --shadow: 0 22px 60px rgba(0,0,0,.34);
-      --shadow2: 0 14px 30px rgba(0,0,0,.30);
+      --border: rgba(238,242,255,.18);
+      --softBorder: rgba(238,242,255,.12);
 
-      --focus: 0 0 0 4px rgba(58,110,165,.32);
+      --shadow: 0 22px 60px rgba(0,0,0,.46);
+      --shadow2: 0 14px 30px rgba(0,0,0,.42);
+
+      --focus: 0 0 0 4px rgba(127,178,230,.32);
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -100,13 +102,19 @@
       z-index:0;
     }
 
-    :root.quiet-mode body{
-      font-size: 105%;
+    :root.calming-mode body{
       background:
-        radial-gradient(1100px 680px at 20% 8%, rgba(58,110,165,.30), transparent 54%),
-        radial-gradient(940px 600px at 82% 12%, rgba(42,78,130,.22), transparent 58%),
-        linear-gradient(180deg, #0f1726, #0b1220 55%);
-      filter: brightness(.98) saturate(1.02);
+        radial-gradient(1200px 760px at 20% 8%, rgba(127,178,230,.18), transparent 54%),
+        radial-gradient(940px 600px at 82% 12%, rgba(58,110,165,.18), transparent 58%),
+        linear-gradient(180deg, #070b14, #0b1220 55%);
+      filter: brightness(.99) saturate(1.02);
+    }
+    :root.calming-mode body::before{
+      opacity:.28;
+      background:
+        radial-gradient(1200px 780px at 18% 22%, rgba(127,178,230,.18), transparent 44%),
+        radial-gradient(980px 640px at 82% 10%, rgba(58,110,165,.14), transparent 50%),
+        radial-gradient(960px 520px at 58% 44%, rgba(127,178,230,.10), transparent 64%);
     }
 
     .tod{
@@ -118,6 +126,11 @@
         radial-gradient(1100px 760px at 88% 10%, var(--tintB), transparent 62%),
         linear-gradient(180deg, var(--tintC), rgba(255,255,255,0) 42%);
       mix-blend-mode: multiply;
+    }
+
+    :root.calming-mode .tod{
+      mix-blend-mode: screen;
+      opacity:.35;
     }
 
     .pageTone{
@@ -140,14 +153,16 @@
       z-index:0;
     }
     .no-motion .ambient{ animation: none; }
-    .quiet-mode .ambient{
+
+    :root.calming-mode .ambient{
       animation: none;
       opacity:.40;
       background:
-        radial-gradient(circle at 20% 25%, rgba(58,110,165,.25), transparent 45%),
-        radial-gradient(circle at 78% 24%, rgba(42,78,130,.20), transparent 50%),
-        radial-gradient(circle at 32% 78%, rgba(58,110,165,.16), transparent 50%);
+        radial-gradient(circle at 20% 25%, rgba(127,178,230,.16), transparent 45%),
+        radial-gradient(circle at 78% 24%, rgba(58,110,165,.14), transparent 50%),
+        radial-gradient(circle at 32% 78%, rgba(127,178,230,.12), transparent 50%);
     }
+
     @keyframes drift{
       from{ transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
       to  { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
@@ -167,10 +182,12 @@
       border-bottom: 1px solid rgba(20,18,20,.08);
       box-shadow: 0 14px 36px rgba(0,0,0,.05);
     }
-    .quiet-mode header{
-      background: rgba(12,18,30,.88);
-      border-bottom: 1px solid rgba(232,236,245,.14);
+    :root.calming-mode header{
+      background: rgba(8,12,20,.86);
+      border-bottom: 1px solid rgba(238,242,255,.12);
+      box-shadow: 0 14px 36px rgba(0,0,0,.34);
     }
+
     .hdr{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; padding: 14px 0;
@@ -186,10 +203,12 @@
       display:flex; align-items:center; justify-content:center;
       padding:4px;
     }
-    .mark img{
-      width:100%; height:100%; object-fit:contain;
-      display:block;
+    :root.calming-mode .mark{
+      background: rgba(255,255,255,.92);
+      border-color: rgba(238,242,255,.22);
+      box-shadow: 0 18px 38px rgba(0,0,0,.30), 0 0 0 1px rgba(255,255,255,.22) inset;
     }
+    .mark img{ width:100%; height:100%; object-fit:contain; display:block; }
 
     .brand h1{
       margin:0;
@@ -214,6 +233,7 @@
       font-weight:650;
       margin-top:3px;
     }
+    :root.calming-mode .chapelLine{ color: rgba(238,242,255,.74); }
 
     nav{ display:flex; gap:16px; align-items:center; justify-content:center; flex:1; }
     nav a{
@@ -233,7 +253,12 @@
     }
     nav a:hover{ color: var(--burgundy); }
     nav a:hover::after{ opacity:1; transform: translateY(0); }
-    .quiet-mode nav a:hover{ background: rgba(108,29,69,.04); transition: none; }
+    :root.calming-mode nav a{
+      color: rgba(238,242,255,.90);
+    }
+    :root.calming-mode nav a::after{
+      background: linear-gradient(90deg, rgba(127,178,230,.0), rgba(127,178,230,.70), rgba(127,178,230,.0));
+    }
 
     .hdrActions{ display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width: 260px; }
 
@@ -254,14 +279,12 @@
       box-shadow: 0 16px 30px rgba(0,0,0,.10);
       border-color: rgba(20,18,20,.20);
     }
-    .quiet-mode .btn:hover{ transform:none; transition:none; }
-
     .btn.primary{
       background:
         linear-gradient(120deg, rgba(176,133,78,.25), rgba(176,133,78,.08) 32%),
         linear-gradient(135deg, rgba(108,29,69,1), rgba(108,29,69,.82));
       border-color: rgba(108,29,69,.28);
-      color: var(--cream);
+      color: #fff;
       box-shadow: 0 18px 44px rgba(108,29,69,.20);
     }
     .btn.ghost{
@@ -270,21 +293,23 @@
       box-shadow:none;
     }
 
-    .quiet-mode .btn{
-      background: rgba(20,29,46,.78);
-      border-color: rgba(232,236,245,.14);
-      color: var(--ink);
-      box-shadow: 0 10px 24px rgba(0,0,0,.30);
+    :root.calming-mode .btn{
+      background: rgba(18,26,40,.88);
+      border-color: rgba(238,242,255,.16);
+      color: rgba(238,242,255,.94);
+      box-shadow: 0 10px 24px rgba(0,0,0,.40);
     }
-    .quiet-mode .btn.primary{
-      background: linear-gradient(135deg, #3a6ea5, #1f2f4a);
-      border-color: rgba(90,140,200,.35);
-      box-shadow: 0 18px 44px rgba(0,0,0,.34);
+    :root.calming-mode .btn.primary{
+      background: linear-gradient(135deg, rgba(127,178,230,.95), rgba(58,110,165,.70));
+      border-color: rgba(127,178,230,.28);
+      color: #06101f;
+      box-shadow: 0 18px 44px rgba(0,0,0,.42);
     }
-    .quiet-mode .btn.ghost{
-      background: rgba(15,23,36,.82);
-      border-color: rgba(232,236,245,.12);
+    :root.calming-mode .btn.ghost{
+      background: rgba(10,16,28,.82);
+      border-color: rgba(238,242,255,.14);
     }
+    :root.calming-mode .btn:hover{ transform:none; transition:none; }
 
     /* Hero */
     .hero{ padding: 42px 0 24px; position:relative; }
@@ -293,29 +318,77 @@
       background: linear-gradient(90deg, rgba(108,29,69,.04), rgba(255,255,255,0), rgba(176,133,78,.08));
       pointer-events:none;
     }
+    :root.calming-mode .hero::after{
+      background: linear-gradient(90deg, rgba(127,178,230,.08), rgba(0,0,0,0), rgba(58,110,165,.10));
+    }
+
     .heroGrid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 16px;
       align-items:stretch;
     }
+
     .heroCard{
       border-radius: var(--radius2);
       border: 1px solid var(--softBorder);
       background: var(--card);
       box-shadow: 0 28px 60px rgba(0,0,0,.12);
-      padding: 28px 28px 24px;
+      padding: 0;
       position:relative; overflow:hidden;
+      display:flex;
+      flex-direction:column;
     }
-    .heroCard::before{
+    .heroPhoto{
+      height: 170px;
+      border-bottom: 1px solid rgba(20,18,20,.08);
+      position:relative;
+      overflow:hidden;
+      background: rgba(244,242,237,.82);
+    }
+    .heroPhoto img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      filter: saturate(1.03) contrast(1.03);
+    }
+    .heroPhoto::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.00) 15%, rgba(0,0,0,.18) 65%, rgba(0,0,0,.30)),
+        radial-gradient(680px 320px at 16% 20%, rgba(108,29,69,.22), transparent 60%);
+      pointer-events:none;
+    }
+    :root.calming-mode .heroPhoto{
+      border-bottom-color: rgba(238,242,255,.12);
+    }
+    :root.calming-mode .heroPhoto::after{
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.00) 10%, rgba(0,0,0,.26) 70%, rgba(0,0,0,.40)),
+        radial-gradient(680px 320px at 16% 20%, rgba(127,178,230,.18), transparent 60%);
+    }
+
+    .heroInner{
+      padding: 24px 28px 22px;
+      position:relative;
+    }
+    .heroInner::before{
       content:""; position:absolute; inset:-30%;
       background:
-        radial-gradient(720px 420px at 12% 18%, rgba(108,29,69,.12), transparent 62%),
-        linear-gradient(160deg, rgba(176,133,78,.16), rgba(255,255,255,0));
+        radial-gradient(720px 420px at 12% 18%, rgba(108,29,69,.10), transparent 62%),
+        linear-gradient(160deg, rgba(176,133,78,.12), rgba(255,255,255,0));
       pointer-events:none;
       opacity:.95;
     }
-    .quiet-mode .heroCard::before{ opacity:.65; }
+    :root.calming-mode .heroInner::before{
+      opacity:.60;
+      background:
+        radial-gradient(720px 420px at 12% 18%, rgba(127,178,230,.10), transparent 62%),
+        linear-gradient(160deg, rgba(58,110,165,.10), rgba(0,0,0,0));
+    }
 
     .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; position:relative; z-index:1; }
     .kicker span{
@@ -326,10 +399,11 @@
       font-size:13px; font-weight:775; color: rgba(20,18,20,.82);
       box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
-    .quiet-mode .kicker span{
-      border-color: rgba(90,140,200,.28);
-      background: rgba(21,32,50,.80);
-      color: rgba(232,236,245,.88);
+    :root.calming-mode .kicker span{
+      border-color: rgba(127,178,230,.22);
+      background: rgba(10,16,28,.78);
+      color: rgba(238,242,255,.90);
+      box-shadow: 0 10px 22px rgba(0,0,0,.32);
     }
 
     .title{
@@ -344,15 +418,86 @@
     .title em{ font-style:normal; color: var(--burgundy); }
 
     .subtitle{
-      margin: 16px 0 20px;
+      margin: 14px 0 18px;
       color: var(--muted);
       font-size: 17px;
       max-width: 66ch;
       position:relative; z-index:1;
-      font-weight: 575;
+      font-weight: 600;
       line-height:1.6;
     }
+
     .heroCtas{ display:flex; flex-wrap:wrap; gap:10px; position:relative; z-index:1; }
+
+    /* NEW: human micro-promise */
+    .humanLine{
+      position:relative;
+      z-index:1;
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.62);
+      box-shadow: 0 14px 26px rgba(0,0,0,.06);
+    }
+    .humanLine strong{
+      font-family: var(--font-display);
+      font-weight: 650;
+      letter-spacing: -.1px;
+    }
+    .humanLine span{
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.5;
+    }
+    :root.calming-mode .humanLine{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.70);
+      box-shadow: 0 14px 26px rgba(0,0,0,.34);
+    }
+    :root.calming-mode .humanLine span{
+      color: rgba(238,242,255,.78);
+    }
+
+    /* NEW: credibility band */
+    .credRow{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .cred{
+      border-radius: 18px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.58);
+      padding: 10px 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.05);
+    }
+    .cred b{
+      display:block;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .cred small{
+      display:block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    :root.calming-mode .cred{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.64);
+      box-shadow: 0 10px 20px rgba(0,0,0,.34);
+    }
+    :root.calming-mode .cred small{ color: rgba(238,242,255,.76); }
 
     /* Right panels */
     .side{ display:flex; flex-direction:column; gap: 14px; }
@@ -384,13 +529,18 @@
     .panelHd p{ margin:6px 0 0; color:var(--muted); font-size:13px; font-weight:650; }
     .panelBd{ padding: 14px 16px 16px; }
 
-    .quiet-mode .panel{
-      border-color: rgba(232,236,245,.14);
-      box-shadow: 0 14px 32px rgba(0,0,0,.34);
+    :root.calming-mode .panel{
+      border-color: rgba(238,242,255,.14);
+      background: linear-gradient(180deg, rgba(18,26,40,.88), rgba(14,20,32,.86));
+      box-shadow: 0 14px 32px rgba(0,0,0,.44);
     }
-    .quiet-mode .panelHd{
-      border-color: rgba(232,236,245,.14);
-      background: linear-gradient(180deg, rgba(28,41,64,.86), rgba(18,28,46,.76));
+    :root.calming-mode .panel::before{
+      opacity:.40;
+      background: linear-gradient(120deg, rgba(127,178,230,.12), transparent 42%);
+    }
+    :root.calming-mode .panelHd{
+      border-color: rgba(238,242,255,.12);
+      background: linear-gradient(180deg, rgba(12,18,30,.86), rgba(10,16,28,.78));
     }
 
     .field{
@@ -409,6 +559,16 @@
     }
     .stack{ display:flex; flex-direction:column; gap:10px; }
     .muteline{ font-size:12px; color: var(--muted); font-weight:650; }
+
+    :root.calming-mode .field{
+      background: rgba(10,16,28,.78);
+      border-color: rgba(238,242,255,.14);
+    }
+    :root.calming-mode .field input,
+    :root.calming-mode .field select{
+      color: rgba(238,242,255,.92);
+    }
+    :root.calming-mode .muteline{ color: rgba(238,242,255,.72); }
 
     .miniGrid{
       display:grid;
@@ -436,6 +596,74 @@
       color:var(--muted);
       font-weight:650;
     }
+    :root.calming-mode .mini{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.70);
+      box-shadow: 0 10px 20px rgba(0,0,0,.34);
+    }
+    :root.calming-mode .mini span{ color: rgba(238,242,255,.74); }
+
+    /* NEW: what happens next */
+    .nextSteps{
+      border-radius: 18px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.62);
+      padding: 12px;
+      box-shadow: 0 12px 24px rgba(0,0,0,.06);
+    }
+    .nextSteps h4{
+      margin:0 0 8px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: -.1px;
+    }
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:8px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(20,18,20,.08);
+      background: rgba(244,242,237,.70);
+    }
+    .n{
+      width:28px; height:28px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      background: rgba(108,29,69,.10);
+      border: 1px solid rgba(108,29,69,.18);
+      color: var(--burgundy);
+      flex: 0 0 auto;
+    }
+    .step b{ display:block; font-size:12px; font-weight: 900; letter-spacing: .15px; }
+    .step small{ display:block; margin-top:3px; color: var(--muted); font-weight: 650; line-height: 1.35; }
+
+    :root.calming-mode .nextSteps{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.64);
+      box-shadow: 0 12px 24px rgba(0,0,0,.40);
+    }
+    :root.calming-mode .step{
+      border-color: rgba(238,242,255,.10);
+      background: rgba(18,26,40,.72);
+    }
+    :root.calming-mode .n{
+      background: rgba(127,178,230,.14);
+      border-color: rgba(127,178,230,.22);
+      color: rgba(238,242,255,.92);
+    }
+    :root.calming-mode .step small{ color: rgba(238,242,255,.74); }
 
     /* Sections */
     .section{ padding: 18px 0 26px; position:relative; }
@@ -444,6 +672,10 @@
       background: linear-gradient(180deg, rgba(108,29,69,.02), rgba(255,255,255,0));
       pointer-events:none;
     }
+    :root.calming-mode .section::before{
+      background: linear-gradient(180deg, rgba(127,178,230,.05), rgba(0,0,0,0));
+    }
+
     .sectionTitle{
       display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
       margin-bottom: 12px;
@@ -476,14 +708,22 @@
       gap:0;
       isolation:isolate;
     }
+    :root.calming-mode .card{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.68);
+      box-shadow: 0 16px 34px rgba(0,0,0,.44);
+    }
     .card::after{
       content:""; position:absolute; inset:-18% 60% auto -18%; height:120%;
       background: radial-gradient(circle at 40% 20%, rgba(108,29,69,.12), transparent 56%);
       opacity:.5; pointer-events:none; z-index:0;
     }
+    :root.calming-mode .card::after{
+      background: radial-gradient(circle at 40% 20%, rgba(127,178,230,.10), transparent 56%);
+      opacity:.55;
+    }
     .card > *{ position:relative; z-index:1; }
 
-    /* NEW: photo header on cards */
     .cardPhoto{
       height: 128px;
       width: 100%;
@@ -508,6 +748,15 @@
         radial-gradient(520px 220px at 18% 20%, rgba(108,29,69,.22), transparent 55%);
       pointer-events:none;
     }
+    :root.calming-mode .cardPhoto{
+      border-bottom-color: rgba(238,242,255,.12);
+    }
+    :root.calming-mode .cardPhoto::after{
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.00), rgba(0,0,0,.18) 70%, rgba(0,0,0,.36)),
+        radial-gradient(520px 220px at 18% 20%, rgba(127,178,230,.16), transparent 55%);
+    }
+
     .cardBody{
       padding: 16px 18px 18px;
       display:flex;
@@ -525,6 +774,9 @@
       word-break: break-word;
     }
     .card p{ margin:0 0 10px; font-size:13px; color: var(--muted); font-weight:650; line-height:1.45; }
+
+    :root.calming-mode .card p{ color: rgba(238,242,255,.74); }
+
     .cardActions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
 
     .link{
@@ -539,6 +791,15 @@
     .link:hover{
       background: rgba(108,29,69,.10);
       transition: background .18s var(--ease);
+    }
+    :root.calming-mode .link{
+      border-color: rgba(127,178,230,.22);
+      background: rgba(127,178,230,.14);
+      color: rgba(238,242,255,.94);
+      box-shadow: 0 10px 20px rgba(0,0,0,.36);
+    }
+    :root.calming-mode .link:hover{
+      background: rgba(127,178,230,.18);
     }
 
     .staffRow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
@@ -559,8 +820,19 @@
       font-weight:900; letter-spacing:.2px;
     }
     .staffLabel{ font-size:12px; color: var(--muted); font-weight:800; }
-    .quiet-mode .staff{ background: rgba(90,140,200,.12); border-color: rgba(232,236,245,.20); }
-    .quiet-mode .staffBadge{ background: radial-gradient(circle at 32% 28%, rgba(232,236,245,.82), rgba(58,110,165,.34)); border-color: rgba(232,236,245,.22); box-shadow: 0 10px 22px rgba(0,0,0,.24); }
+
+    :root.calming-mode .staff{
+      background: rgba(127,178,230,.10);
+      border-color: rgba(238,242,255,.18);
+      box-shadow: 0 10px 18px rgba(0,0,0,.34);
+    }
+    :root.calming-mode .staffBadge{
+      background: radial-gradient(circle at 32% 28%, rgba(238,242,255,.86), rgba(127,178,230,.22));
+      border-color: rgba(238,242,255,.18);
+      box-shadow: 0 10px 22px rgba(0,0,0,.30);
+      color: rgba(10,16,28,.92);
+    }
+    :root.calming-mode .staffLabel{ color: rgba(238,242,255,.78); }
 
     footer{
       padding: 26px 0 34px;
@@ -569,6 +841,10 @@
       font-weight:650;
     }
     footer small{ color: var(--muted); font-weight:650; }
+    :root.calming-mode footer{
+      border-top-color: rgba(238,242,255,.12);
+      color: rgba(238,242,255,.80);
+    }
 
     /* Modal */
     .backdrop{
@@ -581,8 +857,8 @@
       -webkit-backdrop-filter: blur(10px);
     }
     .modal{
-      width: min(820px, 100%);
-      max-height: min(86vh, 760px);
+      width: min(920px, 100%);
+      max-height: min(86vh, 780px);
       background: rgba(255,255,255,.94);
       border: 1px solid rgba(255,255,255,.20);
       border-radius: 26px;
@@ -591,11 +867,20 @@
       display:flex;
       flex-direction:column;
     }
+    :root.calming-mode .modal{
+      background: rgba(10,16,28,.92);
+      border-color: rgba(238,242,255,.14);
+      box-shadow: 0 30px 90px rgba(0,0,0,.52);
+    }
     .mhd{
       padding: 16px 16px 12px;
       border-bottom: 1px solid rgba(20,18,20,.10);
       background: linear-gradient(180deg, rgba(244,242,237,.92), rgba(255,255,255,.70));
       display:flex; align-items:flex-start; justify-content:space-between; gap: 14px;
+    }
+    :root.calming-mode .mhd{
+      border-bottom-color: rgba(238,242,255,.12);
+      background: linear-gradient(180deg, rgba(12,18,30,.86), rgba(10,16,28,.78));
     }
     .mhd h3{
       margin:0;
@@ -605,6 +890,7 @@
       letter-spacing:-.2px;
     }
     .mhd p{ margin:6px 0 0; color:var(--muted); font-size:13px; font-weight:650; }
+    :root.calming-mode .mhd p{ color: rgba(238,242,255,.74); }
 
     .mbd{
       padding: 14px 16px 16px;
@@ -613,12 +899,11 @@
     }
     .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     #mList{
-      max-height: 52vh;
+      max-height: 44vh;
       overflow:auto;
       -webkit-overflow-scrolling: touch;
     }
 
-    /* NEW: modal buttons with thumb */
     .locBtn{
       width:100%;
       text-align:left;
@@ -633,6 +918,10 @@
       gap:10px;
       align-items:center;
     }
+    :root.calming-mode .locBtn{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(18,26,40,.72);
+    }
     .locThumb{
       width: 54px;
       height: 54px;
@@ -643,12 +932,12 @@
       background: rgba(255,255,255,.75);
       box-shadow: 0 10px 20px rgba(0,0,0,.08);
     }
-    .locThumb img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
+    :root.calming-mode .locThumb{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.60);
+      box-shadow: 0 10px 20px rgba(0,0,0,.40);
     }
+    .locThumb img{ width:100%; height:100%; object-fit: cover; display:block; }
     .locMeta small{
       display:block;
       font-weight:650;
@@ -656,11 +945,14 @@
       margin-top:4px;
       line-height:1.25;
     }
+    :root.calming-mode .locMeta small{ color: rgba(238,242,255,.74); }
+
     .locBtn:hover{
       background: rgba(244,242,237,.92);
       transform: translate3d(0, calc(-1px * var(--motion)), 0);
       transition: transform .18s var(--ease), background .18s var(--ease);
     }
+    :root.calming-mode .locBtn:hover{ background: rgba(18,26,40,.80); transform:none; transition:none; }
 
     .mft{
       padding: 12px 16px 16px;
@@ -669,11 +961,137 @@
       border-top: 1px solid rgba(20,18,20,.08);
       background: rgba(255,255,255,.72);
     }
+    :root.calming-mode .mft{
+      border-top-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.70);
+    }
     .tiny{ font-size:12px; color:var(--muted); font-weight:650; }
+    :root.calming-mode .tiny{ color: rgba(238,242,255,.74); }
 
-    /* ------------------------------
-       NEW: Mini breathing guides
-       ------------------------------ */
+    /* NEW: About modal content */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:12px;
+      margin-top: 12px;
+    }
+    .aboutCard{
+      border-radius: 22px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.70);
+      padding: 14px 14px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.08);
+    }
+    :root.calming-mode .aboutCard{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(18,26,40,.74);
+      box-shadow: 0 14px 26px rgba(0,0,0,.42);
+    }
+    .aboutCard h4{
+      margin:0 0 8px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: -.1px;
+    }
+    .aboutCard p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    :root.calming-mode .aboutCard p{ color: rgba(238,242,255,.76); }
+
+    .promise{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+    .promise li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(20,18,20,.08);
+      background: rgba(244,242,237,.70);
+    }
+    :root.calming-mode .promise li{
+      border-color: rgba(238,242,255,.10);
+      background: rgba(10,16,28,.62);
+    }
+    .dotOk{
+      width:10px; height:10px;
+      border-radius: 999px;
+      margin-top: 4px;
+      background: rgba(108,29,69,.55);
+      box-shadow: 0 0 0 8px rgba(108,29,69,.10);
+      flex: 0 0 auto;
+    }
+    :root.calming-mode .dotOk{
+      background: rgba(127,178,230,.70);
+      box-shadow: 0 0 0 8px rgba(127,178,230,.12);
+    }
+    .promise b{
+      display:block;
+      font-size:12px;
+      font-weight: 900;
+      letter-spacing: .15px;
+    }
+    .promise small{
+      display:block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    :root.calming-mode .promise small{ color: rgba(238,242,255,.74); }
+
+    .teamRow{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+    }
+    .teamChip{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(244,242,237,.70);
+    }
+    :root.calming-mode .teamChip{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(10,16,28,.62);
+    }
+    .avatar{
+      width:44px; height:44px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(20,18,20,.10);
+      background: rgba(255,255,255,.80);
+      flex: 0 0 auto;
+    }
+    :root.calming-mode .avatar{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(18,26,40,.72);
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .who b{ display:block; font-size: 12px; font-weight: 900; letter-spacing:.15px; }
+    .who small{ display:block; margin-top: 3px; color: var(--muted); font-weight: 650; line-height: 1.35; }
+    :root.calming-mode .who small{ color: rgba(238,242,255,.74); }
+
+    /* Breathing guides (mini) */
     .breathe{
       border-radius: 18px;
       border: 1px solid rgba(108,29,69,.12);
@@ -682,6 +1100,10 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+    }
+    :root.calming-mode .breathe{
+      border-color: rgba(127,178,230,.18);
+      background: rgba(10,16,28,.64);
     }
     .breatheHd{
       display:flex;
@@ -699,6 +1121,8 @@
       color: var(--muted);
       font-weight:700;
     }
+    :root.calming-mode .breatheHd span{ color: rgba(238,242,255,.74); }
+
     .breatheGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -725,6 +1149,18 @@
     }
     .bMini > *{ position:relative; z-index:1; }
 
+    :root.calming-mode .bMini{
+      border-color: rgba(238,242,255,.12);
+      background: rgba(18,26,40,.72);
+      box-shadow: 0 14px 28px rgba(0,0,0,.38);
+    }
+    :root.calming-mode .bMini::before{
+      opacity:.55;
+      background:
+        radial-gradient(420px 260px at 18% 18%, rgba(127,178,230,.10), transparent 62%),
+        radial-gradient(420px 260px at 86% 16%, rgba(58,110,165,.10), transparent 62%);
+    }
+
     .bMini .label{
       display:flex;
       align-items:center;
@@ -744,12 +1180,18 @@
       letter-spacing: .6px;
       text-transform: uppercase;
     }
+    :root.calming-mode .pill{
+      border-color: rgba(127,178,230,.22);
+      background: rgba(127,178,230,.14);
+      color: rgba(238,242,255,.92);
+    }
     .bMini .name{
       font-size: 12px;
       font-weight: 850;
       color: rgba(20,18,20,.82);
       letter-spacing: .1px;
     }
+    :root.calming-mode .bMini .name{ color: rgba(238,242,255,.88); }
 
     .stageMini{
       height: 78px;
@@ -764,6 +1206,13 @@
       position:relative;
       overflow:hidden;
     }
+    :root.calming-mode .stageMini{
+      border-color: rgba(238,242,255,.12);
+      background:
+        radial-gradient(520px 240px at 45% 35%, rgba(127,178,230,.08), transparent 58%),
+        linear-gradient(180deg, rgba(238,242,255,.05), rgba(0,0,0,0));
+      box-shadow: inset 0 0 0 1px rgba(238,242,255,.10);
+    }
 
     .heartMini{
       width: 56px;
@@ -772,7 +1221,6 @@
       filter: drop-shadow(0 12px 18px rgba(0,0,0,.16));
     }
 
-    /* Timing locked to your sample */
     @keyframes sighPulse {
       0%   { transform: scale(.82); }
       25%  { transform: scale(1.08); }
@@ -806,6 +1254,13 @@
     }
     .cueMini::after{ content:""; }
 
+    :root.calming-mode .cueMini{
+      background: rgba(10,16,28,.72);
+      border-color: rgba(238,242,255,.14);
+      color: rgba(238,242,255,.90);
+      box-shadow: 0 10px 18px rgba(0,0,0,.40);
+    }
+
     @keyframes sighCue {
       0%, 25%          { content:"IN (NOSE)"; }
       25.001%, 34%     { content:"SNIF (NOSE)"; }
@@ -821,9 +1276,9 @@
     }
     .steady .cueMini::after{ animation: boxCue 16s steps(1,end) infinite; }
 
-    /* Pausing rules: quiet-mode + prefers-reduced-motion + no-motion */
-    :root.quiet-mode .panic .heartMini,
-    :root.quiet-mode .steady .heartMini,
+    /* Pausing rules: calming-mode + prefers-reduced-motion + no-motion */
+    :root.calming-mode .panic .heartMini,
+    :root.calming-mode .steady .heartMini,
     :root.no-motion .panic .heartMini,
     :root.no-motion .steady .heartMini{
       animation: none !important;
@@ -833,29 +1288,7 @@
       .cueMini::after{ content:"IN (NOSE)"; }
     }
 
-    .quiet-mode .field{
-      background: rgba(18,26,40,.86);
-      border-color: rgba(232,236,245,.12);
-    }
-    .quiet-mode .mini{
-      border-color: rgba(232,236,245,.12);
-      background: rgba(18,26,40,.80);
-    }
-    .quiet-mode .breathe{
-      border-color: rgba(90,140,200,.20);
-      background: rgba(15,23,36,.86);
-    }
-    .quiet-mode .bMini{
-      border-color: rgba(232,236,245,.12);
-      background: rgba(18,26,40,.80);
-      box-shadow: 0 14px 28px rgba(0,0,0,.30);
-    }
-    .quiet-mode .cueMini{
-      background: rgba(15,23,36,.72);
-      border-color: rgba(232,236,245,.14);
-      color: rgba(232,236,245,.86);
-    }
-
+    /* Layout responsiveness */
     @media (max-width: 980px){
       nav{ display:none; }
       .heroGrid{ grid-template-columns: 1fr; }
@@ -863,16 +1296,19 @@
       .title{ font-size: 42px; }
       .hdrActions{ min-width:auto; }
       .grid2{ grid-template-columns: 1fr; }
+      .credRow{ grid-template-columns: 1fr; }
+      .aboutGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 640px){
       .cards .card{ grid-column: span 12; }
       .title{ font-size: 36px; }
       .miniGrid{ grid-template-columns: 1fr; }
       .breatheGrid{ grid-template-columns: 1fr; }
+      .teamRow{ grid-template-columns: 1fr; }
     }
     @media (max-width: 430px){
       .hero{ padding: 32px 0 18px; }
-      .heroCard{ padding: 22px 18px 20px; }
+      .heroInner{ padding: 20px 18px 18px; }
       .kicker{ gap:8px; row-gap:10px; margin-bottom: 16px; }
       .kicker span{ font-size:12px; padding:7px 10px; line-height:1.25; }
       .title{ font-size: 32px; line-height:1.12; }
@@ -910,7 +1346,7 @@
 
           <div class="hdrActions">
             <button class="btn ghost" type="button" id="btnChangeLoc">Change location</button>
-            <button class="btn" type="button" id="btnQuiet" aria-pressed="false">Quiet mode</button>
+            <button class="btn" type="button" id="btnCalming" aria-pressed="false">Calming mode</button>
             <a class="btn primary" id="topCall" href="#immediate">Immediate Need</a>
           </div>
         </div>
@@ -922,21 +1358,49 @@
         <div class="wrap">
           <div class="heroGrid">
             <div class="heroCard">
-              <div class="kicker">
-                <span>Family-owned since 1922</span>
-                <span id="kLocal">Local chapel focus</span>
-                <span>Burial • Cremation • Preplanning</span>
+              <!-- HERO PHOTO (placeholder) -->
+              <div class="heroPhoto" aria-hidden="true">
+                <!-- From your list -->
+                <img src="https://unsplash.com/photos/Z7wqFSH8mdM/download?force=true" alt="" loading="lazy" decoding="async">
               </div>
 
-              <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
-              <p class="subtitle" id="heroSub">
-                Choose your nearest chapel once. From then on, this site stays local every time you come back.
-              </p>
+              <div class="heroInner">
+                <div class="kicker">
+                  <span>Family-owned since 1922</span>
+                  <span id="kLocal">Local chapel focus</span>
+                  <span>Burial • Cremation • Preplanning</span>
+                </div>
 
-              <div class="heroCtas">
-                <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
-                <button class="btn" type="button" id="heroPick">Choose location</button>
-                <a class="btn" href="#locations">View locations</a>
+                <h2 class="title">When someone dies,<br><em>start here</em>.</h2>
+                <p class="subtitle" id="heroSub">
+                  Choose your nearest chapel once. From then on, this site stays local every time you come back.
+                </p>
+
+                <div class="heroCtas">
+                  <a class="btn primary" id="heroCall" href="#immediate">Call your chapel</a>
+                  <button class="btn" type="button" id="heroPick">Choose location</button>
+                  <button class="btn ghost" type="button" id="aboutOpen">Meet our team</button>
+                </div>
+
+                <div class="humanLine" role="note">
+                  <strong>You’re not alone.</strong>
+                  <span>If you don’t know what to do, start with a call. We’ll guide the next step.</span>
+                </div>
+
+                <div class="credRow" aria-label="Trust cues">
+                  <div class="cred">
+                    <b>Local-first</b>
+                    <small>Your calls and directions follow your selected chapel.</small>
+                  </div>
+                  <div class="cred">
+                    <b>Clear next step</b>
+                    <small>No forms. No guessing. Pick a chapel and call.</small>
+                  </div>
+                  <div class="cred">
+                    <b>Human help</b>
+                    <small>Simple guidance, one step at a time.</small>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -955,6 +1419,34 @@
                     <a class="btn primary" id="callBtn" href="#immediate">Call now</a>
                     <div class="muteline" id="callNote">Choose a chapel to see the correct phone number.</div>
 
+                    <!-- NEW: What happens next -->
+                    <div class="nextSteps" aria-label="What happens next">
+                      <h4>What happens next</h4>
+                      <ul class="steps">
+                        <li class="step">
+                          <span class="n">1</span>
+                          <span>
+                            <b>Call your chapel</b>
+                            <small>Tell us who passed and where they are.</small>
+                          </span>
+                        </li>
+                        <li class="step">
+                          <span class="n">2</span>
+                          <span>
+                            <b>We guide the next step</b>
+                            <small>We’ll explain options and timing in plain language.</small>
+                          </span>
+                        </li>
+                        <li class="step">
+                          <span class="n">3</span>
+                          <span>
+                            <b>Plan, at your pace</b>
+                            <small>We handle details so you can focus on family.</small>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
                     <div class="miniGrid" aria-label="Quiet utilities">
                       <div class="mini">
                         <strong>Quick directions</strong>
@@ -968,7 +1460,6 @@
                       </div>
                     </div>
 
-                    <!-- REPLACED: old breatheText + pause button -->
                     <div class="breathe" aria-live="polite">
                       <div class="breatheHd">
                         <strong>Just breathe.</strong>
@@ -1040,6 +1531,7 @@
                   <div class="stack">
                     <a class="btn" href="#" id="griefBtn">Grief resources (placeholder)</a>
                     <a class="btn" href="#" id="checklistBtn">First 24 hours checklist (placeholder)</a>
+                    <button class="btn ghost" type="button" id="aboutOpen2">Meet our team</button>
                     <div class="muteline">These buttons are placeholders until you wire real pages.</div>
                   </div>
                 </div>
@@ -1155,6 +1647,71 @@
         </div>
       </div>
     </div>
+
+    <!-- NEW: About / Team modal -->
+    <div class="backdrop" id="aboutBackdrop" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+      <div class="modal">
+        <div class="mhd">
+          <div>
+            <h3 id="aboutTitle">A real place. Real people.</h3>
+            <p>Replace placeholders with your chapel photos and real staff.</p>
+          </div>
+          <button class="btn" type="button" id="aboutClose">Close</button>
+        </div>
+
+        <div class="mbd">
+          <div class="aboutGrid">
+            <div class="aboutCard">
+              <h4>Our promise</h4>
+              <p>
+                This is the first page families see. It should feel like someone steady is standing right here with them.
+                Keep the language plain and the next step obvious.
+              </p>
+
+              <ul class="promise" aria-label="Promises">
+                <li><span class="dotOk" aria-hidden="true"></span><span><b>No overwhelm</b><small>We keep the next step simple and clear.</small></span></li>
+                <li><span class="dotOk" aria-hidden="true"></span><span><b>Local continuity</b><small>Your selected chapel stays your default.</small></span></li>
+                <li><span class="dotOk" aria-hidden="true"></span><span><b>Practical guidance</b><small>We explain options without pressure.</small></span></li>
+              </ul>
+            </div>
+
+            <div class="aboutCard">
+              <h4>Care team (placeholders)</h4>
+              <p>Swap these for real names/roles/photos.</p>
+
+              <div class="teamRow" aria-label="Team placeholders">
+                <div class="teamChip">
+                  <span class="avatar" aria-hidden="true"><img src="https://unsplash.com/photos/ydlJdube27Y/download?force=true" alt=""></span>
+                  <span class="who"><b>Funeral Director</b><small>Calm, step-by-step guidance.</small></span>
+                </div>
+                <div class="teamChip">
+                  <span class="avatar" aria-hidden="true"><img src="https://unsplash.com/photos/R7Cbm4evh_A/download?force=true" alt=""></span>
+                  <span class="who"><b>Family Care</b><small>Details handled, gently.</small></span>
+                </div>
+                <div class="teamChip">
+                  <span class="avatar" aria-hidden="true"><img src="https://unsplash.com/photos/mvKdVvwGJZg/download?force=true" alt=""></span>
+                  <span class="who"><b>Chapel Team</b><small>A real person answers.</small></span>
+                </div>
+                <div class="teamChip">
+                  <span class="avatar" aria-hidden="true"><img src="https://unsplash.com/photos/5a3eFHcGl9U/download?force=true" alt=""></span>
+                  <span class="who"><b>Aftercare</b><small>Support beyond the service.</small></span>
+                </div>
+              </div>
+
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" type="button" id="aboutPick">Choose my chapel</button>
+                <a class="btn ghost" href="#immediate">Immediate Need</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mft">
+          <div class="tiny">Next: put real chapel exteriors + real staff portraits in <code>locations.json</code> (photo field).</div>
+          <button class="btn" type="button" id="aboutClose2">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1188,12 +1745,12 @@
     // Motion toggle (respects prefers-reduced-motion)
     const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const ambient = document.querySelector(".ambient");
-    let quietMode = false;
+    let calmingMode = false;
 
     function applyMotion(){
       const root = document.documentElement;
       const prefersReduced = motionMq.matches;
-      const effective = !prefersReduced && !quietMode;
+      const effective = !prefersReduced && !calmingMode;
       root.style.setProperty("--motion", effective ? "1" : "0");
       root.classList.toggle("no-motion", prefersReduced);
       if(ambient) ambient.style.animationPlayState = effective ? "running" : "paused";
@@ -1202,26 +1759,30 @@
     motionMq.addEventListener("change", () => applyMotion());
     applyMotion();
 
-    // Quiet mode
-    const QUIET_KEY = "sfh_quiet_mode";
-    const btnQuiet = document.getElementById("btnQuiet");
+    // Calming mode (formerly Quiet mode) + backwards compatible storage
+    const CALMING_KEY = "sfh_calming_mode";
+    const LEGACY_QUIET_KEY = "sfh_quiet_mode";
+    const btnCalming = document.getElementById("btnCalming");
 
-    function applyQuiet(enabled){
-      quietMode = enabled;
+    function applyCalming(enabled){
+      calmingMode = enabled;
       const root = document.documentElement;
-      root.classList.toggle("quiet-mode", enabled);
-      btnQuiet.textContent = enabled ? "Quiet mode on" : "Quiet mode";
-      btnQuiet.setAttribute("aria-pressed", enabled ? "true" : "false");
-      localStorage.setItem(QUIET_KEY, enabled ? "1" : "0");
+      root.classList.toggle("calming-mode", enabled);
+      btnCalming.textContent = enabled ? "Calming mode on" : "Calming mode";
+      btnCalming.setAttribute("aria-pressed", enabled ? "true" : "false");
+      localStorage.setItem(CALMING_KEY, enabled ? "1" : "0");
+      // leave legacy key in sync
+      localStorage.setItem(LEGACY_QUIET_KEY, enabled ? "1" : "0");
       applyMotion();
     }
 
-    btnQuiet.addEventListener("click", () => {
-      applyQuiet(!quietMode);
+    btnCalming.addEventListener("click", () => {
+      applyCalming(!calmingMode);
     });
 
-    const savedQuiet = localStorage.getItem(QUIET_KEY) === "1";
-    applyQuiet(savedQuiet);
+    const savedCalming = localStorage.getItem(CALMING_KEY);
+    const legacyQuiet = localStorage.getItem(LEGACY_QUIET_KEY);
+    applyCalming(savedCalming === "1" || (savedCalming === null && legacyQuiet === "1"));
 
     // Local-first state
     const LS_KEY = "sfh_location";
@@ -1240,7 +1801,7 @@
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
     }
 
-    // Quiet tips
+    // Tips
     const TIPS = [
       "Call first. We’ll guide you through the next step.",
       "If you have it handy: full name, date of birth, and location of passing.",
@@ -1259,22 +1820,15 @@
       { label: "Greeter", initials: "G" }
     ];
 
-    /* ----------------------------------------------------
-       NEW: placeholder photos for chapel cards + modal list
-       ---------------------------------------------------- */
+    // Placeholder photos (verified download endpoints from your list)
     const PLACEHOLDER_PHOTOS = [
-      // OK (download endpoints verified via the links you provided)
       "https://unsplash.com/photos/Z7wqFSH8mdM/download?force=true",
       "https://unsplash.com/photos/R7Cbm4evh_A/download?force=true",
       "https://unsplash.com/photos/mvKdVvwGJZg/download?force=true",
       "https://unsplash.com/photos/ydlJdube27Y/download?force=true",
       "https://unsplash.com/photos/5a3eFHcGl9U/download?force=true",
-
-      // TODO (these two Unsplash photo pages returned 403 when fetched, so I did not fabricate their download URLs)
-      // "https://unsplash.com/photos/6FhjliHh3_Y/download?force=true",
-      // "https://unsplash.com/photos/9t04Lccny3s/download?force=true",
+      // TODO: add the two other Unsplash links if you paste their real download URLs
     ];
-
     function photoForIndex(i){
       if(!PLACEHOLDER_PHOTOS.length) return "";
       return PLACEHOLDER_PHOTOS[i % PLACEHOLDER_PHOTOS.length];
@@ -1288,7 +1842,7 @@
       localStorage.setItem(LS_KEY, id);
 
       el("chapelLine").textContent = loc.displayName;
-      el("kLocal").textContent = loc.serviceAreaLine || "Serving nearby communities";
+      el("kLocal").textContent = loc.serviceAreaLine || "Local chapel focus";
       el("heroSub").textContent = loc.heroLine || `Serving ${loc.city || "local"} families with calm, clear guidance.`;
 
       el("topCall").textContent = `Call ${loc.city || "your chapel"}`;
@@ -1402,7 +1956,7 @@
       });
     }
 
-    // Modal
+    // Location Modal
     const backdrop = el("backdrop");
     function openModal(){
       backdrop.style.display = "flex";
@@ -1461,6 +2015,25 @@
     }
 
     el("mSearch").addEventListener("input", () => renderModalList(el("mSearch").value));
+
+    // About modal
+    const aboutBackdrop = el("aboutBackdrop");
+    function openAbout(){
+      aboutBackdrop.style.display = "flex";
+      setTimeout(() => el("aboutClose").focus(), 0);
+    }
+    function closeAbout(){
+      aboutBackdrop.style.display = "none";
+    }
+
+    el("aboutOpen").addEventListener("click", openAbout);
+    el("aboutOpen2").addEventListener("click", openAbout);
+    el("aboutClose").addEventListener("click", closeAbout);
+    el("aboutClose2").addEventListener("click", closeAbout);
+    el("aboutPick").addEventListener("click", () => { closeAbout(); openModal(); });
+
+    aboutBackdrop.addEventListener("click", (e) => { if(e.target === aboutBackdrop) closeAbout(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape" && aboutBackdrop.style.display === "flex") closeAbout(); });
 
     async function init(){
       const r = await fetch("./locations.json", { cache: "no-store" });
